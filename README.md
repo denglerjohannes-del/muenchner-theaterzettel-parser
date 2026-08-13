@@ -18,12 +18,12 @@ Theaterzettel liefern hochkonfidente Spielplandaten. Ein zusätzliches tägliche
 ```bash
 python3 bind_scan_labels.py IIIF_MANIFEST.json SCAN_LABEL_BINDING.jsonl
 python3 fetch_hocr.py IIIF_MANIFEST.json hocr HOCR_ACQUISITION_RECEIPT.json
-python3 index_hocr.py hocr SCAN_LABEL_BINDING.jsonl index
+python3 index_hocr.py hocr SCAN_LABEL_BINDING.jsonl index --year 1878
 python3 extract_programme_candidates.py index/PAGE_INDEX.jsonl index/PHYSICAL_LINES.jsonl candidates
 python3 -m unittest discover -v
 ```
 
-Die Scanbindung verhindert die Verwechslung gedruckter Seitenzahlen mit IIIF-Scan-IDs. Der Downloader ist resumierbar und quittiert jede Datei per SHA-256. Kleine OCR-Antworten leerer Rückseiten bleiben erhalten. `index_hocr.py` klassifiziert National- und Residenztheater getrennt; Konzert, Gärtnerplatz und interne Wochenpläne bleiben Review-Fälle.
+Die Scanbindung verhindert die Verwechslung gedruckter Seitenzahlen mit IIIF-Scan-IDs. Der Downloader ist resumierbar und quittiert jede Datei per SHA-256. Kleine OCR-Antworten leerer Rückseiten bleiben erhalten. Der Indexer verlangt das Kalenderjahr ausdrücklich über `--year`; damit kann ein Jahrgang nicht versehentlich mit dem Datumsvertrag eines anderen verarbeitet werden. `index_hocr.py` klassifiziert National- und Residenztheater getrennt; Konzert, Gärtnerplatz und interne Wochenpläne bleiben Review-Fälle.
 
 ## Referenzbefund 1877
 

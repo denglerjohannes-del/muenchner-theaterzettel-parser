@@ -130,6 +130,7 @@ def main() -> None:
         title_groups = group_titles(display_rows, break_markers)
         bills.append({
             "schema": "theaterzettel-programme-candidate/1",
+            "calendar_year": page["calendar_year"],
             "scan_index": page["scan_index"],
             "printed_label": page["printed_label"],
             "image_id": page["image_id"],
@@ -153,6 +154,7 @@ def main() -> None:
     counts = collections.Counter(len(row["title_groups"]) for row in bills)
     summary = {
         "schema": "theaterzettel-programme-candidate-summary/1",
+        "calendar_year": pages[0]["calendar_year"] if pages else None,
         "bills": len(bills),
         "nationaltheater_bills": sum(row["venue_candidate"] == "NATIONALTHEATER" for row in bills),
         "residenztheater_bills": sum(row["venue_candidate"] == "RESIDENZTHEATER" for row in bills),

@@ -16,12 +16,16 @@ MONTH_RE = re.compile(
     r"\b(?:Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|"
     r"September|Oktober|November|Dezember)\b", re.I
 )
-DATE_RE = re.compile(
-    r"\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Samflag|Sonntag)\b"
-    r".*?\b(?:den\s+)?(\d{1,2})\.?\s+"
-    r"(Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)"
-    r"(?:\s+1877)?\b", re.I
-)
+
+
+def compile_date_re(year: int) -> re.Pattern:
+    """Build the bill-header date pattern for one explicitly selected year."""
+    return re.compile(
+        r"\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Samflag|Sonntag)\b"
+        r".*?\b(?:den\s+)?(\d{1,2})\.?\s+"
+        r"(Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)"
+        rf"(?:\s+{year}\b|(?!\s+\d{{4}}\b))", re.I
+    )
 
 
 def clean_text(node) -> str:
@@ -69,7 +73,11 @@ def main() -> None:
     parser.add_argument("hocr_dir", type=pathlib.Path)
     parser.add_argument("binding", type=pathlib.Path)
     parser.add_argument("output_dir", type=pathlib.Path)
+    parser.add_argument("--year", type=int, required=True, help="calendar year printed by this bound volume")
     args = parser.parse_args()
+    if not 1000 <= args.year <= 2999:
+        parser.error("--year must be a four-digit calendar year")
+    date_re = compile_date_re(args.year)
 
     bindings = {
         row["scan_index"]: row
@@ -87,7 +95,7 @@ def main() -> None:
         for row in lines:
             if row["bbox"][1] > 1600:
                 continue
-            match = DATE_RE.search(row["surface"])
+            match = date_re.search(row["surface"])
             if match:
                 date_hits.append({
                     "weekday_surface": match.group(1),
@@ -98,6 +106,7 @@ def main() -> None:
         content_lines = [row for row in lines if len(row["surface"]) > 1]
         page = {
             "schema": "theaterzettel-page-index/1",
+            "calendar_year": args.year,
             "scan_index": scan_index,
             "printed_label": binding.get("printed_label"),
             "image_id": binding.get("image_id"),
@@ -136,6 +145,7 @@ def main() -> None:
     venues = sorted({row["venue_candidate"] for row in pages if row["venue_candidate"]})
     summary = {
         "schema": "theaterzettel-page-index-summary/1",
+        "calendar_year": args.year,
         "scans": len(pages),
         "physical_lines": len(physical_lines),
         "classifications": {key: sum(row["classification"] == key for row in pages) for key in classes},

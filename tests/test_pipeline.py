@@ -61,6 +61,12 @@ class PipelineTests(unittest.TestCase):
         ])
         self.assertEqual(venue, "RESIDENZTHEATER")
 
+    def test_date_pattern_is_bound_to_explicit_year(self):
+        pattern = INDEX.compile_date_re(1878)
+        self.assertIsNotNone(pattern.search("Freitag den 4. Januar 1878."))
+        self.assertIsNone(pattern.search("Freitag den 4. Januar 1877."))
+        self.assertIsNotNone(pattern.search("Freitag den 4. Januar."))
+
     def test_footer_preview_is_outside_title_band(self):
         title = {"surface": "Euryanthe.", "bbox": [800, 1100, 1800, 1450], "height": 350}
         footer = {"surface": "Aus dem Repertoir-Entwurf", "bbox": [200, 3300, 2200, 3350], "height": 50}
