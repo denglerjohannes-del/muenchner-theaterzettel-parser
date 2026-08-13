@@ -78,6 +78,21 @@ class PipelineTests(unittest.TestCase):
         ])
         self.assertEqual(venue, "NATIONALTHEATER")
 
+    def test_large_format_venue_band_can_begin_below_y1000(self):
+        venue, _ = INDEX.classify_venue([
+            {"surface": "München.", "bbox": [1400, 200, 2200, 350]},
+            {"surface": "K. Hof- und National-Theater.", "bbox": [400, 1196, 3300, 1450]},
+        ])
+        self.assertEqual(venue, "NATIONALTHEATER")
+
+    def test_role_name_below_date_does_not_create_second_venue(self):
+        venue, _ = INDEX.classify_venue([
+            {"surface": "National-Theater.", "bbox": [1400, 450, 2200, 600]},
+            {"surface": "Sonntag den 28. März 1880.", "bbox": [800, 730, 1600, 810]},
+            {"surface": "Ulrich von Rudenz, sein Neffe", "bbox": [200, 1490, 900, 1540]},
+        ])
+        self.assertEqual(venue, "NATIONALTHEATER")
+
     def test_repertoire_retrospective_is_not_a_venue_header(self):
         venue, _ = INDEX.classify_venue([
             {"surface": "Rückblick auf die Repertoire grösserer Bühnen", "bbox": [0, 100, 2000, 200]},
@@ -94,6 +109,7 @@ class PipelineTests(unittest.TestCase):
         self.assertIsNotNone(pattern.search("Saftmag den 30. November 1878."))
         self.assertIsNotNone(pattern.search("Fonntag den 28. September 1878."))
         self.assertIsNotNone(pattern.search("Famstag den 27. Dezember 1878."))
+        self.assertIsNotNone(pattern.search("Mittwoch den 20.. Oktober 1878."))
         self.assertIsNotNone(pattern.search("München, Freitag den 1. November 1878."))
         self.assertIsNone(pattern.search("Rückblick vom Montag den 1. bis Sonntag den 7. Januar 1878."))
 

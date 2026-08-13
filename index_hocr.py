@@ -28,7 +28,7 @@ def compile_date_re(year: int) -> re.Pattern:
     return re.compile(
         r"^\s*(?:M[üu]nchen[,.]?\s+)?[|—–-]*\s*"
         rf"\b({WEEKDAY_PATTERN})\b"
-        r".*?\b(?:den\s+)?(\d{1,2})\.?\s+"
+        r".*?\b(?:den\s+)?(\d{1,2})\.{0,2}\s+"
         r"(Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|Jugust|September|Oktober|November|Dezember)"
         rf"(?:\s+{year}\b|(?!\s+\d{{4}}\b))", re.I
     )
@@ -58,7 +58,14 @@ def parse_lines(path: pathlib.Path) -> list[dict]:
 
 
 def classify_venue(lines: list[dict]) -> tuple[str | None, list[str]]:
-    top = [row["surface"] for row in lines if row["bbox"][1] < 1000]
+    # Large-format guest-performance bills can place the venue band below
+    # y=1000 while the current date still begins above y=1600.  Keep both
+    # header classifiers on the same bounded top-of-page coordinate contract.
+    possible_date_y = [row["bbox"][1] for row in lines
+                       if row["bbox"][1] < 1600 and MONTH_RE.search(row["surface"])
+                       and re.search(r"\d{1,2}", row["surface"])]
+    header_limit = min(1600, min(possible_date_y) + 250) if possible_date_y else 1600
+    top = [row["surface"] for row in lines if row["bbox"][1] < header_limit]
     joined = " ".join(top)
     evidence = []
     if re.search(r"Rückblick\s+auf\s+die\s+Repertoire.*Bühnen", joined, re.I):
