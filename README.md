@@ -37,4 +37,4 @@ Die Scanbindung verhindert die Verwechslung gedruckter Seitenzahlen mit IIIF-Sca
 - 217 Nationaltheater- und 152 Residenztheater-Zettelfassungen
 - 0 titelarme Zettel nach der deterministischen Kandidatenextraktion
 
-Die Kurationsentscheidungen bleiben Forschungsdaten des jeweiligen Jahrgangs. Der allgemeine Release-Bauer liest sie nur ein, bindet seltene manuelle Ergänzungen an eine konkrete Quellenseite und erzeugt daraus Spielplan, Tagesledger, Titelhäufigkeiten, frühere Zettelfassungen und Provenienz deterministisch.
+Die Kurationsentscheidungen bleiben Forschungsdaten des jeweiligen Jahrgangs. Der allgemeine Release-Bauer liest sie nur ein, bindet seltene manuelle Ergänzungen und ausdrückliche Absagen an konkrete Quellenseiten und erzeugt daraus Spielplan, Tagesledger, Titelhäufigkeiten, frühere, abgesagte Zettelfassungen und Provenienz deterministisch.

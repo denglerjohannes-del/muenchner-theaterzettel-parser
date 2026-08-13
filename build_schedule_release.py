@@ -65,6 +65,8 @@ def main() -> None:
     date_overrides = curation["date_resolutions"]
     aliases = curation["title_aliases"]
     ignored_surfaces = curation.get("ignored_title_surfaces", {})
+    title_group_overrides = curation.get("title_group_overrides", {})
+    cancellations = curation.get("cancelled_dates", {})
     candidates = [json.loads(line) for line in args.candidates.read_text(encoding="utf-8").splitlines()]
     pages = [json.loads(line) for line in args.page_index.read_text(encoding="utf-8").splitlines()]
     validate_year_contract(candidates, pages, date_overrides, args.year)
@@ -97,6 +99,7 @@ def main() -> None:
     weekday_errors = []
     alias_applications = []
     ignored_components = []
+    title_group_override_applications = []
     for row in candidates:
         scan_key = str(row["scan_index"])
         if scan_key in date_overrides:
@@ -108,8 +111,20 @@ def main() -> None:
             weekday = row["weekday_surface"].capitalize()
             if resolved_date.weekday() != WEEKDAYS[weekday]:
                 weekday_errors.append({"scan_index": row["scan_index"], "date_surface": row["date_surface"]})
+        override = title_group_overrides.get(scan_key)
+        groups = row["title_groups"]
+        if override:
+            title_group_override_applications.append({
+                "schema": "theaterzettel-title-group-override-application/1",
+                "scan_index": row["scan_index"],
+                "reason": override["reason"],
+                "original_title_groups": groups,
+                "replacement_title_surfaces": override["title_surfaces"],
+            })
+            groups = [{"title_surface_candidate": title, "bbox": None, "height_evidence": []}
+                      for title in override["title_surfaces"]]
         titles = []
-        for component_index, group in enumerate(row["title_groups"], start=1):
+        for component_index, group in enumerate(groups, start=1):
             canonical, cleaned = clean_title(group["title_surface_candidate"], aliases)
             if cleaned in ignored_surfaces:
                 ignored = {
@@ -159,6 +174,7 @@ def main() -> None:
     for row in editions:
         grouped[(row["venue"], row["date"])].append(row)
     superseded = []
+    cancelled_editions = []
     final_editions = []
     residenz_preserved = []
     for key, group in grouped.items():
@@ -169,9 +185,21 @@ def main() -> None:
                 residenz_preserved.append(row)
             continue
         final = group[-1]
-        final["edition_status"] = "FINAL_BILL_EDITION"
         final["earlier_scan_indices"] = [row["scan_index"] for row in group[:-1]]
-        final_editions.append(final)
+        cancellation = cancellations.get(key[1])
+        if cancellation:
+            notice_page = page_by_scan[cancellation["notice_scan_index"]]
+            final["edition_status"] = "CANCELLED_BY_EXPLICIT_NOTICE"
+            final["cancellation_notice"] = {
+                **cancellation,
+                "notice_image_id": notice_page["image_id"],
+                "notice_ocr_url": notice_page["ocr_url"],
+                "notice_hocr_sha256": notice_page["hocr_sha256"],
+            }
+            cancelled_editions.append(final)
+        else:
+            final["edition_status"] = "FINAL_BILL_EDITION"
+            final_editions.append(final)
         final_titles = [title["canonical_title"] for title in final["titles"]]
         for row in group[:-1]:
             row["edition_status"] = "SUPERSEDED_BY_LATER_BILL_EDITION"
@@ -204,10 +232,13 @@ def main() -> None:
     day = dt.date(args.year, 1, 1)
     while day.year == args.year:
         event = by_date.get(day.isoformat())
+        date_iso = day.isoformat()
         ledger.append({
             "schema": "nationaltheater-day-ledger/1",
-            "date": day.isoformat(),
-            "state": "SCHEDULE_HIGH_CONFIDENCE" if event else "NO_NATIONALTHEATER_BILL_IN_VOLUME",
+            "date": date_iso,
+            "state": ("SCHEDULE_HIGH_CONFIDENCE" if event else
+                      "KNOWN_CANCELLATION_OR_CLOSURE" if date_iso in cancellations else
+                      "NO_NATIONALTHEATER_BILL_IN_VOLUME"),
             "event_id": event["event_id"] if event else None,
             "source_mode": "DAILY_THEATER_BILL_VOLUME",
         })
@@ -223,11 +254,13 @@ def main() -> None:
     write_jsonl(args.output_dir / "SOURCE_BILL_EDITIONS.jsonl", editions)
     write_jsonl(args.output_dir / "RESIDENZTHEATER_BILL_EDITIONS_PRESERVED.jsonl", residenz_preserved)
     write_jsonl(args.output_dir / "SUPERSEDED_BILL_EDITIONS.jsonl", superseded)
+    write_jsonl(args.output_dir / "CANCELLED_BILL_EDITIONS.jsonl", cancelled_editions)
     write_jsonl(args.output_dir / f"NATIONALTHEATER_{args.year}_SCHEDULE_ENTRIES.jsonl", schedule)
     write_jsonl(args.output_dir / f"NATIONALTHEATER_{args.year}_TITLE_OCCURRENCES.jsonl", occurrences)
     write_jsonl(args.output_dir / f"NATIONALTHEATER_{args.year}_DAY_LEDGER.jsonl", ledger)
     write_jsonl(args.output_dir / "TITLE_ALIAS_APPLICATIONS.jsonl", alias_applications)
     write_jsonl(args.output_dir / "IGNORED_TITLE_COMPONENTS.jsonl", ignored_components)
+    write_jsonl(args.output_dir / "TITLE_GROUP_OVERRIDES_APPLIED.jsonl", title_group_override_applications)
 
     excluded = []
     for scan, reason in curation["excluded_scans"].items():
@@ -248,6 +281,7 @@ def main() -> None:
             row["scan_index"] == max(item["scan_index"] for item in grouped[(row["venue"], row["date"])])
             for row in final_editions
         ),
+        "cancelled_dates_absent_from_schedule": all(row["date"] not in by_date for row in cancelled_editions),
         "performed_confirmation_gate_required": False,
         "orchestra_service_inferred": False,
     }
@@ -264,9 +298,11 @@ def main() -> None:
         "nationaltheater_distinct_canonical_titles": len(frequencies),
         "superseded_bill_editions": len(superseded),
         "superseded_with_programme_change": sum(row["programme_changed"] for row in superseded),
+        "cancelled_bill_editions": len(cancelled_editions),
         "date_resolutions": len(date_overrides),
         "title_alias_applications": len(alias_applications),
         "ignored_nonwork_title_components": len(ignored_components),
+        "title_group_override_applications": len(title_group_override_applications),
         "day_ledger_rows": len(ledger),
         "excluded_or_backlog_pages": len(excluded),
         "release_state": "SCHEDULE_HIGH_CONFIDENCE_THEATER_BILL",
@@ -286,7 +322,8 @@ def main() -> None:
     }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     required_true = [qa["all_candidates_have_titles"], qa["unique_final_national_dates"],
-                     qa["complete_day_ledger"], qa["latest_scan_selected_per_nationaltheater_date"]]
+                     qa["complete_day_ledger"], qa["latest_scan_selected_per_nationaltheater_date"],
+                     qa["cancelled_dates_absent_from_schedule"]]
     if weekday_errors or not all(required_true):
         raise SystemExit(1)
 
