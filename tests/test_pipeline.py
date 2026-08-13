@@ -17,6 +17,7 @@ def load(name):
 
 INDEX = load("index_hocr")
 EXTRACT = load("extract_programme_candidates")
+BIND = load("bind_scan_labels")
 
 
 def hocr(lines):
@@ -27,6 +28,18 @@ def hocr(lines):
 
 
 class PipelineTests(unittest.TestCase):
+    def test_manifest_binding_keeps_printed_label_and_scan_id_separate(self):
+        payload = {"sequences": [{"canvases": [{
+            "label": "17 (0023)",
+            "@id": "https://example.test/canvas/23",
+            "images": [{"resource": {"@id": "https://example.test/bsb12345678_00023/full/full/0/default.jpg"}}],
+            "seeAlso": {"@id": "https://example.test/ocr/23"},
+        }]}]}
+        row = BIND.bind_manifest(payload)[0]
+        self.assertEqual(row["scan_index"], 1)
+        self.assertEqual(row["printed_label"], "17 (0023)")
+        self.assertEqual(row["image_id"], "bsb12345678_00023")
+
     def test_bbox_lines_and_national_header(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = pathlib.Path(tmp) / "0005.hocr"
