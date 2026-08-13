@@ -71,6 +71,20 @@ class PipelineTests(unittest.TestCase):
                 ])
                 self.assertEqual(venue, "RESIDENZTHEATER")
 
+    def test_truncated_national_theater_header(self):
+        venue, _ = INDEX.classify_venue([
+            {"surface": "Königl. Hof- und", "bbox": [0, 300, 500, 500]},
+            {"surface": "National-Thear", "bbox": [600, 300, 1000, 500]},
+        ])
+        self.assertEqual(venue, "NATIONALTHEATER")
+
+    def test_repertoire_retrospective_is_not_a_venue_header(self):
+        venue, _ = INDEX.classify_venue([
+            {"surface": "Rückblick auf die Repertoire grösserer Bühnen", "bbox": [0, 100, 2000, 200]},
+            {"surface": "München K. Hof- und National-Theater", "bbox": [0, 500, 2000, 600]},
+        ])
+        self.assertIsNone(venue)
+
     def test_date_pattern_is_bound_to_explicit_year(self):
         pattern = INDEX.compile_date_re(1878)
         self.assertIsNotNone(pattern.search("Freitag den 4. Januar 1878."))
@@ -78,6 +92,18 @@ class PipelineTests(unittest.TestCase):
         self.assertIsNotNone(pattern.search("Freitag den 4. Januar."))
         self.assertIsNotNone(pattern.search("Mittwoch, 28. Auguft."))
         self.assertIsNotNone(pattern.search("Saftmag den 30. November 1878."))
+        self.assertIsNotNone(pattern.search("Fonntag den 28. September 1878."))
+        self.assertIsNotNone(pattern.search("Famstag den 27. Dezember 1878."))
+        self.assertIsNotNone(pattern.search("München, Freitag den 1. November 1878."))
+        self.assertIsNone(pattern.search("Rückblick vom Montag den 1. bis Sonntag den 7. Januar 1878."))
+
+    def test_split_weekday_and_date_header(self):
+        pattern = INDEX.compile_date_re(1879)
+        hits = INDEX.find_date_hits([
+            {"surface": "Montag", "bbox": [1000, 700, 1600, 900], "height": 200, "line_order": 1},
+            {"surface": "den 15. Dezember 1879.", "bbox": [400, 920, 2200, 1140], "height": 220, "line_order": 2},
+        ], pattern)
+        self.assertEqual([(row["day"], row["month"]) for row in hits], [(15, "Dezember")])
 
     def test_large_genre_word_can_be_a_display_title(self):
         for surface in ("Die Bauernkomödie.", "Ein Lustspiel."):

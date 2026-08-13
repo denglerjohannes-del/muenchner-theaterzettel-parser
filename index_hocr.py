@@ -13,17 +13,23 @@ from lxml import html
 
 BBOX_RE = re.compile(r"bbox\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)")
 MONTH_RE = re.compile(
-    r"\b(?:Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|"
+    r"\b(?:Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|Jugust|"
     r"September|Oktober|November|Dezember)\b", re.I
 )
+WEEKDAY_PATTERN = (
+    r"Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Samflag|Saftmag|Famstag|Hamstag|"
+    r"Sonntag|Fonntag|Fountag|Sountag"
+)
+WEEKDAY_ONLY_RE = re.compile(rf"^\s*(?:{WEEKDAY_PATTERN})\s*$", re.I)
 
 
 def compile_date_re(year: int) -> re.Pattern:
     """Build the bill-header date pattern for one explicitly selected year."""
     return re.compile(
-        r"\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Samflag|Saftmag|Sonntag)\b"
+        r"^\s*(?:M[üu]nchen[,.]?\s+)?[|—–-]*\s*"
+        rf"\b({WEEKDAY_PATTERN})\b"
         r".*?\b(?:den\s+)?(\d{1,2})\.?\s+"
-        r"(Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|September|Oktober|November|Dezember)"
+        r"(Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|Jugust|September|Oktober|November|Dezember)"
         rf"(?:\s+{year}\b|(?!\s+\d{{4}}\b))", re.I
     )
 
@@ -55,7 +61,9 @@ def classify_venue(lines: list[dict]) -> tuple[str | None, list[str]]:
     top = [row["surface"] for row in lines if row["bbox"][1] < 1000]
     joined = " ".join(top)
     evidence = []
-    has_theater = bool(re.search(r"\bTheater\b", joined, re.I))
+    if re.search(r"Rückblick\s+auf\s+die\s+Repertoire.*Bühnen", joined, re.I):
+        return None, top
+    has_theater = bool(re.search(r"\bThea(?:ter|r)\b", joined, re.I))
     if has_theater and re.search(r"\b(?:National|lational)\b", joined, re.I):
         evidence.append("NATIONALTHEATER")
     # The official OCR regularly reads the initial R as N/K/V and separates
@@ -66,6 +74,33 @@ def classify_venue(lines: list[dict]) -> tuple[str | None, list[str]]:
     if len(evidence) == 1:
         return evidence[0], top
     return None, top
+
+
+def find_date_hits(lines: list[dict], date_re: re.Pattern) -> list[dict]:
+    """Find one-line dates plus the recurring split weekday/date header."""
+    top = sorted((row for row in lines if row["bbox"][1] <= 1600), key=lambda row: (row["bbox"][1], row["bbox"][0]))
+    hits = []
+    for row in top:
+        match = date_re.search(row["surface"])
+        if match:
+            hits.append({"weekday_surface": match.group(1), "day": int(match.group(2)),
+                         "month": match.group(3), **row})
+    if hits:
+        return hits
+    for first, second in zip(top, top[1:]):
+        if not WEEKDAY_ONLY_RE.match(first["surface"]):
+            continue
+        if second["bbox"][1] - first["bbox"][3] > 120 or not re.match(r"^\s*den\b", second["surface"], re.I):
+            continue
+        combined = f"{first['surface']} {second['surface']}"
+        match = date_re.search(combined)
+        if match:
+            bbox = [min(first["bbox"][0], second["bbox"][0]), first["bbox"][1],
+                    max(first["bbox"][2], second["bbox"][2]), second["bbox"][3]]
+            hits.append({"weekday_surface": match.group(1), "day": int(match.group(2)),
+                         "month": match.group(3), "line_order": first["line_order"], "bbox": bbox,
+                         "height": bbox[3] - bbox[1], "surface": combined})
+    return hits
 
 
 def main() -> None:
@@ -91,18 +126,7 @@ def main() -> None:
         lines = parse_lines(path)
         binding = bindings[scan_index]
         venue, top_evidence = classify_venue(lines)
-        date_hits = []
-        for row in lines:
-            if row["bbox"][1] > 1600:
-                continue
-            match = date_re.search(row["surface"])
-            if match:
-                date_hits.append({
-                    "weekday_surface": match.group(1),
-                    "day": int(match.group(2)),
-                    "month": match.group(3),
-                    **row,
-                })
+        date_hits = find_date_hits(lines, date_re)
         content_lines = [row for row in lines if len(row["surface"]) > 1]
         page = {
             "schema": "theaterzettel-page-index/1",
