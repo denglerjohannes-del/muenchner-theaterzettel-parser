@@ -61,11 +61,28 @@ class PipelineTests(unittest.TestCase):
         ])
         self.assertEqual(venue, "RESIDENZTHEATER")
 
+    def test_residenz_ocr_aliases_from_next_volume(self):
+        for surface in ("K.Nendenz-", "K.Neñdenz-", "K.Mesidenz-", "K.Nefidenz-"):
+            with self.subTest(surface=surface):
+                venue, _ = INDEX.classify_venue([
+                    {"surface": surface, "bbox": [0, 300, 500, 500]},
+                    {"surface": "Theater.", "bbox": [600, 300, 1000, 500]},
+                ])
+                self.assertEqual(venue, "RESIDENZTHEATER")
+
     def test_date_pattern_is_bound_to_explicit_year(self):
         pattern = INDEX.compile_date_re(1878)
         self.assertIsNotNone(pattern.search("Freitag den 4. Januar 1878."))
         self.assertIsNone(pattern.search("Freitag den 4. Januar 1877."))
         self.assertIsNotNone(pattern.search("Freitag den 4. Januar."))
+        self.assertIsNotNone(pattern.search("Mittwoch, 28. Auguft."))
+        self.assertIsNotNone(pattern.search("Saftmag den 30. November 1878."))
+
+    def test_large_genre_word_can_be_a_display_title(self):
+        for surface in ("Die Bauernkomödie.", "Ein Lustspiel."):
+            with self.subTest(surface=surface):
+                row = {"surface": surface, "bbox": [500, 1100, 2000, 1440], "height": 340}
+                self.assertTrue(EXTRACT.is_display_title(row, 900, 0))
 
     def test_footer_preview_is_outside_title_band(self):
         title = {"surface": "Euryanthe.", "bbox": [800, 1100, 1800, 1450], "height": 350}

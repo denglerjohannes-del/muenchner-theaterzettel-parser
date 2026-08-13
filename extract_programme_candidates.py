@@ -39,7 +39,10 @@ def is_display_title(row: dict, date_bottom: int, change_notice_bottom: int) -> 
         return False
     if len(surface) < 3 or PUNCT_ONLY_RE.match(surface):
         return False
-    if BLOCK_RE.search(surface) or GENRE_RE.search(surface):
+    # A genre word can itself be part of a title (for example
+    # 'Die Bauernkomödie' or 'Ein Lustspiel').  Very large display type is
+    # stronger title evidence than this lexical hint.
+    if BLOCK_RE.search(surface) or (GENRE_RE.search(surface) and row["height"] < 240):
         return False
     return True
 
@@ -95,7 +98,7 @@ def main() -> None:
             if row["bbox"][1] > date["bbox"][3]
             and row["height"] >= 190
             and not BLOCK_RE.search(row["surface"])
-            and not GENRE_RE.search(row["surface"])
+            and not (GENRE_RE.search(row["surface"]) and row["height"] < 240)
             and not PUNCT_ONLY_RE.match(row["surface"].strip())
         ]
         preliminary_title_top = min(preliminary_title_tops, default=3100)

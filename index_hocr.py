@@ -13,7 +13,7 @@ from lxml import html
 
 BBOX_RE = re.compile(r"bbox\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)")
 MONTH_RE = re.compile(
-    r"\b(?:Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|"
+    r"\b(?:Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|"
     r"September|Oktober|November|Dezember)\b", re.I
 )
 
@@ -21,9 +21,9 @@ MONTH_RE = re.compile(
 def compile_date_re(year: int) -> re.Pattern:
     """Build the bill-header date pattern for one explicitly selected year."""
     return re.compile(
-        r"\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Samflag|Sonntag)\b"
+        r"\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Samflag|Saftmag|Sonntag)\b"
         r".*?\b(?:den\s+)?(\d{1,2})\.?\s+"
-        r"(Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)"
+        r"(Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|September|Oktober|November|Dezember)"
         rf"(?:\s+{year}\b|(?!\s+\d{{4}}\b))", re.I
     )
 
@@ -56,12 +56,12 @@ def classify_venue(lines: list[dict]) -> tuple[str | None, list[str]]:
     joined = " ".join(top)
     evidence = []
     has_theater = bool(re.search(r"\bTheater\b", joined, re.I))
-    if has_theater and re.search(r"\bNational\b", joined, re.I):
+    if has_theater and re.search(r"\b(?:National|lational)\b", joined, re.I):
         evidence.append("NATIONALTHEATER")
     # The official OCR regularly reads the initial R as N/K/V and separates
     # the printed line break around the hyphen.  The distinctive compound and
     # the following 'Theater' remain required, so this stays narrowly bound.
-    if has_theater and re.search(r"(?:Residenz|Nesidenz)", joined, re.I):
+    if has_theater and re.search(r"\b(?:Residenz|[RNKM][a-zäöüßñſ]{0,8}denz)\b", joined, re.I):
         evidence.append("RESIDENZTHEATER")
     if len(evidence) == 1:
         return evidence[0], top
