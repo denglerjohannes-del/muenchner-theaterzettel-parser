@@ -20,6 +20,10 @@ python3 bind_scan_labels.py IIIF_MANIFEST.json SCAN_LABEL_BINDING.jsonl
 python3 fetch_hocr.py IIIF_MANIFEST.json hocr HOCR_ACQUISITION_RECEIPT.json
 python3 index_hocr.py hocr SCAN_LABEL_BINDING.jsonl index --year 1878
 python3 extract_programme_candidates.py index/PAGE_INDEX.jsonl index/PHYSICAL_LINES.jsonl candidates
+python3 build_schedule_release.py candidates/PROGRAMME_CANDIDATES.jsonl CURATION.json index/PAGE_INDEX.jsonl release \
+  --year 1878 --source-volume bsb11362379 \
+  --source-manifest https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb11362379/manifest \
+  --source-urn urn:nbn:de:bvb:12-bsb11362379-2
 python3 -m unittest discover -v
 ```
 
@@ -33,4 +37,4 @@ Die Scanbindung verhindert die Verwechslung gedruckter Seitenzahlen mit IIIF-Sca
 - 217 Nationaltheater- und 152 Residenztheater-Zettelfassungen
 - 0 titelarme Zettel nach der deterministischen Kandidatenextraktion
 
-Die Freigabedaten und Kurationsentscheidungen gehören bewusst nicht in dieses allgemeine Werkzeug. Sie sind Forschungsdaten des jeweiligen Jahrgangs.
+Die Kurationsentscheidungen bleiben Forschungsdaten des jeweiligen Jahrgangs. Der allgemeine Release-Bauer liest sie nur ein, bindet seltene manuelle Ergänzungen an eine konkrete Quellenseite und erzeugt daraus Spielplan, Tagesledger, Titelhäufigkeiten, frühere Zettelfassungen und Provenienz deterministisch.

@@ -18,6 +18,7 @@ def load(name):
 INDEX = load("index_hocr")
 EXTRACT = load("extract_programme_candidates")
 BIND = load("bind_scan_labels")
+RELEASE = load("build_schedule_release")
 
 
 def hocr(lines):
@@ -83,6 +84,11 @@ class PipelineTests(unittest.TestCase):
             with self.subTest(surface=surface):
                 row = {"surface": surface, "bbox": [500, 1100, 2000, 1440], "height": 340}
                 self.assertTrue(EXTRACT.is_display_title(row, 900, 0))
+
+    def test_release_title_cleaning_preserves_source_but_applies_alias(self):
+        canonical, cleaned = RELEASE.clean_title("  Fauft. ", {"Fauft": "Faust"})
+        self.assertEqual(cleaned, "Fauft")
+        self.assertEqual(canonical, "Faust")
 
     def test_footer_preview_is_outside_title_band(self):
         title = {"surface": "Euryanthe.", "bbox": [800, 1100, 1800, 1450], "height": 350}
