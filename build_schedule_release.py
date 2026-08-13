@@ -34,6 +34,19 @@ def clean_title(surface: str, aliases: dict[str, str]) -> tuple[str, str]:
     return aliases.get(cleaned, cleaned), cleaned
 
 
+def validate_year_contract(candidates: list[dict], pages: list[dict], resolutions: dict, year: int) -> None:
+    """Fail closed when independently supplied release inputs disagree on year."""
+    candidate_years = {row.get("calendar_year") for row in candidates}
+    page_years = {row.get("calendar_year") for row in pages}
+    resolution_years = {dt.date.fromisoformat(row["resolved_date"]).year for row in resolutions.values()}
+    if candidate_years != {year}:
+        raise SystemExit(f"candidate calendar years {sorted(candidate_years, key=str)} do not equal --year {year}")
+    if page_years != {year}:
+        raise SystemExit(f"page-index calendar years {sorted(page_years, key=str)} do not equal --year {year}")
+    if resolution_years and resolution_years != {year}:
+        raise SystemExit(f"curated resolution years {sorted(resolution_years)} do not equal --year {year}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("candidates", type=pathlib.Path)
@@ -53,6 +66,7 @@ def main() -> None:
     ignored_surfaces = curation.get("ignored_title_surfaces", {})
     candidates = [json.loads(line) for line in args.candidates.read_text(encoding="utf-8").splitlines()]
     pages = [json.loads(line) for line in args.page_index.read_text(encoding="utf-8").splitlines()]
+    validate_year_contract(candidates, pages, date_overrides, args.year)
     page_by_scan = {row["scan_index"]: row for row in pages}
 
     # A bill rejected by strict automatic indexing (for example because the

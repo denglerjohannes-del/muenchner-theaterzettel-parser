@@ -90,6 +90,16 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(cleaned, "Fauft")
         self.assertEqual(canonical, "Faust")
 
+    def test_release_year_contract_fails_closed(self):
+        with self.assertRaises(SystemExit):
+            RELEASE.validate_year_contract(
+                [{"calendar_year": 1878}], [{"calendar_year": 1879}], {}, 1878
+            )
+        RELEASE.validate_year_contract(
+            [{"calendar_year": 1878}], [{"calendar_year": 1878}],
+            {"1": {"resolved_date": "1878-01-01"}}, 1878
+        )
+
     def test_footer_preview_is_outside_title_band(self):
         title = {"surface": "Euryanthe.", "bbox": [800, 1100, 1800, 1450], "height": 350}
         footer = {"surface": "Aus dem Repertoir-Entwurf", "bbox": [200, 3300, 2200, 3350], "height": 50}
