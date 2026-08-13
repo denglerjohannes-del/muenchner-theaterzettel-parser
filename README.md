@@ -1,6 +1,6 @@
 # Münchner Theaterzettel-Parser
 
-Deterministisches Referenzwerkzeug für gebundene Jahrgänge der Münchner Theaterzettel. Entwickelt und am vollständigen BSB-Jahrgang 1877 (`bsb11349688`, 772 Scans) validiert.
+Deterministisches Referenzwerkzeug für gebundene Jahrgänge der Münchner Theaterzettel. Entwickelt und an den vollständigen BSB-Jahrgängen 1877–1879 validiert.
 
 ## Wissenschaftlicher Vertrag
 
@@ -29,12 +29,12 @@ python3 -m unittest discover -v
 
 Die Scanbindung verhindert die Verwechslung gedruckter Seitenzahlen mit IIIF-Scan-IDs. Der Downloader ist resumierbar und quittiert jede Datei per SHA-256. Kleine OCR-Antworten leerer Rückseiten bleiben erhalten. Der Indexer verlangt das Kalenderjahr ausdrücklich über `--year`; damit kann ein Jahrgang nicht versehentlich mit dem Datumsvertrag eines anderen verarbeitet werden. `index_hocr.py` klassifiziert National- und Residenztheater getrennt; Konzert, Gärtnerplatz und interne Wochenpläne bleiben Review-Fälle.
 
-## Referenzbefund 1877
+## Referenzbefunde
 
-- 772/772 offizielle hOCR-Dateien, 0 Fehlabrufe
-- 31.224 physische OCR-Zeilen
-- 369 aktuelle Zettel der beiden königlichen Häuser
-- 217 Nationaltheater- und 152 Residenztheater-Zettelfassungen
-- 0 titelarme Zettel nach der deterministischen Kandidatenextraktion
+| Jahr | BSB-Band | Scans | physische OCR-Zeilen | automatisch erkannte Zettel | Titel-Holds |
+|---:|---|---:|---:|---:|---:|
+| 1877 | `bsb11349688` | 772 | 31.224 | 369 | 0 |
+| 1878 | `bsb11362379` | 714 | 36.092 | 361 | 0 |
+| 1879 | `bsb11380789` | 780 | 39.869 | 383 | 0 |
 
-Die Kurationsentscheidungen bleiben Forschungsdaten des jeweiligen Jahrgangs. Der allgemeine Release-Bauer liest sie nur ein, bindet seltene manuelle Ergänzungen und ausdrückliche Absagen an konkrete Quellenseiten und erzeugt daraus Spielplan, Tagesledger, Titelhäufigkeiten, frühere, abgesagte Zettelfassungen und Provenienz deterministisch.
+Die Kurationsentscheidungen bleiben Forschungsdaten des jeweiligen Jahrgangs. Der allgemeine Release-Bauer liest sie nur ein, bindet seltene manuelle Ergänzungen, komplexe Titelgruppen und ausdrückliche Absagen an konkrete Quellenseiten und erzeugt daraus Spielplan, Tagesledger, Titelhäufigkeiten, frühere und abgesagte Zettelfassungen sowie Provenienz deterministisch. Automatische Ausgangsgruppen bleiben bei einer Korrektur vollständig erhalten.
