@@ -19,6 +19,7 @@ INDEX = load("index_hocr")
 EXTRACT = load("extract_programme_candidates")
 BIND = load("bind_scan_labels")
 RELEASE = load("build_schedule_release")
+REVIEW = load("generate_review_queue")
 
 
 def hocr(lines):
@@ -160,6 +161,36 @@ class PipelineTests(unittest.TestCase):
         markers = [{"surface": "Hierauf:", "bbox": [1000, 1680, 1400, 1730], "height": 50}]
         groups = EXTRACT.group_titles(rows, markers)
         self.assertEqual([row["title_surface_candidate"] for row in groups], ["Die Dienstboten.", "Die einzige Tochter."])
+
+    def test_review_queue_unifies_holds_components_suspicious_surfaces_and_editions(self):
+        pages = [
+            {"calendar_year": 1880, "scan_index": 1, "printed_label": "(0001)",
+             "classification": "REVIEW_HOLD", "venue_candidate": None, "top_evidence": ["Concert"]},
+            {"calendar_year": 1880, "scan_index": 2, "printed_label": "(0002)",
+             "classification": "PRIMARY_BILL_CANDIDATE", "venue_candidate": "NATIONALTHEATER"},
+            {"calendar_year": 1880, "scan_index": 3, "printed_label": "(0003)",
+             "classification": "PRIMARY_BILL_CANDIDATE", "venue_candidate": "NATIONALTHEATER"},
+        ]
+        candidates = [
+            {"calendar_year": 1880, "scan_index": 2, "printed_label": "(0002)",
+             "venue_candidate": "NATIONALTHEATER", "month_candidate": "Januar", "day_candidate": 2,
+             "title_groups": [{"title_surface_candidate": "Herr Gast."},
+                              {"title_surface_candidate": "Die Braut."}]},
+            {"calendar_year": 1880, "scan_index": 3, "printed_label": "(0003)",
+             "venue_candidate": "NATIONALTHEATER", "month_candidate": "Januar", "day_candidate": 2,
+             "title_groups": [{"title_surface_candidate": "Wilhelm Tell."}]},
+        ]
+        rows = REVIEW.build_review_rows(pages, candidates, 1880)
+        classes = [row["review_class"] for row in rows]
+        self.assertEqual(classes.count("STRUCTURAL_REVIEW_HOLD"), 1)
+        self.assertEqual(classes.count("MULTI_COMPONENT_PROGRAMME"), 1)
+        self.assertEqual(classes.count("SUSPICIOUS_DISPLAY_SURFACE"), 1)
+        self.assertEqual(classes.count("PARALLEL_BILL_EDITIONS"), 1)
+        parallel = next(row for row in rows if row["review_class"] == "PARALLEL_BILL_EDITIONS")
+        self.assertEqual(parallel["reasons"], ["PROGRAMME_CHANGED"])
+
+    def test_review_queue_flags_non_latin_ocr(self):
+        self.assertIn("NON_LATIN_OCR_CHARACTERS", REVIEW.suspicious_reasons("રહે શેહ"))
 
 
 if __name__ == "__main__":
