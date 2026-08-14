@@ -18,6 +18,9 @@ Theaterzettel liefern hochkonfidente Spielplandaten. Ein zusätzliches tägliche
 ```bash
 python3 bind_scan_labels.py IIIF_MANIFEST.json SCAN_LABEL_BINDING.jsonl
 python3 fetch_hocr.py IIIF_MANIFEST.json hocr HOCR_ACQUISITION_RECEIPT.json
+# alternativ die dig19-Engine (strikter Transport, content-addressierter Cache;
+# erfordert das dig19-Paket aus dem Digitalisate-Repo auf sys.path):
+python3 fetch_hocr.py IIIF_MANIFEST.json hocr HOCR_ACQUISITION_RECEIPT.json --engine dig19
 python3 index_hocr.py hocr SCAN_LABEL_BINDING.jsonl index --year 1878
 python3 extract_programme_candidates.py index/PAGE_INDEX.jsonl index/PHYSICAL_LINES.jsonl candidates
 python3 generate_review_queue.py index/PAGE_INDEX.jsonl candidates/PROGRAMME_CANDIDATES.jsonl review --year 1878

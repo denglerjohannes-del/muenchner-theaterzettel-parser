@@ -166,20 +166,9 @@ def fetch_one(
     return {**item, "bytes": 0, "sha256": None, "status": "FAILED", "error": last_error}
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("manifest", type=pathlib.Path)
-    parser.add_argument("output_dir", type=pathlib.Path)
-    parser.add_argument("receipt", type=pathlib.Path)
-    parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument("--retries", type=int, default=6)
-    parser.add_argument("--request-spacing", type=float, default=0.5,
-                        help="minimum seconds between requests across all workers")
-    parser.add_argument("--base-backoff", type=float, default=2.0)
-    parser.add_argument("--max-backoff", type=float, default=60.0)
-    args = parser.parse_args()
-
-    manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+def load_manifest_items(manifest_path: pathlib.Path) -> list[dict]:
+    """Parse the IIIF v2 manifest into per-scan hOCR fetch items."""
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     canvases = manifest["sequences"][0]["canvases"]
     items = []
     for scan_index, canvas in enumerate(canvases, start=1):
@@ -195,8 +184,39 @@ def main() -> None:
             "image_url": canvas["images"][0]["resource"]["@id"],
             "ocr_url": see_also["@id"],
         })
+    return items
 
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("manifest", type=pathlib.Path)
+    parser.add_argument("output_dir", type=pathlib.Path)
+    parser.add_argument("receipt", type=pathlib.Path)
+    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--retries", type=int, default=6)
+    parser.add_argument("--request-spacing", type=float, default=0.5,
+                        help="minimum seconds between requests across all workers")
+    parser.add_argument("--base-backoff", type=float, default=2.0)
+    parser.add_argument("--max-backoff", type=float, default=60.0)
+    parser.add_argument("--engine", choices=("legacy", "dig19"), default="legacy",
+                        help="fetch engine: legacy threaded fetcher (default) or "
+                             "the dig19 acquisition cache (strict transport, "
+                             "content-addressed blobs; requires the dig19 package)")
+    args = parser.parse_args()
+
+    items = load_manifest_items(args.manifest)
     args.output_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.engine == "dig19":
+        from fetch_hocr_dig19 import run as run_dig19
+        run_dig19(
+            items,
+            args.manifest,
+            args.output_dir,
+            args.receipt,
+            spacing=args.request_spacing,
+        )
+        return
     pacer = RequestPacer(args.request_spacing)
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         results = list(pool.map(

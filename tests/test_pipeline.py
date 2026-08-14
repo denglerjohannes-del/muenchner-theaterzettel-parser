@@ -1,9 +1,16 @@
 import importlib.util
+import io
 import json
 import pathlib
 import tempfile
 import unittest
 from unittest import mock
+
+try:
+    import dig19  # noqa: F401
+    DIG19_AVAILABLE = True
+except ImportError:
+    DIG19_AVAILABLE = False
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -24,6 +31,7 @@ REVIEW = load("generate_review_queue")
 FETCH = load("fetch_hocr")
 SOURCE_DATES = load("source_filename_dates")
 CALENDAR = load("ocr_calendar")
+DIG19_FETCH = load("fetch_hocr_dig19")
 
 
 def hocr(lines):
@@ -353,6 +361,117 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(CALENDAR.MONTHS, imported.MONTHS)
         self.assertIn("FSeptember", imported.MONTH_ALTERNATION)
         self.assertIn("Samflag", imported.WEEKDAY_PATTERN)
+
+    @staticmethod
+    def _dig19_fixture(tmp, payloads):
+        tmp = pathlib.Path(tmp)
+        manifest = {"sequences": [{"canvases": [
+            {"label": "(0001)", "@id": "https://example.test/canvas/1",
+             "images": [{"resource": {"@id": "https://example.test/img/1"}}],
+             "seeAlso": {"@id": "https://example.test/ocr/1"}},
+            {"label": "(0002)", "@id": "https://example.test/canvas/2",
+             "images": [{"resource": {"@id": "https://example.test/img/2"}}],
+             "seeAlso": {"@id": "https://example.test/ocr/2"}},
+        ]}]}
+        manifest_path = tmp / "manifest.json"
+        manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+        items = FETCH.load_manifest_items(manifest_path)
+
+        class FakeResponse:
+            def __init__(self, body, media_type):
+                self._io = io.BytesIO(body)
+                self.status = 200
+                self.headers = {"Content-Type": media_type, "Content-Length": str(len(body))}
+
+            def read(self, amount=-1):
+                return self._io.read(amount)
+
+            def close(self):
+                pass
+
+        class FakeTransport:
+            def __init__(self):
+                self.opened = []
+
+            def open(self, request, *, timeout):
+                self.opened.append(request.full_url)
+                body, media_type = payloads[request.full_url]
+                return FakeResponse(body, media_type)
+
+        return tmp, manifest_path, items, FakeTransport()
+
+    @unittest.skipUnless(DIG19_AVAILABLE, "dig19 package not installed")
+    def test_dig19_engine_fetches_and_bridges_legacy_receipt(self):
+        hocr1 = b'<html><body><div class="ocr_page"><span class="ocr_line">eins</span></div></body></html>'
+        hocr2 = b'<html><body><div class="ocr_page"><span class="ocr_line">zwei</span></div></body></html>'
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp, manifest_path, items, transport = self._dig19_fixture(tmpdir, {
+                "https://example.test/ocr/1": (hocr1, "text/vnd.hocr+html"),
+                "https://example.test/ocr/2": (hocr2, "text/vnd.hocr+html"),
+            })
+            out_dir, receipt_path = tmp / "hocr", tmp / "receipt.json"
+            receipt = DIG19_FETCH.run(
+                items, manifest_path, out_dir, receipt_path, spacing=0.0,
+                cache_root=tmp / "cache", transport=transport,
+                acquired_at_utc="2026-08-14T00:00:00Z",
+            )
+            # Same files as the legacy engine would have produced.
+            self.assertEqual((out_dir / "0001.hocr").read_bytes(), hocr1)
+            self.assertEqual((out_dir / "0002.hocr").read_bytes(), hocr2)
+            # The receipt keeps the exact legacy schema (issue #1 acceptance).
+            self.assertEqual(set(receipt), {
+                "schema", "manifest_sha256", "declared_scans", "files_present",
+                "bytes", "failed", "deferred_rate_limit", "items",
+            })
+            self.assertEqual(receipt["schema"], "iiif-hocr-acquisition-receipt/1")
+            self.assertEqual(receipt["failed"], 0)
+            self.assertEqual(receipt["files_present"], 2)
+            for row in receipt["items"]:
+                self.assertEqual(set(row), {
+                    "scan_index", "printed_label", "canvas_id", "image_url",
+                    "ocr_url", "bytes", "sha256", "status",
+                })
+                self.assertEqual(row["status"], "FETCHED")
+            self.assertEqual(receipt["items"][0]["sha256"], FETCH.sha256(hocr1))
+
+    @unittest.skipUnless(DIG19_AVAILABLE, "dig19 package not installed")
+    def test_dig19_engine_second_run_reuses_files(self):
+        hocr1 = b'<html><body><div class="ocr_page"><span class="ocr_line">eins</span></div></body></html>'
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp, manifest_path, items, transport = self._dig19_fixture(tmpdir, {
+                "https://example.test/ocr/1": (hocr1, "text/vnd.hocr+html"),
+                "https://example.test/ocr/2": (hocr1, "text/vnd.hocr+html"),
+            })
+            out_dir, receipt_path = tmp / "hocr", tmp / "receipt.json"
+            kwargs = dict(spacing=0.0, cache_root=tmp / "cache", transport=transport,
+                          acquired_at_utc="2026-08-14T00:00:00Z")
+            DIG19_FETCH.run(items, manifest_path, out_dir, receipt_path, **kwargs)
+            receipt = DIG19_FETCH.run(items, manifest_path, out_dir, receipt_path, **kwargs)
+            self.assertEqual({row["status"] for row in receipt["items"]}, {"REUSED"})
+            self.assertEqual(len(transport.opened), 2)  # no new network traffic
+
+    @unittest.skipUnless(DIG19_AVAILABLE, "dig19 package not installed")
+    def test_dig19_engine_media_type_mismatch_fails_closed(self):
+        hocr1 = b'<html><body><div class="ocr_page"><span class="ocr_line">eins</span></div></body></html>'
+        html = b"<html><body>Bad Gateway</body></html>"
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp, manifest_path, items, transport = self._dig19_fixture(tmpdir, {
+                "https://example.test/ocr/1": (hocr1, "text/vnd.hocr+html"),
+                "https://example.test/ocr/2": (html, "text/html"),
+            })
+            out_dir, receipt_path = tmp / "hocr", tmp / "receipt.json"
+            with self.assertRaises(SystemExit):
+                DIG19_FETCH.run(
+                    items, manifest_path, out_dir, receipt_path, spacing=0.0,
+                    cache_root=tmp / "cache", transport=transport,
+                    acquired_at_utc="2026-08-14T00:00:00Z",
+                )
+            receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+            self.assertEqual(receipt["failed"], 1)
+            failed = next(row for row in receipt["items"] if row["status"] == "FAILED")
+            self.assertIn("dig19-acquisition", failed["error"])
+            self.assertFalse((out_dir / "0002.hocr").exists())
+            self.assertEqual((out_dir / "0001.hocr").read_bytes(), hocr1)
 
     def test_index_hocr_missing_binding_fails_with_scan_context(self):
         with tempfile.TemporaryDirectory() as tmp:
