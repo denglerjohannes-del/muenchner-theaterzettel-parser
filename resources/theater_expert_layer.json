@@ -289,6 +289,78 @@
       "historicalPreferred": "Gisella",
       "creator": "Adolphe Adam / Jean Coralli",
       "source": "front_display_authority.json"
+    },
+    "Oper|der freischük": {
+      "modern": "Der Freischütz",
+      "historicalPreferred": "Der Freischütz",
+      "creator": "Carl Maria von Weber",
+      "source": "front_display_authority.json"
+    },
+    "Oper|der freischütz": {
+      "modern": "Der Freischütz",
+      "historicalPreferred": "Der Freischütz",
+      "creator": "Carl Maria von Weber",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|der widerspenstigen zähmung": {
+      "modern": "Der Widerspenstigen Zähmung",
+      "historicalPreferred": "Der Widerspänstigen Zähmung",
+      "creator": "William Shakespeare",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|der widerspänstigen zähmung": {
+      "modern": "Der Widerspenstigen Zähmung",
+      "historicalPreferred": "Der Widerspänstigen Zähmung",
+      "creator": "William Shakespeare",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|widerspänftigen zähmung": {
+      "modern": "Der Widerspenstigen Zähmung",
+      "historicalPreferred": "Der Widerspänstigen Zähmung",
+      "creator": "William Shakespeare",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|das gefängnik": {
+      "modern": "Das Gefängnis",
+      "historicalPreferred": "Das Gefängniß",
+      "creator": "Roderich Benedix",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|das gefängnis": {
+      "modern": "Das Gefängnis",
+      "historicalPreferred": "Das Gefängniß",
+      "creator": "Roderich Benedix",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|das gefängniss": {
+      "modern": "Das Gefängnis",
+      "historicalPreferred": "Das Gefängniß",
+      "creator": "Roderich Benedix",
+      "source": "front_display_authority.json"
+    },
+    "Oper|die lustigen weiber von windsor": {
+      "modern": "Die lustigen Weiber von Windsor",
+      "historicalPreferred": "Die lustigen Weiber von Windsor",
+      "creator": "Otto Nicolai",
+      "source": "front_display_authority.json"
+    },
+    "Oper|lustigen weiber von windsor": {
+      "modern": "Die lustigen Weiber von Windsor",
+      "historicalPreferred": "Die lustigen Weiber von Windsor",
+      "creator": "Otto Nicolai",
+      "source": "front_display_authority.json"
+    },
+    "Oper|oberon": {
+      "modern": "Oberon",
+      "historicalPreferred": "Oberon",
+      "creator": "Carl Maria von Weber",
+      "source": "front_display_authority.json"
+    },
+    "Oper|oberon romantische feen": {
+      "modern": "Oberon",
+      "historicalPreferred": "Oberon",
+      "creator": "Carl Maria von Weber",
+      "source": "front_display_authority.json"
     }
   },
   "datedContextualAliases": {
@@ -34299,7 +34371,7 @@
     ],
     "frontDisplayAuthority": {
       "file": "front_display_authority.json",
-      "sha256": "3d366121a6cb8ee1af0c61a1cca8e7c66d8c424d84c0fca93b2ab232c30570df"
+      "sha256": "20dcad605fbe6ef0c04a4de48c197ed10b2e45099e07e6f18cb2fcbc5d873ebd"
     },
     "supplementalWorkAuthority": {
       "file": "supplemental_work_authority.json",

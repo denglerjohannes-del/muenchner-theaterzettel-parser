@@ -111,6 +111,58 @@
         "Gisella",
         "Giselle"
       ]
+    },
+    {
+      "category": "Oper",
+      "modern": "Der Freischütz",
+      "historicalPreferred": "Der Freischütz",
+      "creator": "Carl Maria von Weber",
+      "variants": [
+        "Der Freischütz",
+        "Der Freischük"
+      ]
+    },
+    {
+      "category": "Schauspiel",
+      "modern": "Der Widerspenstigen Zähmung",
+      "historicalPreferred": "Der Widerspänstigen Zähmung",
+      "creator": "William Shakespeare",
+      "variants": [
+        "Der Widerspenstigen Zähmung",
+        "Der Widerspänstigen Zähmung",
+        "Widerspänftigen Zähmung"
+      ]
+    },
+    {
+      "category": "Schauspiel",
+      "modern": "Das Gefängnis",
+      "historicalPreferred": "Das Gefängniß",
+      "creator": "Roderich Benedix",
+      "variants": [
+        "Das Gefängnis",
+        "Das Gefängniß",
+        "Das Gefängnik"
+      ]
+    },
+    {
+      "category": "Oper",
+      "modern": "Die lustigen Weiber von Windsor",
+      "historicalPreferred": "Die lustigen Weiber von Windsor",
+      "creator": "Otto Nicolai",
+      "variants": [
+        "Die lustigen Weiber von Windsor",
+        "lustigen Weiber von Windsor"
+      ]
+    },
+    {
+      "category": "Oper",
+      "modern": "Oberon",
+      "historicalPreferred": "Oberon",
+      "creator": "Carl Maria von Weber",
+      "variants": [
+        "Oberon",
+        "Oberon romantische Feen"
+      ]
     }
   ],
   "datedWorkOverrides": {
