@@ -223,6 +223,32 @@
     }
   ],
   "datedWorkOverrides": {
+    "1825-06-23": [
+      {
+        "modern": "Der Wirrwarr",
+        "historical": "Der Wirrwar",
+        "sourceSurface": "Der Wirrwar",
+        "category": "Posse",
+        "creator": "August von Kotzebue",
+        "creatorRole": "Autor"
+      },
+      {
+        "modern": "Concertino für Horn",
+        "historical": "Concertino",
+        "sourceSurface": "Concertino",
+        "category": "Konzert",
+        "creator": "Carl Maria von Weber",
+        "creatorRole": "Komposition",
+        "performanceNote": "Ausführung: Herr C. Lewy, k. k. erster Waldhornist beim Hofopern-Orchester in Wien (zwischen dem 1. und 2. Akt)."
+      },
+      {
+        "modern": "Variationen für Waldhorn",
+        "historical": "Variationen auf dem Waldhorn",
+        "sourceSurface": "Variationen auf dem Waldhorn",
+        "category": "Konzert",
+        "performanceNote": "Ausführung: die Gebrüder Lewy (zwischen dem 3. und 4. Akt)."
+      }
+    ],
     "1853-02-04": [
       {
         "modern": "Englisch",
