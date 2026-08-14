@@ -68,7 +68,13 @@ def retry_after_seconds(value: str | None) -> float | None:
 
 
 def rate_limit_reset_seconds(value: str | None) -> float | None:
-    """Accept either delta-seconds or a Unix timestamp from X-RateLimit-Reset."""
+    """Accept either delta-seconds or a Unix timestamp from X-RateLimit-Reset.
+
+    A past Unix timestamp is numerically below time.time() and would otherwise
+    be misread as a delta of ~1.8 billion seconds, deferring the shared pacer
+    for decades.  Values outside one day are therefore rejected (None), which
+    sends the caller down the ordinary bounded retry path instead.
+    """
     if not value:
         return None
     try:
@@ -77,7 +83,10 @@ def rate_limit_reset_seconds(value: str | None) -> float | None:
         return None
     if number > time.time():
         number -= time.time()
-    return max(0.0, number)
+    number = max(0.0, number)
+    if number > 86400.0:
+        return None
+    return number
 
 
 def retry_delay(attempt: int, retry_after: str | None, base: float, maximum: float) -> float:
@@ -121,6 +130,11 @@ def fetch_one(
             req = urllib.request.Request(url, headers={"User-Agent": "muenchner-theaterzettel-parser/0.1"})
             with urllib.request.urlopen(req, timeout=60) as response:
                 data = response.read()
+            if b"<" not in data[:1024] or b"ocr" not in data:
+                # A 200 response is not proof of hOCR: provider error pages must
+                # never be hashed and receipted as source evidence.  Blank versos
+                # still pass because an empty hOCR page keeps its ocr_page markup.
+                raise ValueError(f"response is not hOCR ({len(data)} bytes)")
             target.write_bytes(data)
             return {**item, "bytes": len(data), "sha256": sha256(data), "status": "FETCHED"}
         except urllib.error.HTTPError as exc:

@@ -131,6 +131,11 @@ def main() -> None:
     for path in sorted(args.hocr_dir.glob("*.hocr")):
         scan_index = int(path.stem)
         lines = parse_lines(path)
+        if scan_index not in bindings:
+            raise SystemExit(
+                f"no manifest binding for scan {scan_index} ({path.name}); "
+                "regenerate the binding file from the same manifest as the hOCR fetch"
+            )
         binding = bindings[scan_index]
         venue, top_evidence = classify_venue(lines)
         date_hits = find_date_hits(lines, date_re)

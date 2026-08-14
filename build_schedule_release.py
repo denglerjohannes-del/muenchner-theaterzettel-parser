@@ -60,6 +60,8 @@ def validate_year_contract(candidates: list[dict], pages: list[dict], resolution
     """Fail closed when independently supplied release inputs disagree on year."""
     candidate_years = {row.get("calendar_year") for row in candidates}
     page_years = {row.get("calendar_year") for row in pages}
+    if not candidate_years:
+        raise SystemExit("candidate input contains no rows at all")
     resolution_years = {dt.date.fromisoformat(row["resolved_date"]).year for row in resolutions.values()}
     if candidate_years != {year}:
         raise SystemExit(f"candidate calendar years {sorted(candidate_years, key=str)} do not equal --year {year}")
@@ -135,10 +137,23 @@ def main() -> None:
             resolved_date = dt.date.fromisoformat(date_overrides[scan_key]["resolved_date"])
             date_resolution = date_overrides[scan_key]["reason"]
         else:
-            resolved_date = dt.date(args.year, MONTHS[row["month_candidate"]], row["day_candidate"])
+            month = MONTHS.get(row["month_candidate"])
+            if month is None:
+                raise SystemExit(
+                    f"scan {row['scan_index']}: unknown month surface "
+                    f"{row['month_candidate']!r}; resolve it through a curated "
+                    "date_resolutions entry or deliberately extend the MONTHS table"
+                )
+            resolved_date = dt.date(args.year, month, row["day_candidate"])
             date_resolution = "DIRECT_FROM_BILL_HEADER"
             weekday = row["weekday_surface"].capitalize()
-            if resolved_date.weekday() != WEEKDAYS[weekday]:
+            if weekday not in WEEKDAYS:
+                weekday_errors.append({
+                    "scan_index": row["scan_index"],
+                    "date_surface": row["date_surface"],
+                    "reason": f"unknown weekday surface {row['weekday_surface']!r}",
+                })
+            elif resolved_date.weekday() != WEEKDAYS[weekday]:
                 weekday_errors.append({"scan_index": row["scan_index"], "date_surface": row["date_surface"]})
         override = title_group_overrides.get(scan_key)
         groups = row["title_groups"]

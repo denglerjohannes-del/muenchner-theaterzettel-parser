@@ -271,6 +271,92 @@ class PipelineTests(unittest.TestCase):
     def test_review_queue_flags_non_latin_ocr(self):
         self.assertIn("NON_LATIN_OCR_CHARACTERS", REVIEW.suspicious_reasons("રહે શેહ"))
 
+    def test_rate_limit_reset_rejects_past_epoch_and_absurd_delta(self):
+        # Regression: a past Unix timestamp used to be misread as a delta of
+        # ~1.8 billion seconds, deferring the shared pacer for decades.
+        with mock.patch.object(FETCH.time, "time", return_value=2_000_000_000.0):
+            self.assertIsNone(FETCH.rate_limit_reset_seconds("1999990000"))
+        self.assertIsNone(FETCH.rate_limit_reset_seconds("999999999"))
+        self.assertEqual(FETCH.rate_limit_reset_seconds("86400"), 86400.0)
+        self.assertEqual(FETCH.rate_limit_reset_seconds("120"), 120.0)
+
+    def test_fetch_rejects_provider_error_page_instead_of_hashing_it(self):
+        response = mock.MagicMock()
+        response.read.return_value = b"<html><body>502 Bad Gateway</body></html>"
+        response.__enter__.return_value = response
+        response.__exit__.return_value = False
+        with tempfile.TemporaryDirectory() as tmp:
+            item = {"scan_index": 1, "ocr_url": "https://example.test/ocr/1"}
+            with mock.patch.object(FETCH.urllib.request, "urlopen", return_value=response):
+                result = FETCH.fetch_one(item, pathlib.Path(tmp), 1, FETCH.RequestPacer(0.0), 0.0, 0.0)
+        self.assertEqual(result["status"], "FAILED")
+        self.assertIn("not hOCR", result["error"])
+
+    @staticmethod
+    def _release_fixture(tmp, candidate_overrides):
+        tmp = pathlib.Path(tmp)
+        candidate = {"calendar_year": 1877, "scan_index": 1, "printed_label": "(0001)",
+                     "image_id": "img1", "canvas_id": "c1", "ocr_url": "u", "hocr_sha256": "h",
+                     "venue_candidate": "NATIONALTHEATER", "date_surface": "Sonabend den 1. Januar",
+                     "weekday_surface": "Montag", "day_candidate": 1, "month_candidate": "Januar",
+                     "title_groups": [{"title_surface_candidate": "Die Folkunger.",
+                                       "bbox": [0, 0, 1, 1], "height_evidence": [200]}]}
+        candidate.update(candidate_overrides)
+        (tmp / "candidates.jsonl").write_text(json.dumps(candidate) + "\n", encoding="utf-8")
+        curation = {"date_resolutions": {}, "title_aliases": {}, "excluded_scans": {}}
+        (tmp / "curation.json").write_text(json.dumps(curation), encoding="utf-8")
+        page = {"calendar_year": 1877, "scan_index": 1, "printed_label": "(0001)",
+                "image_id": "img1", "canvas_id": "c1", "ocr_url": "u", "hocr_sha256": "h"}
+        (tmp / "pages.jsonl").write_text(json.dumps(page) + "\n", encoding="utf-8")
+        outdir = tmp / "out"
+        argv = ["build_schedule_release.py", str(tmp / "candidates.jsonl"), str(tmp / "curation.json"),
+                str(tmp / "pages.jsonl"), str(outdir), "--year", "1877",
+                "--source-volume", "vol", "--source-manifest", "man", "--source-urn", "urn"]
+        return outdir, argv
+
+    def test_release_unknown_month_surface_fails_closed_with_message(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            outdir, argv = self._release_fixture(tmp, {"month_candidate": "Sept"})
+            with mock.patch("sys.argv", argv):
+                with self.assertRaises(SystemExit) as ctx:
+                    RELEASE.main()
+            self.assertIn("unknown month surface", str(ctx.exception))
+            self.assertIn("'Sept'", str(ctx.exception))
+
+    def test_release_unknown_weekday_surface_is_recorded_not_a_crash(self):
+        # 1.1.1877 was a Monday; an unlisted OCR weekday variant must land in the
+        # recorded weekday_errors (run fails closed) instead of raising KeyError.
+        with tempfile.TemporaryDirectory() as tmp:
+            outdir, argv = self._release_fixture(tmp, {"weekday_surface": "Sonabend"})
+            with mock.patch("sys.argv", argv):
+                with self.assertRaises(SystemExit) as ctx:
+                    RELEASE.main()
+            self.assertEqual(ctx.exception.code, 1)
+            qa = json.loads((outdir / "QA_RESULTS.json").read_text(encoding="utf-8"))
+            errors = qa["weekday_errors_after_curation"]
+            self.assertEqual(len(errors), 1)
+            self.assertIn("unknown weekday surface 'Sonabend'", errors[0]["reason"])
+
+    def test_review_queue_unknown_month_is_explicit_error(self):
+        with self.assertRaisesRegex(ValueError, "unknown month surface"):
+            REVIEW.resolved_date({"month_candidate": "Sept", "scan_index": 7, "day_candidate": 1}, 1877)
+
+    def test_index_hocr_missing_binding_fails_with_scan_context(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = pathlib.Path(tmp)
+            hocr_dir = tmp / "hocr"
+            hocr_dir.mkdir()
+            (hocr_dir / "0007.hocr").write_bytes(hocr([
+                ("800 780 1700 850", "Montag den 1. Januar 1877."),
+            ]))
+            binding = tmp / "binding.jsonl"
+            binding.write_text(json.dumps({"scan_index": 8, "printed_label": "x"}) + "\n", encoding="utf-8")
+            argv = ["index_hocr.py", str(hocr_dir), str(binding), str(tmp / "out"), "--year", "1877"]
+            with mock.patch("sys.argv", argv):
+                with self.assertRaises(SystemExit) as ctx:
+                    INDEX.main()
+            self.assertIn("no manifest binding for scan 7", str(ctx.exception))
+
 
 if __name__ == "__main__":
     unittest.main()

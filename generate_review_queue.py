@@ -65,7 +65,13 @@ def suspicious_reasons(surface: str) -> list[str]:
 
 
 def resolved_date(candidate: dict, year: int) -> str:
-    return dt.date(year, MONTHS[candidate["month_candidate"]], candidate["day_candidate"]).isoformat()
+    month = MONTHS.get(candidate["month_candidate"])
+    if month is None:
+        raise ValueError(
+            f"scan {candidate['scan_index']}: unknown month surface "
+            f"{candidate['month_candidate']!r}; extend the MONTHS table deliberately"
+        )
+    return dt.date(year, month, candidate["day_candidate"]).isoformat()
 
 
 def build_review_rows(pages: list[dict], candidates: list[dict], year: int) -> list[dict]:
