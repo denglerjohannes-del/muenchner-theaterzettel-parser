@@ -95,5 +95,13 @@ class ExpertLayerTest(unittest.TestCase):
             self.assertEqual(layer["nonWorkMetadataPatterns"], ["vorstellung im jahres abonnement"])
             self.assertEqual(layer["supplementalAuthorities"]["Aïda"]["creator"], "Giuseppe Verdi")
 
+    def test_leocadia_preserves_composer_and_text_credits(self):
+        display = json.loads((Path(__file__).parents[1] / "resources" / "front_display_authority.json").read_text(encoding="utf-8"))
+        for date in ("1825-07-12", "1825-07-29"):
+            work = display["datedWorkOverrides"][date][0]
+            self.assertEqual(work["creator"], "Daniel-François-Esprit Auber")
+            self.assertEqual(work["creatorRole"], "Komposition")
+            self.assertEqual(work["contributors"][0], {"name": "Eugène Scribe und Mélésville", "role": "Textvorlage"})
+
 
 if __name__ == "__main__": unittest.main()

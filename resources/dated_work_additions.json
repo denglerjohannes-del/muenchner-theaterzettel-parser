@@ -1,0 +1,21 @@
+{
+  "schema": "muenchner-dated-work-additions/1",
+  "policy": "Add explicit source-text programme components without replacing the day's existing stage programme.",
+  "dates": {
+    "1833-07-25": [{"title":"Akrobatische Kunststücke an einer holländischen Windmühle","type":"Kuriositätenschau","form":"Akrobatik und mechanische Schau","performanceNote":"Spazierfahrt auf einem Mühlflügel und freies Schweben an einer senkrechten Eisenstange."}],
+    "1833-07-29": [{"title":"Rundflug auf der holländischen Windmühle","type":"Kuriositätenschau","form":"Mechanisch-optische Schau","performanceNote":"Rundflug unter Beleuchtung einer rosenfarbenen Flamme."}],
+    "1833-08-05": [{"title":"Freies Schweben an der Eisenstange","type":"Kuriositätenschau","form":"Akrobatik","performanceNote":"Spaziergang um eine aufrecht stehende Eisenstange, mit ausgestrecktem Arm frei in der Luft schwebend."}],
+    "1837-11-11": [{"title":"Athletische, gymnastische und arabische Übungen","type":"Kuriositätenschau","form":"Akrobatik","creator":"Rhigas und Abdala","creatorRole":"Ausführung"}],
+    "1837-11-13": [{"title":"Athletische, gymnastische und arabische Übungen","type":"Kuriositätenschau","form":"Akrobatik","creator":"Rhigas und Abdala","creatorRole":"Ausführung"}],
+    "1843-06-01": [{"title":"Mimisch-plastische Gastdarstellung","type":"Kuriositätenschau","form":"Mimisch-plastische Kunst","creator":"Negenti und Wlach","creatorRole":"Ausführung"}],
+    "1847-06-29": [{"title":"Gymnastische Produktion","type":"Kuriositätenschau","form":"Akrobatik","creator":"Gebrüder Candler","creatorRole":"Ausführung"}],
+    "1847-11-17": [{"title":"Große Pariser Soiree für Physik und Mechanik","type":"Kuriositätenschau","form":"Physikalisch-mechanische Schau","creator":"Professor Robin","creatorRole":"Ausführung"}],
+    "1847-11-20": [{"title":"Zweite große Pariser Soiree für Physik und Mechanik","type":"Kuriositätenschau","form":"Physikalisch-mechanische Schau","creator":"Professor Robin","creatorRole":"Ausführung"}],
+    "1851-10-01": [{"title":"Indische und chinesische Magie","type":"Kuriositätenschau","form":"Magie","creator":"Professor Hermann","creatorRole":"Ausführung"}],
+    "1851-10-03": [{"title":"Indische und chinesische Magie","type":"Kuriositätenschau","form":"Magie","creator":"Professor Hermann","creatorRole":"Ausführung"}],
+    "1851-10-07": [{"title":"Indische und chinesische Magie","type":"Kuriositätenschau","form":"Magie","creator":"Professor Hermann","creatorRole":"Ausführung"}],
+    "1851-10-09": [{"title":"Indische und chinesische Magie","type":"Kuriositätenschau","form":"Magie","creator":"Professor Hermann","creatorRole":"Ausführung"}],
+    "1851-10-11": [{"title":"Indische und chinesische Magie","type":"Kuriositätenschau","form":"Magie","creator":"Professor Hermann","creatorRole":"Ausführung"}],
+    "1857-10-27": [{"title":"Vorstellung in der modernen Magie","type":"Kuriositätenschau","form":"Magie","creator":"Louis Figér","creatorRole":"Ausführung"}]
+  }
+}

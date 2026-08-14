@@ -33752,6 +33752,48 @@
         "performanceNote": "Ausführung: die Gebrüder Lewy (zwischen dem 3. und 4. Akt)."
       }
     ],
+    "1825-07-12": [
+      {
+        "modern": "Leocadia",
+        "historical": "Leocadia",
+        "sourceSurface": "Leocadia",
+        "category": "Oper",
+        "creator": "Daniel-François-Esprit Auber",
+        "creatorRole": "Komposition",
+        "contributors": [
+          {
+            "name": "Eugène Scribe und Mélésville",
+            "role": "Textvorlage"
+          },
+          {
+            "name": "K. A. Ritter",
+            "role": "deutsche Bearbeitung"
+          }
+        ],
+        "programmeNote": "Lyrisches Drama in drei Abteilungen; nach dem Französischen von Scribe und Mélésville, deutsche Bearbeitung von K. A. Ritter."
+      }
+    ],
+    "1825-07-29": [
+      {
+        "modern": "Leocadia",
+        "historical": "Leocadia",
+        "sourceSurface": "Leocadia",
+        "category": "Oper",
+        "creator": "Daniel-François-Esprit Auber",
+        "creatorRole": "Komposition",
+        "contributors": [
+          {
+            "name": "Eugène Scribe und Mélésville",
+            "role": "Textvorlage"
+          },
+          {
+            "name": "K. A. Ritter",
+            "role": "deutsche Bearbeitung"
+          }
+        ],
+        "programmeNote": "Lyrisches Drama in drei Abteilungen; nach dem Französischen von Scribe und Mélésville, deutsche Bearbeitung von K. A. Ritter."
+      }
+    ],
     "1826-10-18": [
       {
         "modern": "Vokal- und Instrumentalkonzert zum Besten der Griechen",
@@ -34695,7 +34737,7 @@
     ],
     "frontDisplayAuthority": {
       "file": "front_display_authority.json",
-      "sha256": "50f7cc5d232309ee24a0c0bac244d6bdefb526b619c84279d602bc9b8ecd1ace"
+      "sha256": "3167387857376d460e1ec994fb5aef5915f4d6c58b37dde4e02fbb9289df43bd"
     },
     "supplementalWorkAuthority": {
       "file": "supplemental_work_authority.json",
