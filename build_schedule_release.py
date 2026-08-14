@@ -22,7 +22,7 @@ WEEKDAYS = {"Montag": 0, "Dienstag": 1, "Mittwoch": 2, "Donnerstag": 3,
 SUBSCRIPTION_PREFIX_RE = re.compile(
     r"^\s*(?:\d{1,3}\.?\s*)?Vor\S*\s*im\s+Jah\S*[- ]?Abonnem\S*.*?"
     r"(?:Abtheilung|Abth|A[o6]?th)\.?\s*(?:I{1,3}|1{1,3})\.?\s*"
-    r"(?:(?:statt|ftatt|flatt|faft)\s*(?:I{1,3}|1{1,3})\.?\s*)?",
+    r"(?:(?:statt|ftatt|ftat|flatt|faft)\s*(?:I{1,3}|1{1,3})\.?\s*)?",
     re.IGNORECASE,
 )
 TIME_ONLY_RE = re.compile(
@@ -326,8 +326,21 @@ def main() -> None:
     excluded = []
     for scan, reason in curation["excluded_scans"].items():
         page = page_by_scan[int(scan)]
-        excluded.append({"scan_index": int(scan), "reason": reason, "printed_label": page["printed_label"],
+        excluded.append({"schema": "theaterzettel-excluded-source-page/1", "scan_index": int(scan),
+                         "reason": reason, "printed_label": page["printed_label"],
                          "ocr_url": page["ocr_url"], "hocr_sha256": page["hocr_sha256"]})
+    for item in curation.get("orchestra_backlog_notices", []):
+        page = page_by_scan[item["notice_scan_index"]]
+        excluded.append({
+            "schema": "theaterzettel-orchestra-backlog-notice/1",
+            **item,
+            "notice_printed_label": page["printed_label"],
+            "notice_image_id": page["image_id"],
+            "notice_canvas_id": page["canvas_id"],
+            "notice_ocr_url": page["ocr_url"],
+            "notice_hocr_sha256": page["hocr_sha256"],
+            "orchestra_service_inferred": False,
+        })
     write_jsonl(args.output_dir / "EXCLUDED_AND_ORCHESTRA_BACKLOG.jsonl", excluded)
 
     qa = {
