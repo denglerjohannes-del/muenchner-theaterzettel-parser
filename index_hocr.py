@@ -13,8 +13,8 @@ from lxml import html
 
 BBOX_RE = re.compile(r"bbox\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)")
 MONTH_RE = re.compile(
-    r"\b(?:Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|Jugust|"
-    r"Inni|September|FSeptember|Oktober|November|Dezember)\b", re.I
+    r"\b(?:Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Angust|Auguft|Jugust|"
+    r"Inni|September|FSeptember|Feptember|Oktober|November|Dezember)\b", re.I
 )
 WEEKDAY_PATTERN = (
     r"Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Samflag|Saftmag|Famstag|Hamstag|"
@@ -26,10 +26,10 @@ WEEKDAY_ONLY_RE = re.compile(rf"^\s*(?:{WEEKDAY_PATTERN})\s*$", re.I)
 def compile_date_re(year: int) -> re.Pattern:
     """Build the bill-header date pattern for one explicitly selected year."""
     return re.compile(
-        r"^\s*(?:(?:M[üu][nu]chen|Mündjen)[,.]?\s+)?[|—–-]*\s*"
+        r"^\s*(?:(?:M[üu][nu]chen|Mündjen|Mündhen|Mitchen|Mindhen|UMünchen|Wündjen|Wünschen|Blünchen)[,.]?\s+)?[|—–-]*\s*"
         rf"\b({WEEKDAY_PATTERN})\b"
         r".*?\b(?:den\s+)?(\d{1,2})\.{0,2}\s+"
-        r"(Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|Jugust|Inni|September|FSeptember|Oktober|November|Dezember)"
+        r"(Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Angust|Auguft|Jugust|Inni|September|FSeptember|Feptember|Oktober|November|Dezember)"
         rf"(?:\s+{year}\b|(?!\s+\d{{4}}\b))", re.I
     )
 
@@ -71,7 +71,7 @@ def classify_venue(lines: list[dict]) -> tuple[str | None, list[str]]:
     if re.search(r"Rückblick\s+auf\s+die\s+Repertoire.*Bühnen", joined, re.I):
         return None, top
     has_theater = bool(re.search(r"\bThea(?:ter|r)\b", joined, re.I))
-    if has_theater and re.search(r"\b(?:National|lational)\b", joined, re.I):
+    if has_theater and re.search(r"\b(?:National|lational|Votional)\b", joined, re.I):
         evidence.append("NATIONALTHEATER")
     # The official OCR regularly reads the initial R as N/K/V and separates
     # the printed line break around the hyphen.  The distinctive compound and

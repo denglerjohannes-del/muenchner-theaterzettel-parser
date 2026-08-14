@@ -14,7 +14,7 @@ import re
 
 
 MONTHS = {"Januar": 1, "Februar": 2, "Jebruar": 2, "März": 3, "Maerz": 3, "April": 4,
-          "Mai": 5, "Juni": 6, "Inni": 6, "Juli": 7, "August": 8, "Auguft": 8, "Jugust": 8, "September": 9, "FSeptember": 9,
+          "Mai": 5, "Juni": 6, "Inni": 6, "Juli": 7, "August": 8, "Angust": 8, "Auguft": 8, "Jugust": 8, "September": 9, "FSeptember": 9, "Feptember": 9,
           "Oktober": 10, "November": 11, "Dezember": 12}
 WEEKDAYS = {"Montag": 0, "Dienstag": 1, "Mittwoch": 2, "Donnerstag": 3,
             "Freitag": 4, "Samstag": 5, "Samflag": 5, "Saftmag": 5, "Famstag": 5, "Hamstag": 5,

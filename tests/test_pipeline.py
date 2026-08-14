@@ -119,6 +119,19 @@ class PipelineTests(unittest.TestCase):
         self.assertIsNotNone(pattern.search("München, Freitag den 30. FSeptember 1878."))
         self.assertIsNone(pattern.search("Rückblick vom Montag den 1. bis Sonntag den 7. Januar 1878."))
 
+    def test_date_pattern_accepts_1883_place_and_month_ocr(self):
+        pattern = INDEX.compile_date_re(1883)
+        self.assertIsNotNone(pattern.search("UMünchen, Dienstag den 7. Angust 1883."))
+        self.assertIsNotNone(pattern.search("Blünchen, Dienstag den 25. Feptember 1883."))
+        self.assertIsNotNone(pattern.search("Wündjen, Freitag den 24. Jugust 1883."))
+
+    def test_venue_classifier_accepts_votional_ocr(self):
+        venue, _ = INDEX.classify_venue([
+            {"surface": "K. Hof- & Votional-Theater.", "bbox": [0, 0, 1000, 100]},
+            {"surface": "München, Montag den 26. Februar 1883.", "bbox": [0, 120, 1000, 220]},
+        ])
+        self.assertEqual(venue, "NATIONALTHEATER")
+
     def test_split_weekday_and_date_header(self):
         pattern = INDEX.compile_date_re(1879)
         hits = INDEX.find_date_hits([
