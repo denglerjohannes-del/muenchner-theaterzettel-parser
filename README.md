@@ -31,9 +31,10 @@ python3 -m unittest discover -v
 Die Scanbindung verhindert die Verwechslung gedruckter Seitenzahlen mit IIIF-Scan-IDs. Der Downloader ist resumierbar und quittiert jede Datei per SHA-256. Kleine OCR-Antworten leerer Rückseiten bleiben erhalten. Der Indexer verlangt das Kalenderjahr ausdrücklich über `--year`; damit kann ein Jahrgang nicht versehentlich mit dem Datumsvertrag eines anderen verarbeitet werden. `index_hocr.py` klassifiziert National- und Residenztheater getrennt; Konzert, Gärtnerplatz und interne Wochenpläne bleiben Review-Fälle.
 
 `generate_review_queue.py` bündelt Struktur-Holds, Mehrkomponentenprogramme,
-verdächtige Personen-/Anlass-/Zeitzeilen und parallele Zettelfassungen in einen
-einzigen begrenzten Review-Durchgang. Es trifft keine inhaltliche Entscheidung
-und löscht nichts; die Auflösung bleibt explizite, reversible Kuration.
+verdächtige Personen-/Anlass-/Zeitzeilen, parallele Zettelfassungen und ein
+einziges Inventar der nur einmal vorkommenden Titeloberflächen in einen
+begrenzten Review-Durchgang. Es trifft keine inhaltliche Entscheidung und
+löscht nichts; die Auflösung bleibt explizite, reversible Kuration.
 
 ## Referenzbefunde
 

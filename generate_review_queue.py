@@ -92,9 +92,12 @@ def build_review_rows(pages: list[dict], candidates: list[dict], year: int) -> l
         })
 
     by_date = collections.defaultdict(list)
+    surface_sources = collections.defaultdict(set)
     for candidate in candidates:
         scan = candidate["scan_index"]
         surfaces = title_surfaces(candidate)
+        for surface in surfaces:
+            surface_sources[surface].add(scan)
         date_iso = resolved_date(candidate, year)
         by_date[(candidate["venue_candidate"], date_iso)].append(candidate)
         if len(surfaces) > 1:
@@ -146,6 +149,25 @@ def build_review_rows(pages: list[dict], candidates: list[dict], year: int) -> l
             "evidence": [],
         })
 
+    rare = sorted(
+        ({"title_surface": surface, "scan_indices": sorted(scans)}
+         for surface, scans in surface_sources.items() if len(scans) == 1),
+        key=lambda row: row["title_surface"],
+    )
+    if rare:
+        rows.append({
+            "schema": "theaterzettel-review-queue-item/1",
+            "review_class": "RARE_TITLE_SURFACE_INVENTORY",
+            "calendar_year": year,
+            "scan_indices": sorted({scan for item in rare for scan in item["scan_indices"]}),
+            "printed_labels": [],
+            "venue": None,
+            "date": None,
+            "title_surfaces": [item["title_surface"] for item in rare],
+            "reasons": ["EXACT_SOURCE_SURFACE_OCCURS_ON_ONE_CANDIDATE_BILL"],
+            "evidence": rare,
+        })
+
     rows.sort(key=lambda row: (row["scan_indices"][0], row["review_class"], row["scan_indices"]))
     return rows
 
@@ -182,6 +204,10 @@ def main() -> None:
         "review_items": len(rows),
         "review_classes": dict(sorted(classes.items())),
         "distinct_scans_in_queue": len({scan for row in rows for scan in row["scan_indices"]}),
+        "direct_review_scans_excluding_rare_inventory": len({
+            scan for row in rows if row["review_class"] != "RARE_TITLE_SURFACE_INVENTORY"
+            for scan in row["scan_indices"]
+        }),
         "candidate_bills": len(candidates),
         "decision_automation_applied": False,
         "purpose": "ONE_BOUNDED_HUMAN_REVIEW_PASS_BEFORE_CURATION",

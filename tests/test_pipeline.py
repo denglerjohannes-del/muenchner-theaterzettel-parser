@@ -190,8 +190,11 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(classes.count("MULTI_COMPONENT_PROGRAMME"), 1)
         self.assertEqual(classes.count("SUSPICIOUS_DISPLAY_SURFACE"), 1)
         self.assertEqual(classes.count("PARALLEL_BILL_EDITIONS"), 1)
+        self.assertEqual(classes.count("RARE_TITLE_SURFACE_INVENTORY"), 1)
         parallel = next(row for row in rows if row["review_class"] == "PARALLEL_BILL_EDITIONS")
         self.assertEqual(parallel["reasons"], ["PROGRAMME_CHANGED"])
+        rare = next(row for row in rows if row["review_class"] == "RARE_TITLE_SURFACE_INVENTORY")
+        self.assertIn("Herr Gast.", rare["title_surfaces"])
 
     def test_review_queue_flags_non_latin_ocr(self):
         self.assertIn("NON_LATIN_OCR_CHARACTERS", REVIEW.suspicious_reasons("રહે શેહ"))
