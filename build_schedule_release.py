@@ -19,6 +19,17 @@ MONTHS = {"Januar": 1, "Februar": 2, "Jebruar": 2, "März": 3, "Maerz": 3, "Apri
 WEEKDAYS = {"Montag": 0, "Dienstag": 1, "Mittwoch": 2, "Donnerstag": 3,
             "Freitag": 4, "Samstag": 5, "Samflag": 5, "Saftmag": 5, "Famstag": 5, "Hamstag": 5,
             "Sonntag": 6, "Fonntag": 6, "Fountag": 6, "Fonutag": 6, "Sountag": 6}
+SUBSCRIPTION_PREFIX_RE = re.compile(
+    r"^\s*(?:\d{1,3}\.?\s*)?Vor\S*\s*im\s+Jah\S*[- ]?Abonnem\S*.*?"
+    r"(?:Abtheilung|Abth|A[o6]?th)\.?\s*(?:I{1,3}|1{1,3})\.?\s*"
+    r"(?:(?:statt|ftatt|flatt|faft)\s*(?:I{1,3}|1{1,3})\.?\s*)?",
+    re.IGNORECASE,
+)
+TIME_ONLY_RE = re.compile(
+    r"^\s*(?:[\d¹½/]+\s*)?[Uu]hr\b(?:\s*,?\s*Ende\s*(?:gegen|nach|um)?\s*"
+    r"[\d¹½/\s]+\s*[Uu]hr)?\.?\s*$",
+    re.IGNORECASE,
+)
 
 
 def digest(path: pathlib.Path) -> str:
@@ -33,6 +44,16 @@ def clean_title(surface: str, aliases: dict[str, str]) -> tuple[str, str]:
     cleaned = surface.replace("ſ", "s")
     cleaned = re.sub(r"\s+", " ", cleaned).strip(" \t\r\n.,;/")
     return aliases.get(cleaned, cleaned), cleaned
+
+
+def strip_formal_title_metadata(surface: str) -> tuple[str, str | None]:
+    """Remove only recurring non-work display metadata, preserving its source elsewhere."""
+    if TIME_ONLY_RE.fullmatch(surface):
+        return "", "TIME_LINE_NOT_WORK_TITLE"
+    stripped = SUBSCRIPTION_PREFIX_RE.sub("", surface, count=1).strip()
+    if stripped != surface.strip():
+        return stripped, "SUBSCRIPTION_PREFIX_NOT_WORK_TITLE"
+    return surface, None
 
 
 def validate_year_contract(candidates: list[dict], pages: list[dict], resolutions: dict, year: int) -> None:
@@ -99,6 +120,7 @@ def main() -> None:
     weekday_errors = []
     alias_applications = []
     ignored_components = []
+    formal_metadata_removals = []
     title_group_override_applications = []
     for row in candidates:
         scan_key = str(row["scan_index"])
@@ -125,7 +147,21 @@ def main() -> None:
                       for title in override["title_surfaces"]]
         titles = []
         for component_index, group in enumerate(groups, start=1):
-            canonical, cleaned = clean_title(group["title_surface_candidate"], aliases)
+            source_surface = group["title_surface_candidate"]
+            title_surface, metadata_reason = strip_formal_title_metadata(source_surface)
+            if metadata_reason:
+                formal_metadata_removals.append({
+                    "schema": "theaterzettel-formal-title-metadata-removal/1",
+                    "scan_index": row["scan_index"],
+                    "source_surface": source_surface,
+                    "remaining_title_surface": title_surface,
+                    "reason": metadata_reason,
+                    "bbox": group["bbox"],
+                    "height_evidence": group["height_evidence"],
+                })
+            if not title_surface:
+                continue
+            canonical, cleaned = clean_title(title_surface, aliases)
             if cleaned in ignored_surfaces:
                 ignored = {
                     "schema": "theaterzettel-ignored-title-component/1",
@@ -140,12 +176,12 @@ def main() -> None:
                 continue
             if canonical != cleaned:
                 alias_applications.append({
-                    "scan_index": row["scan_index"], "source_surface": group["title_surface_candidate"],
+                    "scan_index": row["scan_index"], "source_surface": source_surface,
                     "cleaned_surface": cleaned, "canonical_title": canonical,
                 })
             titles.append({
                 "component_index": component_index,
-                "source_surface": group["title_surface_candidate"],
+                "source_surface": source_surface,
                 "cleaned_surface": cleaned,
                 "canonical_title": canonical,
                 "bbox": group["bbox"],
@@ -284,6 +320,7 @@ def main() -> None:
     write_jsonl(args.output_dir / f"NATIONALTHEATER_{args.year}_DAY_LEDGER.jsonl", ledger)
     write_jsonl(args.output_dir / "TITLE_ALIAS_APPLICATIONS.jsonl", alias_applications)
     write_jsonl(args.output_dir / "IGNORED_TITLE_COMPONENTS.jsonl", ignored_components)
+    write_jsonl(args.output_dir / "FORMAL_TITLE_METADATA_REMOVALS.jsonl", formal_metadata_removals)
     write_jsonl(args.output_dir / "TITLE_GROUP_OVERRIDES_APPLIED.jsonl", title_group_override_applications)
 
     excluded = []
@@ -331,6 +368,7 @@ def main() -> None:
         "date_resolutions": len(date_overrides),
         "title_alias_applications": len(alias_applications),
         "ignored_nonwork_title_components": len(ignored_components),
+        "formal_title_metadata_removals": len(formal_metadata_removals),
         "title_group_override_applications": len(title_group_override_applications),
         "day_ledger_rows": len(ledger),
         "excluded_or_backlog_pages": len(excluded),

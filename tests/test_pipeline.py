@@ -151,6 +151,17 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(cleaned, "Fauft")
         self.assertEqual(canonical, "Faust")
 
+    def test_formal_subscription_prefix_is_removed_but_title_remains(self):
+        surface = "48. Vorft.im Jahres-Abonnem.d. Abth. II. ftatt I. Der Freischük."
+        title, reason = RELEASE.strip_formal_title_metadata(surface)
+        self.assertEqual(title, "Der Freischük.")
+        self.assertEqual(reason, "SUBSCRIPTION_PREFIX_NOT_WORK_TITLE")
+
+    def test_time_only_display_line_is_not_a_work_title(self):
+        title, reason = RELEASE.strip_formal_title_metadata("7 Uhr, Ende gegen 10 Uhr.")
+        self.assertEqual(title, "")
+        self.assertEqual(reason, "TIME_LINE_NOT_WORK_TITLE")
+
     def test_release_year_contract_fails_closed(self):
         with self.assertRaises(SystemExit):
             RELEASE.validate_year_contract(
