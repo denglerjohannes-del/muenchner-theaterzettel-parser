@@ -23,6 +23,7 @@ RELEASE = load("build_schedule_release")
 REVIEW = load("generate_review_queue")
 FETCH = load("fetch_hocr")
 SOURCE_DATES = load("source_filename_dates")
+CALENDAR = load("ocr_calendar")
 
 
 def hocr(lines):
@@ -340,6 +341,17 @@ class PipelineTests(unittest.TestCase):
     def test_review_queue_unknown_month_is_explicit_error(self):
         with self.assertRaisesRegex(ValueError, "unknown month surface"):
             REVIEW.resolved_date({"month_candidate": "Sept", "scan_index": 7, "day_candidate": 1}, 1877)
+
+    def test_ocr_calendar_is_the_single_shared_source(self):
+        # The variant tables used to live in three modules and could drift.
+        self.assertIs(INDEX.MONTH_RE.pattern.__class__, str)
+        self.assertEqual(CALENDAR.MONTHS["Feptember"], 9)
+        self.assertEqual(CALENDAR.WEEKDAYS["Sountag"], 6)
+        self.assertIs(RELEASE.MONTHS, CALENDAR.MONTHS)
+        self.assertIs(RELEASE.WEEKDAYS, CALENDAR.WEEKDAYS)
+        self.assertIs(REVIEW.MONTHS, CALENDAR.MONTHS)
+        self.assertIn("FSeptember", CALENDAR.MONTH_ALTERNATION)
+        self.assertIn("Samflag", CALENDAR.WEEKDAY_PATTERN)
 
     def test_index_hocr_missing_binding_fails_with_scan_context(self):
         with tempfile.TemporaryDirectory() as tmp:

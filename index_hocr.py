@@ -10,17 +10,10 @@ import pathlib
 import re
 from lxml import html
 
+from ocr_calendar import MONTH_ALTERNATION, MONTH_RE, WEEKDAY_ONLY_RE, WEEKDAY_PATTERN
+
 
 BBOX_RE = re.compile(r"bbox\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)")
-MONTH_RE = re.compile(
-    r"\b(?:Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Angust|Auguft|Jugust|"
-    r"Inni|September|FSeptember|Feptember|Oktober|November|Dezember)\b", re.I
-)
-WEEKDAY_PATTERN = (
-    r"Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Samflag|Saftmag|Famstag|Hamstag|"
-    r"Sonntag|Fonntag|Fountag|Fonutag|Sountag"
-)
-WEEKDAY_ONLY_RE = re.compile(rf"^\s*(?:{WEEKDAY_PATTERN})\s*$", re.I)
 
 
 def compile_date_re(year: int) -> re.Pattern:
@@ -29,7 +22,7 @@ def compile_date_re(year: int) -> re.Pattern:
         r"^\s*(?:(?:M[üu][nu]chen|Mündjen|Mündhen|Mitchen|Mindhen|UMünchen|Wündjen|Wünschen|Blünchen)[,.]?\s+)?[|—–-]*\s*"
         rf"\b({WEEKDAY_PATTERN})\b"
         r".*?\b(?:den\s+)?(\d{1,2})\.{0,2}\s+"
-        r"(Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Angust|Auguft|Jugust|Inni|September|FSeptember|Feptember|Oktober|November|Dezember)"
+        rf"({MONTH_ALTERNATION})"
         rf"(?:\s+{year}\b|(?!\s+\d{{4}}\b))", re.I
     )
 

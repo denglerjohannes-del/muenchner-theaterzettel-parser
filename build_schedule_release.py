@@ -12,13 +12,9 @@ import json
 import pathlib
 import re
 
+from ocr_calendar import MONTHS, WEEKDAYS
 
-MONTHS = {"Januar": 1, "Februar": 2, "Jebruar": 2, "März": 3, "Maerz": 3, "April": 4,
-          "Mai": 5, "Juni": 6, "Inni": 6, "Juli": 7, "August": 8, "Angust": 8, "Auguft": 8, "Jugust": 8, "September": 9, "FSeptember": 9, "Feptember": 9,
-          "Oktober": 10, "November": 11, "Dezember": 12}
-WEEKDAYS = {"Montag": 0, "Dienstag": 1, "Mittwoch": 2, "Donnerstag": 3,
-            "Freitag": 4, "Samstag": 5, "Samflag": 5, "Saftmag": 5, "Famstag": 5, "Hamstag": 5,
-            "Sonntag": 6, "Fonntag": 6, "Fountag": 6, "Fonutag": 6, "Sountag": 6}
+
 SUBSCRIPTION_PREFIX_RE = re.compile(
     r"^\s*(?:\d{1,3}\.?\s*)?Vor\S*\s*im\s+Jah\S*[- ]?Abonnem\S*.*?"
     r"(?:Abtheilung|Abth|A[o6]?th)\.?\s*(?:I{1,3}|1{1,3})\.?\s*"
