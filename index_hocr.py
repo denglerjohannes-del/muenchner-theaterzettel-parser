@@ -14,11 +14,11 @@ from lxml import html
 BBOX_RE = re.compile(r"bbox\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)")
 MONTH_RE = re.compile(
     r"\b(?:Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|Jugust|"
-    r"September|Oktober|November|Dezember)\b", re.I
+    r"Inni|September|FSeptember|Oktober|November|Dezember)\b", re.I
 )
 WEEKDAY_PATTERN = (
     r"Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Samflag|Saftmag|Famstag|Hamstag|"
-    r"Sonntag|Fonntag|Fountag|Sountag"
+    r"Sonntag|Fonntag|Fountag|Fonutag|Sountag"
 )
 WEEKDAY_ONLY_RE = re.compile(rf"^\s*(?:{WEEKDAY_PATTERN})\s*$", re.I)
 
@@ -26,10 +26,10 @@ WEEKDAY_ONLY_RE = re.compile(rf"^\s*(?:{WEEKDAY_PATTERN})\s*$", re.I)
 def compile_date_re(year: int) -> re.Pattern:
     """Build the bill-header date pattern for one explicitly selected year."""
     return re.compile(
-        r"^\s*(?:M[üu]nchen[,.]?\s+)?[|—–-]*\s*"
+        r"^\s*(?:M[üu][nu]chen[,.]?\s+)?[|—–-]*\s*"
         rf"\b({WEEKDAY_PATTERN})\b"
         r".*?\b(?:den\s+)?(\d{1,2})\.{0,2}\s+"
-        r"(Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|Jugust|September|Oktober|November|Dezember)"
+        r"(Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|Jugust|Inni|September|FSeptember|Oktober|November|Dezember)"
         rf"(?:\s+{year}\b|(?!\s+\d{{4}}\b))", re.I
     )
 
@@ -76,7 +76,7 @@ def classify_venue(lines: list[dict]) -> tuple[str | None, list[str]]:
     # The official OCR regularly reads the initial R as N/K/V and separates
     # the printed line break around the hyphen.  The distinctive compound and
     # the following 'Theater' remain required, so this stays narrowly bound.
-    if has_theater and re.search(r"\b(?:Residenz|[RNKM][a-zäöüßñſ]{0,8}denz)\b", joined, re.I):
+    if has_theater and re.search(r"\b(?:Residenz|[RNKMV][a-zäöüßñſ]{0,8}denz)\b", joined, re.I):
         evidence.append("RESIDENZTHEATER")
     if len(evidence) == 1:
         return evidence[0], top

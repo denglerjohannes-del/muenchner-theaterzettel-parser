@@ -43,6 +43,7 @@ und löscht nichts; die Auflösung bleibt explizite, reversible Kuration.
 | 1878 | `bsb11362379` | 714 | 36.092 | 361 | 0 |
 | 1879 | `bsb11380789` | 780 | 39.869 | 383 | 0 |
 | 1880 | `bsb11455085` | 746 | 31.851 | 365 | 0 |
+| 1881 | `bsb11455086` | 746 | 33.001 | 364 | 0 |
 
 Die Kurationsentscheidungen bleiben Forschungsdaten des jeweiligen Jahrgangs. Der allgemeine Release-Bauer liest sie nur ein, bindet seltene manuelle Ergänzungen, komplexe Titelgruppen und ausdrückliche Absagen an konkrete Quellenseiten und erzeugt daraus Spielplan, Tagesledger, Titelhäufigkeiten, frühere und abgesagte Zettelfassungen sowie Provenienz deterministisch. Automatische Ausgangsgruppen bleiben bei einer Korrektur vollständig erhalten.
 

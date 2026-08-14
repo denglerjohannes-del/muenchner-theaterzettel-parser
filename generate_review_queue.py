@@ -16,7 +16,7 @@ import unicodedata
 MONTHS = {
     "Januar": 1, "Februar": 2, "Jebruar": 2, "März": 3, "Maerz": 3,
     "April": 4, "Mai": 5, "Juni": 6, "Juli": 7, "August": 8,
-    "Auguft": 8, "Jugust": 8, "September": 9, "Oktober": 10,
+    "Auguft": 8, "Jugust": 8, "Inni": 6, "September": 9, "FSeptember": 9, "Oktober": 10,
     "November": 11, "Dezember": 12,
 }
 LEXICAL_REVIEW = re.compile(

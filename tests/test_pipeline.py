@@ -64,7 +64,7 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(venue, "RESIDENZTHEATER")
 
     def test_residenz_ocr_aliases_from_next_volume(self):
-        for surface in ("K.Nendenz-", "K.Neñdenz-", "K.Mesidenz-", "K.Nefidenz-"):
+        for surface in ("K.Nendenz-", "K.Neñdenz-", "K.Mesidenz-", "K.Nefidenz-", "K.Vesidenz-"):
             with self.subTest(surface=surface):
                 venue, _ = INDEX.classify_venue([
                     {"surface": surface, "bbox": [0, 300, 500, 500]},
@@ -112,6 +112,10 @@ class PipelineTests(unittest.TestCase):
         self.assertIsNotNone(pattern.search("Famstag den 27. Dezember 1878."))
         self.assertIsNotNone(pattern.search("Mittwoch den 20.. Oktober 1878."))
         self.assertIsNotNone(pattern.search("München, Freitag den 1. November 1878."))
+        self.assertIsNotNone(pattern.search("Müuchen, Dienstag den 1. März 1878."))
+        self.assertIsNotNone(pattern.search("München, Mittwoch den 1. Inni 1878."))
+        self.assertIsNotNone(pattern.search("München, Fonutag den 28. August 1878."))
+        self.assertIsNotNone(pattern.search("München, Freitag den 30. FSeptember 1878."))
         self.assertIsNone(pattern.search("Rückblick vom Montag den 1. bis Sonntag den 7. Januar 1878."))
 
     def test_split_weekday_and_date_header(self):
