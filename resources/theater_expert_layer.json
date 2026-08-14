@@ -170,6 +170,90 @@
       "creator": "Gioachino Rossini",
       "source": "front_display_authority.json"
     },
+    "Oper|des teufels anteil": {
+      "modern": "La part du diable",
+      "historicalPreferred": "Des Teufels Anteil",
+      "creator": "Daniel-François-Esprit Auber",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/rechercher.do?index=AUT3&numNotice=14752663"
+    },
+    "Oper|des teufels antheil": {
+      "modern": "La part du diable",
+      "historicalPreferred": "Des Teufels Anteil",
+      "creator": "Daniel-François-Esprit Auber",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/rechercher.do?index=AUT3&numNotice=14752663"
+    },
+    "Oper|la part du diable": {
+      "modern": "La part du diable",
+      "historicalPreferred": "Des Teufels Anteil",
+      "creator": "Daniel-François-Esprit Auber",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/rechercher.do?index=AUT3&numNotice=14752663"
+    },
+    "Oper|teufels anteil": {
+      "modern": "La part du diable",
+      "historicalPreferred": "Des Teufels Anteil",
+      "creator": "Daniel-François-Esprit Auber",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/rechercher.do?index=AUT3&numNotice=14752663"
+    },
+    "Oper|teufels antheil": {
+      "modern": "La part du diable",
+      "historicalPreferred": "Des Teufels Anteil",
+      "creator": "Daniel-François-Esprit Auber",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/rechercher.do?index=AUT3&numNotice=14752663"
+    },
+    "Oper|der wafferträger": {
+      "modern": "Les deux journées",
+      "historicalPreferred": "Der Wasserträger",
+      "creator": "Luigi Cherubini",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/ark:/12148/cb13892445c"
+    },
+    "Oper|der wasserträger": {
+      "modern": "Les deux journées",
+      "historicalPreferred": "Der Wasserträger",
+      "creator": "Luigi Cherubini",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/ark:/12148/cb13892445c"
+    },
+    "Oper|derwasserträger": {
+      "modern": "Les deux journées",
+      "historicalPreferred": "Der Wasserträger",
+      "creator": "Luigi Cherubini",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/ark:/12148/cb13892445c"
+    },
+    "Oper|les deux journ es": {
+      "modern": "Les deux journées",
+      "historicalPreferred": "Der Wasserträger",
+      "creator": "Luigi Cherubini",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/ark:/12148/cb13892445c"
+    },
+    "Oper|der maurer und der schlosse": {
+      "modern": "Le maçon",
+      "historicalPreferred": "Der Maurer und der Schlosser",
+      "creator": "Daniel-François-Esprit Auber",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/ark:/12148/cb39684557m"
+    },
+    "Oper|der maurer und der schlosser": {
+      "modern": "Le maçon",
+      "historicalPreferred": "Der Maurer und der Schlosser",
+      "creator": "Daniel-François-Esprit Auber",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/ark:/12148/cb39684557m"
+    },
+    "Oper|le ma on": {
+      "modern": "Le maçon",
+      "historicalPreferred": "Der Maurer und der Schlosser",
+      "creator": "Daniel-François-Esprit Auber",
+      "source": "front_display_authority.json",
+      "authorityUrl": "https://catalogue.bnf.fr/ark:/12148/cb39684557m"
+    },
     "Oper|die hochzeit des figaro": {
       "modern": "Le nozze di Figaro",
       "historicalPreferred": null,
@@ -33782,7 +33866,9 @@
   ],
   "historicalSurfaceCorrections": {
     "Zell": "Tell",
-    "Tell, Ш": "Tell"
+    "Tell, Ш": "Tell",
+    "Teufels Antheil St": "Teufels Antheil",
+    "Teufels Antheil Lan bie in für Auszügen aus der Hbelungenfage von": "Teufels Antheil"
   },
   "supplementalAuthorities": {
     "Die Zauberflöte": {
@@ -34412,7 +34498,7 @@
     ],
     "frontDisplayAuthority": {
       "file": "front_display_authority.json",
-      "sha256": "ab24fc7451d4ec61ff2b28dcbd85109825fcf432d04aff610b94a953c03b3ca6"
+      "sha256": "1bf24835deed06d2192c469c86968edf0b9732060abe7f4f4eda1d9327de4687"
     },
     "supplementalWorkAuthority": {
       "file": "supplemental_work_authority.json",

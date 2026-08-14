@@ -144,6 +144,7 @@ def compile_layer(
                 "creator": mapping.get("creator"),
                 "source": display_authority.name,
             }
+            if mapping.get("authorityUrl"): record["authorityUrl"] = mapping["authorityUrl"]
             if mapping.get("notBefore"): record["notBefore"] = mapping["notBefore"]
             if mapping.get("notAfter"): record["notAfter"] = mapping["notAfter"]
             for variant in sorted({mapping["modern"], *mapping.get("variants", [])}, key=key):

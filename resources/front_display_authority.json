@@ -6,7 +6,9 @@
   ],
   "historicalSurfaceCorrections": {
     "Zell": "Tell",
-    "Tell, Ш": "Tell"
+    "Tell, Ш": "Tell",
+    "Teufels Antheil St": "Teufels Antheil",
+    "Teufels Antheil Lan bie in für Auszügen aus der Hbelungenfage von": "Teufels Antheil"
   },
   "contextualTitleMappings": [
     {
@@ -47,6 +49,47 @@
         "Guillaume Tell",
         "Wilhelm Tell",
         "Tell"
+      ]
+    },
+    {
+      "category": "Oper",
+      "modern": "La part du diable",
+      "historicalPreferred": "Des Teufels Anteil",
+      "creator": "Daniel-François-Esprit Auber",
+      "authorityUrl": "https://catalogue.bnf.fr/rechercher.do?index=AUT3&numNotice=14752663",
+      "variants": [
+        "La part du diable",
+        "Des Teufels Anteil",
+        "Des Teufels Antheil",
+        "Teufels Anteil",
+        "Teufels Antheil"
+      ]
+    },
+    {
+      "category": "Oper",
+      "modern": "Les deux journées",
+      "historicalPreferred": "Der Wasserträger",
+      "creator": "Luigi Cherubini",
+      "authorityUrl": "https://catalogue.bnf.fr/ark:/12148/cb13892445c",
+      "variants": [
+        "Les deux journées",
+        "Der Wasserträger",
+        "Der Wafferträger",
+        "DerWaſſerträger"
+      ]
+    },
+    {
+      "category": "Oper",
+      "modern": "Le maçon",
+      "historicalPreferred": "Der Maurer und der Schlosser",
+      "creator": "Daniel-François-Esprit Auber",
+      "authorityUrl": "https://catalogue.bnf.fr/ark:/12148/cb39684557m",
+      "variants": [
+        "Le maçon",
+        "Der Maurer und der Schlosser",
+        "Der Maurer und der Schloßer",
+        "Der Maurer und der Schloſſer",
+        "Der Maurer und der Schlosse"
       ]
     },
     {
