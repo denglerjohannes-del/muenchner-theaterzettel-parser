@@ -32,7 +32,9 @@ Bei gedrosselten Quellservern respektiert der Downloader `Retry-After`, nutzt
 exponentielle Pausen mit Jitter und taktet alle Worker gemeinsam. Für einen
 schonenden Langlauf kann die Rate weiter abgesenkt werden, etwa mit
 `--workers 2 --request-spacing 1.5 --retries 8`; bereits vorhandene Dateien
-werden dabei geprüft und wiederverwendet.
+werden dabei geprüft und wiederverwendet. Ein ausgeschöpftes Tageskontingent
+mit langem `X-RateLimit-Reset` wird als `DEFERRED_RATE_LIMIT` quittiert, statt
+den Quellserver zwecklos weiter abzufragen.
 
 Die Scanbindung verhindert die Verwechslung gedruckter Seitenzahlen mit IIIF-Scan-IDs. Der Downloader ist resumierbar und quittiert jede Datei per SHA-256. Kleine OCR-Antworten leerer Rückseiten bleiben erhalten. Der Indexer verlangt das Kalenderjahr ausdrücklich über `--year`; damit kann ein Jahrgang nicht versehentlich mit dem Datumsvertrag eines anderen verarbeitet werden. `index_hocr.py` klassifiziert National- und Residenztheater getrennt; Konzert, Gärtnerplatz und interne Wochenpläne bleiben Review-Fälle.
 

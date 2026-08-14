@@ -40,6 +40,12 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(FETCH.retry_delay(2, "20", 2.0, 60.0), 20.0)
             self.assertEqual(FETCH.retry_delay(9, None, 2.0, 60.0), 60.0)
 
+    def test_rate_limit_reset_accepts_delta_or_epoch(self):
+        self.assertEqual(FETCH.rate_limit_reset_seconds("86400"), 86400.0)
+        with mock.patch.object(FETCH.time, "time", return_value=1_000_000.0):
+            self.assertEqual(FETCH.rate_limit_reset_seconds("1000120"), 120.0)
+        self.assertIsNone(FETCH.rate_limit_reset_seconds("unknown"))
+
     def test_manifest_binding_keeps_printed_label_and_scan_id_separate(self):
         payload = {"sequences": [{"canvases": [{
             "label": "17 (0023)",

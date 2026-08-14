@@ -58,6 +58,19 @@ def retry_after_seconds(value: str | None) -> float | None:
             return None
 
 
+def rate_limit_reset_seconds(value: str | None) -> float | None:
+    """Accept either delta-seconds or a Unix timestamp from X-RateLimit-Reset."""
+    if not value:
+        return None
+    try:
+        number = float(value)
+    except ValueError:
+        return None
+    if number > time.time():
+        number -= time.time()
+    return max(0.0, number)
+
+
 def retry_delay(attempt: int, retry_after: str | None, base: float, maximum: float) -> float:
     server_delay = retry_after_seconds(retry_after)
     exponential = base * (2 ** max(0, attempt - 1))
@@ -92,6 +105,21 @@ def fetch_one(
             return {**item, "bytes": len(data), "sha256": sha256(data), "status": "FETCHED"}
         except urllib.error.HTTPError as exc:
             last_error = repr(exc)
+            reset = rate_limit_reset_seconds(exc.headers.get("X-RateLimit-Reset"))
+            if (
+                exc.code == 429
+                and exc.headers.get("X-RateLimit-Remaining") == "0"
+                and reset is not None
+                and reset > max_backoff
+            ):
+                return {
+                    **item,
+                    "bytes": 0,
+                    "sha256": None,
+                    "status": "DEFERRED_RATE_LIMIT",
+                    "error": last_error,
+                    "rate_limit_reset_seconds": reset,
+                }
             if attempt < retries:
                 time.sleep(retry_delay(
                     attempt, exc.headers.get("Retry-After"), base_backoff, max_backoff
@@ -145,7 +173,8 @@ def main() -> None:
         ))
     results.sort(key=lambda row: row["scan_index"])
 
-    failed = [row for row in results if row["status"] == "FAILED"]
+    failed = [row for row in results if row["status"] not in {"FETCHED", "REUSED"}]
+    deferred = [row for row in results if row["status"] == "DEFERRED_RATE_LIMIT"]
     receipt = {
         "schema": "iiif-hocr-acquisition-receipt/1",
         "manifest_sha256": sha256(args.manifest.read_bytes()),
@@ -153,10 +182,13 @@ def main() -> None:
         "files_present": len(results) - len(failed),
         "bytes": sum(row["bytes"] for row in results),
         "failed": len(failed),
+        "deferred_rate_limit": len(deferred),
         "items": results,
     }
     args.receipt.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({k: receipt[k] for k in ("declared_scans", "files_present", "bytes", "failed")}, indent=2))
+    print(json.dumps({k: receipt[k] for k in (
+        "declared_scans", "files_present", "bytes", "failed", "deferred_rate_limit"
+    )}, indent=2))
     if failed:
         raise SystemExit(1)
 
