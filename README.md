@@ -28,6 +28,19 @@ python3 build_schedule_release.py candidates/PROGRAMME_CANDIDATES.jsonl CURATION
 python3 -m unittest discover -v
 ```
 
+## Theater-Expertenschicht
+
+`theater_expert_layer.py` kompiliert historische Titelvarianten, moderne
+Werktitel, Gattungen und bekannte Urheber aus versionierten Fachregistern.
+Die Darstellung verwendet den modernen kanonischen Titel als Haupttitel und
+erhält die gedruckte Form getrennt als historischen Untertitel, etwa
+`Don Giovanni` / `Don Juan` und `La traviata` / `Violetta`. Unspezifische
+Catch-all-Werte wie `other` oder `Sonstiges` werden nicht veröffentlicht.
+Explizite historische Ereignisformen (etwa Maskenball, Pantomime oder Prolog)
+haben Vorrang vor bloßer Titelähnlichkeit. Nicht auflösbare Kandidaten bleiben
+im internen Prüfbestand und gelangen nicht als erfundene Kategorie oder
+Urheberangabe in den Kalender.
+
 Für ergänzende Archivbestände mit Datumspräfixen steht außerdem
 `source_filename_dates.py` bereit. Das Hilfswerkzeug trennt exakte Tage,
 Monats-/Jahresangaben, Spielzeiten und Bereiche. Insbesondere wird ein Name wie
