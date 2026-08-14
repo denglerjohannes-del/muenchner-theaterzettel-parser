@@ -133,6 +133,7 @@ def compile_layer(
     dated_contextual_aliases: dict[str, list[dict]] = {}
     dated_overrides: dict[str, list[dict]] = {}
     nonwork_metadata_patterns: list[str] = []
+    historical_surface_corrections: dict[str, str] = {}
     display_provenance = None
     if display_authority:
         display_data = json.loads(display_authority.read_text(encoding="utf-8"))
@@ -153,6 +154,7 @@ def compile_layer(
                     contextual_aliases[alias_key] = record
         dated_overrides = display_data.get("datedWorkOverrides", {})
         nonwork_metadata_patterns = display_data.get("nonWorkMetadataPatterns", [])
+        historical_surface_corrections = display_data.get("historicalSurfaceCorrections", {})
         display_provenance = {"file": display_authority.name, "sha256": sha256(display_authority)}
 
     provenance = {
@@ -173,6 +175,7 @@ def compile_layer(
         "dateWorks": date_works,
         "datedWorkOverrides": dated_overrides,
         "nonWorkMetadataPatterns": nonwork_metadata_patterns,
+        "historicalSurfaceCorrections": historical_surface_corrections,
         "supplementalAuthorities": supplemental_data,
         "provenance": provenance,
     }

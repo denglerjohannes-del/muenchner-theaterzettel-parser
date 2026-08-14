@@ -152,6 +152,24 @@
       "creator": "Wolfgang Amadeus Mozart",
       "source": "front_display_authority.json"
     },
+    "Oper|guillaume tell": {
+      "modern": "Guillaume Tell",
+      "historicalPreferred": null,
+      "creator": "Gioachino Rossini",
+      "source": "front_display_authority.json"
+    },
+    "Oper|tell": {
+      "modern": "Guillaume Tell",
+      "historicalPreferred": null,
+      "creator": "Gioachino Rossini",
+      "source": "front_display_authority.json"
+    },
+    "Oper|wilhelm tell": {
+      "modern": "Guillaume Tell",
+      "historicalPreferred": null,
+      "creator": "Gioachino Rossini",
+      "source": "front_display_authority.json"
+    },
     "Oper|die hochzeit des figaro": {
       "modern": "Le nozze di Figaro",
       "historicalPreferred": null,
@@ -33551,6 +33569,25 @@
         "category": "Ballett/Tanz"
       }
     ],
+    "1857-12-02": [
+      {
+        "modern": "Eine kleine Erzählung ohne Namen",
+        "historical": "Eine kleine Erzählung ohne Namen",
+        "sourceSurface": "Eine kleine Erzählung ohne Namen",
+        "category": "Lustspiel",
+        "creator": "Carl August Görner",
+        "creatorRole": "Autor",
+        "programmeNote": "Programmänderung wegen plötzlicher Unpässlichkeit der Frau Dahn-Hausmann; statt des angekündigten Lustspiels »Das öffentliche Geheimnis«."
+      },
+      {
+        "modern": "Die Mäntel oder Der Schneider in Lissabon",
+        "historical": "Die Mäntel oder Der Schneider in Lissabon",
+        "sourceSurface": "Die Mäntel oder Der Schneider in Lissabon",
+        "category": "Lustspiel",
+        "creator": "Carl Blum",
+        "creatorRole": "Autor"
+      }
+    ],
     "1884-01-01": [
       {
         "modern": "Guillaume Tell",
@@ -33743,6 +33780,10 @@
   "nonWorkMetadataPatterns": [
     "^(?:[a-z]{1,3}\\s+)?vorstellung im jahres abonnement$"
   ],
+  "historicalSurfaceCorrections": {
+    "Zell": "Tell",
+    "Tell, Ш": "Tell"
+  },
   "supplementalAuthorities": {
     "Die Zauberflöte": {
       "creator": "Wolfgang Amadeus Mozart",
@@ -34371,7 +34412,7 @@
     ],
     "frontDisplayAuthority": {
       "file": "front_display_authority.json",
-      "sha256": "20dcad605fbe6ef0c04a4de48c197ed10b2e45099e07e6f18cb2fcbc5d873ebd"
+      "sha256": "ab24fc7451d4ec61ff2b28dcbd85109825fcf432d04aff610b94a953c03b3ca6"
     },
     "supplementalWorkAuthority": {
       "file": "supplemental_work_authority.json",
