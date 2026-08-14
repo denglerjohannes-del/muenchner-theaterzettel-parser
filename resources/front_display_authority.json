@@ -1,7 +1,21 @@
 {
   "schema": "muenchner-theater-front-display-authority/1",
   "policy": "Originalsprachiger kanonischer Operntitel vorn; historische Münchner Titelform darunter; exakte Druckform separat backstage. Mehrdeutige Titel werden nur mit Gattungs- oder Datumsbezug aufgelöst.",
+  "nonWorkMetadataPatterns": [
+    "^(?:[a-z]{1,3}\\s+)?vorstellung im jahres abonnement$"
+  ],
   "contextualTitleMappings": [
+    {
+      "category": "Oper",
+      "modern": "Otello",
+      "historicalPreferred": "Othello",
+      "creator": "Gioachino Rossini",
+      "notAfter": "1886-12-31",
+      "variants": [
+        "Othello",
+        "Otello"
+      ]
+    },
     {
       "category": "Oper",
       "modern": "Così fan tutte",

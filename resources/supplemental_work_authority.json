@@ -1,0 +1,312 @@
+{
+  "Die Zauberflöte": {
+    "creator": "Wolfgang Amadeus Mozart",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Don Juan": {
+    "creator": "Wolfgang Amadeus Mozart",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Figaros Hochzeit": {
+    "creator": "Wolfgang Amadeus Mozart",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Ein toller Tag, oder Figaros Hochzeit": {
+    "creator": "Wolfgang Amadeus Mozart",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "So machen's Alle": {
+    "creator": "Wolfgang Amadeus Mozart",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Tannhäuser": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Lohengrin": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Tristan und Isolde": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Der fliegende Holländer": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Die Meistersinger von Nürnberg": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Das Rheingold": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Die Walküre": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Siegfried": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Götterdämmerung": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Rienzi": {
+    "creator": "Richard Wagner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Fidelio": {
+    "creator": "Ludwig van Beethoven",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Der Freischütz": {
+    "creator": "Carl Maria von Weber",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Oberon": {
+    "creator": "Carl Maria von Weber",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Euryanthe": {
+    "creator": "Carl Maria von Weber",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Czaar und Zimmermann": {
+    "creator": "Albert Lortzing",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Der Waffenschmied": {
+    "creator": "Albert Lortzing",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Oper|Undine": {
+    "creator": "Albert Lortzing",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Martha": {
+    "creator": "Friedrich von Flotow",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Alessandro Stradella": {
+    "creator": "Friedrich von Flotow",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Die lustigen Weiber von Windsor": {
+    "creator": "Otto Nicolai",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Der Postillon von Lonjumeau": {
+    "creator": "Adolphe Adam",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Fra Diavolo": {
+    "creator": "Daniel-François-Esprit Auber",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Oper|Der Barbier von Sevilla": {
+    "creator": "Gioachino Rossini",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Oper|Wilhelm Tell": {
+    "creator": "Gioachino Rossini",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Schauspiel|Wilhelm Tell": {
+    "creator": "Friedrich Schiller",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Oper|Faust": {
+    "creator": "Charles Gounod",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Schauspiel|Faust": {
+    "creator": "Johann Wolfgang von Goethe",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Die Braut von Messina": {
+    "creator": "Friedrich Schiller",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Maria Stuart": {
+    "creator": "Friedrich Schiller",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Die Jungfrau von Orleans": {
+    "creator": "Friedrich Schiller",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "König Richard III": {
+    "creator": "William Shakespeare",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "König Heinrich VI": {
+    "creator": "William Shakespeare",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Hamlet": {
+    "creator": "William Shakespeare",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Schauspiel|Othello": {
+    "creator": "William Shakespeare",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Der Prophet": {
+    "creator": "Giacomo Meyerbeer",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Die Hugenotten": {
+    "creator": "Giacomo Meyerbeer",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Robert der Teufel": {
+    "creator": "Giacomo Meyerbeer",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Aïda": {
+    "creator": "Giuseppe Verdi",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Rigoletto": {
+    "creator": "Giuseppe Verdi",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Maskenball": {
+    "creator": "Giuseppe Verdi",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Der Troubadour": {
+    "creator": "Giuseppe Verdi",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Carmen": {
+    "creator": "Georges Bizet",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Norma": {
+    "creator": "Vincenzo Bellini",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Lucia von Lammermoor": {
+    "creator": "Gaetano Donizetti",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Die Jüdin": {
+    "creator": "Fromental Halévy",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Die weiße Frau": {
+    "creator": "François-Adrien Boieldieu",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Joseph in Aegypten": {
+    "creator": "Étienne-Nicolas Méhul",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Das Nachtlager in Granada": {
+    "creator": "Conradin Kreutzer",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Hans Heiling": {
+    "creator": "Heinrich Marschner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Die Stumme von Portici": {
+    "creator": "Daniel-François-Esprit Auber",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Die beiden Schützen": {
+    "creator": "Albert Lortzing",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Der König von Lahore": {
+    "creator": "Jules Massenet",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Mignon": {
+    "creator": "Ambroise Thomas",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Der schwarze Domino": {
+    "creator": "Daniel-François-Esprit Auber",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Coppélia": {
+    "creator": "Léo Delibes",
+    "role": "Komposition",
+    "category": "Ballett/Tanz"
+  },
+  "La traviata": {
+    "creator": "Giuseppe Verdi",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Der Maskenball": {
+    "creator": "Daniel-François-Esprit Auber",
+    "role": "Komposition",
+    "category": "Oper"
+  }
+}

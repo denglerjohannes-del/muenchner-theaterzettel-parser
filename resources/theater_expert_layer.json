@@ -1,5 +1,5 @@
 {
-  "schema": "muenchner-theater-expert-layer/2",
+  "schema": "muenchner-theater-expert-layer/3",
   "policy": "Original-language canonical opera title in front; historical Munich title below; exact printed surface backstage; unresolved OCR fragments withheld.",
   "modernAliases": {
     "das rote käppchen": "Das rote Käppchen",
@@ -225,6 +225,26 @@
       "source": "front_display_authority.json"
     }
   },
+  "datedContextualAliases": {
+    "Oper|otello": [
+      {
+        "modern": "Otello",
+        "historicalPreferred": "Othello",
+        "creator": "Gioachino Rossini",
+        "source": "front_display_authority.json",
+        "notAfter": "1886-12-31"
+      }
+    ],
+    "Oper|othello": [
+      {
+        "modern": "Otello",
+        "historicalPreferred": "Othello",
+        "creator": "Gioachino Rossini",
+        "source": "front_display_authority.json",
+        "notAfter": "1886-12-31"
+      }
+    ]
+  },
   "works": {
     "bum vortheile des hoftheater pensions vereines der prophet": [
       {
@@ -312,6 +332,12 @@
         "category": "Oper",
         "creator": "Gioachino Rossini",
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Wilhelm Tell",
+        "category": "Schauspiel",
+        "creator": "Friedrich Schiller",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "zell": [
@@ -464,6 +490,12 @@
         "category": "Oper",
         "creator": "Friedrich von Flotow",
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Martha",
+        "category": "Oper",
+        "creator": "Friedrich von Flotow",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "martha a oder der markt zu nichmond": [
@@ -928,6 +960,18 @@
         "category": "Schauspiel",
         "creator": "Johann Wolfgang von Goethe",
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Faust",
+        "category": "Oper",
+        "creator": "Charles Gounod",
+        "source": "supplemental_work_authority.json"
+      },
+      {
+        "canonical": "Faust",
+        "category": "Schauspiel",
+        "creator": "Johann Wolfgang von Goethe",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "faust oper": [
@@ -1066,6 +1110,12 @@
         "category": "Oper",
         "creator": "Carl Maria von Weber",
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Oberon",
+        "category": "Oper",
+        "creator": "Carl Maria von Weber",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "oberon romantische feen": [
@@ -1328,7 +1378,7 @@
       {
         "canonical": "Das Nachtlager in Granada",
         "category": "Oper",
-        "creator": null,
+        "creator": "Conradin Kreutzer",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1336,7 +1386,7 @@
       {
         "canonical": "Das Nachtlager in Granada",
         "category": "Oper",
-        "creator": null,
+        "creator": "Conradin Kreutzer",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1344,7 +1394,7 @@
       {
         "canonical": "Das Nachtlager in Granada",
         "category": "Oper",
-        "creator": null,
+        "creator": "Conradin Kreutzer",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1408,7 +1458,7 @@
       {
         "canonical": "Tannhäuser",
         "category": "Oper",
-        "creator": null,
+        "creator": "Richard Wagner",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1416,7 +1466,7 @@
       {
         "canonical": "Tannhäuser",
         "category": "Oper",
-        "creator": null,
+        "creator": "Richard Wagner",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1472,7 +1522,7 @@
       {
         "canonical": "Fidelio",
         "category": "Oper",
-        "creator": null,
+        "creator": "Ludwig van Beethoven",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1480,7 +1530,7 @@
       {
         "canonical": "Fidelio",
         "category": "Oper",
-        "creator": null,
+        "creator": "Ludwig van Beethoven",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1488,7 +1538,7 @@
       {
         "canonical": "Fidelio",
         "category": "Oper",
-        "creator": null,
+        "creator": "Ludwig van Beethoven",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1496,7 +1546,7 @@
       {
         "canonical": "Joseph in Aegypten",
         "category": "Oper",
-        "creator": null,
+        "creator": "Étienne-Nicolas Méhul",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1504,7 +1554,7 @@
       {
         "canonical": "Joseph in Aegypten",
         "category": "Oper",
-        "creator": null,
+        "creator": "Étienne-Nicolas Méhul",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -1738,6 +1788,12 @@
         "category": "Oper",
         "creator": "Adolphe Adam",
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Le postillon de Lonjumeau",
+        "category": "Oper",
+        "creator": "Adolphe Adam",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "der softillon von bonjumeau": [
@@ -1954,6 +2010,12 @@
         "category": "Oper",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Il barbiere di Siviglia",
+        "category": "Oper",
+        "creator": "Gioachino Rossini",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "der parbier von sevilla": [
@@ -1968,7 +2030,7 @@
       {
         "canonical": "Maria Stuart",
         "category": "Schauspiel",
-        "creator": null,
+        "creator": "Friedrich Schiller",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -2440,7 +2502,7 @@
       {
         "canonical": "Undine",
         "category": "Oper",
-        "creator": null,
+        "creator": "Albert Lortzing",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -2824,7 +2886,7 @@
       {
         "canonical": "Fra Diavolo",
         "category": "Oper",
-        "creator": null,
+        "creator": "Daniel-François-Esprit Auber",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -2832,7 +2894,7 @@
       {
         "canonical": "Fra Diavolo",
         "category": "Oper",
-        "creator": null,
+        "creator": "Daniel-François-Esprit Auber",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -2840,7 +2902,7 @@
       {
         "canonical": "Fra Diavolo",
         "category": "Oper",
-        "creator": null,
+        "creator": "Daniel-François-Esprit Auber",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -2848,7 +2910,7 @@
       {
         "canonical": "Fra Diavolo",
         "category": "Oper",
-        "creator": null,
+        "creator": "Daniel-François-Esprit Auber",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -2856,7 +2918,7 @@
       {
         "canonical": "Fra Diavolo",
         "category": "Oper",
-        "creator": null,
+        "creator": "Daniel-François-Esprit Auber",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -4008,7 +4070,7 @@
       {
         "canonical": "Der schwarze Domino",
         "category": "Oper",
-        "creator": null,
+        "creator": "Daniel-François-Esprit Auber",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -4016,7 +4078,7 @@
       {
         "canonical": "Der schwarze Domino",
         "category": "Oper",
-        "creator": null,
+        "creator": "Daniel-François-Esprit Auber",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -4608,7 +4670,7 @@
       {
         "canonical": "Die Meistersinger von Nürnberg",
         "category": "Oper",
-        "creator": null,
+        "creator": "Richard Wagner",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -6134,7 +6196,7 @@
       {
         "canonical": "Rigoletto",
         "category": "Oper",
-        "creator": null,
+        "creator": "Giuseppe Verdi",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -6142,7 +6204,7 @@
       {
         "canonical": "Rigoletto",
         "category": "Oper",
-        "creator": null,
+        "creator": "Giuseppe Verdi",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -6150,7 +6212,7 @@
       {
         "canonical": "Rigoletto",
         "category": "Oper",
-        "creator": null,
+        "creator": "Giuseppe Verdi",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -6982,7 +7044,7 @@
       {
         "canonical": "Die lustigen Weiber von Windsor",
         "category": "Oper",
-        "creator": null,
+        "creator": "Otto Nicolai",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -6990,7 +7052,7 @@
       {
         "canonical": "Die lustigen Weiber von Windsor",
         "category": "Oper",
-        "creator": null,
+        "creator": "Otto Nicolai",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -8454,6 +8516,12 @@
         "category": null,
         "creator": "Daniel Auber",
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Der Maskenball",
+        "category": "Oper",
+        "creator": "Daniel-François-Esprit Auber",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "die scene gesekt st der maskenball": [
@@ -8470,6 +8538,12 @@
         "category": null,
         "creator": "Daniel Auber",
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Maskenball",
+        "category": "Oper",
+        "creator": "Giuseppe Verdi",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "ein glücklicher familienwater": [
@@ -13428,6 +13502,142 @@
         "category": null,
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      }
+    ],
+    "a da": [
+      {
+        "canonical": "Aïda",
+        "category": "Oper",
+        "creator": "Giuseppe Verdi",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "carmen": [
+      {
+        "canonical": "Carmen",
+        "category": "Oper",
+        "creator": "Georges Bizet",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "copp lia": [
+      {
+        "canonical": "Coppélia",
+        "category": "Ballett/Tanz",
+        "creator": "Léo Delibes",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "das rheingold": [
+      {
+        "canonical": "Das Rheingold",
+        "category": "Oper",
+        "creator": "Richard Wagner",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "der könig von lahore": [
+      {
+        "canonical": "Der König von Lahore",
+        "category": "Oper",
+        "creator": "Jules Massenet",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "die beiden schützen": [
+      {
+        "canonical": "Die beiden Schützen",
+        "category": "Oper",
+        "creator": "Albert Lortzing",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "die walküre": [
+      {
+        "canonical": "Die Walküre",
+        "category": "Oper",
+        "creator": "Richard Wagner",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "ein toller tag oder figaros hochzeit": [
+      {
+        "canonical": "Ein toller Tag, oder Figaros Hochzeit",
+        "category": "Oper",
+        "creator": "Wolfgang Amadeus Mozart",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "figaros hochzeit": [
+      {
+        "canonical": "Le nozze di Figaro",
+        "category": "Oper",
+        "creator": "Wolfgang Amadeus Mozart",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "götterdämmerung": [
+      {
+        "canonical": "Götterdämmerung",
+        "category": "Oper",
+        "creator": "Richard Wagner",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "könig heinrich vi": [
+      {
+        "canonical": "König Heinrich VI",
+        "category": "Schauspiel",
+        "creator": "William Shakespeare",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "könig richard iii": [
+      {
+        "canonical": "König Richard III",
+        "category": "Schauspiel",
+        "creator": "William Shakespeare",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "la traviata": [
+      {
+        "canonical": "La traviata",
+        "category": "Oper",
+        "creator": "Giuseppe Verdi",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "mignon": [
+      {
+        "canonical": "Mignon",
+        "category": "Oper",
+        "creator": "Ambroise Thomas",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "rienzi": [
+      {
+        "canonical": "Rienzi",
+        "category": "Oper",
+        "creator": "Richard Wagner",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "siegfried": [
+      {
+        "canonical": "Siegfried",
+        "category": "Oper",
+        "creator": "Richard Wagner",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "so machen s alle": [
+      {
+        "canonical": "So machen's Alle",
+        "category": "Oper",
+        "creator": "Wolfgang Amadeus Mozart",
+        "source": "supplemental_work_authority.json"
       }
     ]
   },
@@ -32876,6 +33086,321 @@
       }
     ]
   },
+  "nonWorkMetadataPatterns": [
+    "^(?:[a-z]{1,3}\\s+)?vorstellung im jahres abonnement$"
+  ],
+  "supplementalAuthorities": {
+    "Die Zauberflöte": {
+      "creator": "Wolfgang Amadeus Mozart",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Don Juan": {
+      "creator": "Wolfgang Amadeus Mozart",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Figaros Hochzeit": {
+      "creator": "Wolfgang Amadeus Mozart",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Ein toller Tag, oder Figaros Hochzeit": {
+      "creator": "Wolfgang Amadeus Mozart",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "So machen's Alle": {
+      "creator": "Wolfgang Amadeus Mozart",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Tannhäuser": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Lohengrin": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Tristan und Isolde": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Der fliegende Holländer": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Die Meistersinger von Nürnberg": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Das Rheingold": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Die Walküre": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Siegfried": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Götterdämmerung": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Rienzi": {
+      "creator": "Richard Wagner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Fidelio": {
+      "creator": "Ludwig van Beethoven",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Der Freischütz": {
+      "creator": "Carl Maria von Weber",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Oberon": {
+      "creator": "Carl Maria von Weber",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Euryanthe": {
+      "creator": "Carl Maria von Weber",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Czaar und Zimmermann": {
+      "creator": "Albert Lortzing",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Der Waffenschmied": {
+      "creator": "Albert Lortzing",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Oper|Undine": {
+      "creator": "Albert Lortzing",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Martha": {
+      "creator": "Friedrich von Flotow",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Alessandro Stradella": {
+      "creator": "Friedrich von Flotow",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Die lustigen Weiber von Windsor": {
+      "creator": "Otto Nicolai",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Der Postillon von Lonjumeau": {
+      "creator": "Adolphe Adam",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Fra Diavolo": {
+      "creator": "Daniel-François-Esprit Auber",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Oper|Der Barbier von Sevilla": {
+      "creator": "Gioachino Rossini",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Oper|Wilhelm Tell": {
+      "creator": "Gioachino Rossini",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Schauspiel|Wilhelm Tell": {
+      "creator": "Friedrich Schiller",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Oper|Faust": {
+      "creator": "Charles Gounod",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Schauspiel|Faust": {
+      "creator": "Johann Wolfgang von Goethe",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Die Braut von Messina": {
+      "creator": "Friedrich Schiller",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Maria Stuart": {
+      "creator": "Friedrich Schiller",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Die Jungfrau von Orleans": {
+      "creator": "Friedrich Schiller",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "König Richard III": {
+      "creator": "William Shakespeare",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "König Heinrich VI": {
+      "creator": "William Shakespeare",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Hamlet": {
+      "creator": "William Shakespeare",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Schauspiel|Othello": {
+      "creator": "William Shakespeare",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Der Prophet": {
+      "creator": "Giacomo Meyerbeer",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Die Hugenotten": {
+      "creator": "Giacomo Meyerbeer",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Robert der Teufel": {
+      "creator": "Giacomo Meyerbeer",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Aïda": {
+      "creator": "Giuseppe Verdi",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Rigoletto": {
+      "creator": "Giuseppe Verdi",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Maskenball": {
+      "creator": "Giuseppe Verdi",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Der Troubadour": {
+      "creator": "Giuseppe Verdi",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Carmen": {
+      "creator": "Georges Bizet",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Norma": {
+      "creator": "Vincenzo Bellini",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Lucia von Lammermoor": {
+      "creator": "Gaetano Donizetti",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Die Jüdin": {
+      "creator": "Fromental Halévy",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Die weiße Frau": {
+      "creator": "François-Adrien Boieldieu",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Joseph in Aegypten": {
+      "creator": "Étienne-Nicolas Méhul",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Das Nachtlager in Granada": {
+      "creator": "Conradin Kreutzer",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Hans Heiling": {
+      "creator": "Heinrich Marschner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Die Stumme von Portici": {
+      "creator": "Daniel-François-Esprit Auber",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Die beiden Schützen": {
+      "creator": "Albert Lortzing",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Der König von Lahore": {
+      "creator": "Jules Massenet",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Mignon": {
+      "creator": "Ambroise Thomas",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Der schwarze Domino": {
+      "creator": "Daniel-François-Esprit Auber",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Coppélia": {
+      "creator": "Léo Delibes",
+      "role": "Komposition",
+      "category": "Ballett/Tanz"
+    },
+    "La traviata": {
+      "creator": "Giuseppe Verdi",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Der Maskenball": {
+      "creator": "Daniel-François-Esprit Auber",
+      "role": "Komposition",
+      "category": "Oper"
+    }
+  },
   "provenance": {
     "titleAuthority": {
       "file": "Titel_und_Werkautoritaet_20260802.json",
@@ -32937,7 +33462,11 @@
     ],
     "frontDisplayAuthority": {
       "file": "front_display_authority.json",
-      "sha256": "01cdcba6c56dec81f7c51eed33e54c206d9a7270aa4e804b2c2c24a757d93059"
+      "sha256": "0d586c386d7e4d8d9097843241b7184999a15ee7012f252bb59b0fc10d82bf24"
+    },
+    "supplementalWorkAuthority": {
+      "file": "supplemental_work_authority.json",
+      "sha256": "0b052bb43e1fce57eaa9ac19ff26c43d671beeca4082e7db4ce8cdebbf16ac3c"
     }
   }
 }

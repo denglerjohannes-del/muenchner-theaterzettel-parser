@@ -52,5 +52,44 @@ class ExpertLayerTest(unittest.TestCase):
             self.assertEqual(layer["contextualAliases"][f"Oper|{key('Die Montechi und die Capuleti')}"]["modern"], "I Capuleti e i Montecchi")
             self.assertNotIn(f"Schauspiel|{key('Romeo und Julia')}", layer["contextualAliases"])
 
+    def test_dated_contextual_aliases_preserve_repertoire_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            titles = root / "titles.json"
+            works = root / "works.jsonl"
+            display = root / "display.json"
+            titles.write_text(json.dumps({"bestaetigteMappings": []}), encoding="utf-8")
+            works.write_text("", encoding="utf-8")
+            display.write_text(json.dumps({"contextualTitleMappings": [{
+                "category": "Oper", "modern": "Otello", "historicalPreferred": "Othello",
+                "creator": "Gioachino Rossini", "notAfter": "1886-12-31", "variants": ["Othello"],
+            }]}), encoding="utf-8")
+            layer = compile_layer(titles, works, [], display)
+            alias = layer["datedContextualAliases"][f"Oper|{key('Othello')}"][0]
+            self.assertEqual(alias["creator"], "Gioachino Rossini")
+            self.assertEqual(alias["notAfter"], "1886-12-31")
+
+    def test_supplemental_authority_is_compiled_and_context_bound(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            titles = root / "titles.json"
+            works = root / "works.jsonl"
+            display = root / "display.json"
+            supplement = root / "supplement.json"
+            titles.write_text(json.dumps({"bestaetigteMappings": []}), encoding="utf-8")
+            works.write_text("", encoding="utf-8")
+            display.write_text(json.dumps({"nonWorkMetadataPatterns": ["vorstellung im jahres abonnement"]}), encoding="utf-8")
+            supplement.write_text(json.dumps({
+                "Aïda": {"creator": "Giuseppe Verdi", "category": "Oper"},
+                "Oper|Faust": {"creator": "Charles Gounod", "category": "Oper"},
+                "Schauspiel|Faust": {"creator": "Johann Wolfgang von Goethe", "category": "Schauspiel"},
+            }), encoding="utf-8")
+            layer = compile_layer(titles, works, [], display, supplement)
+            self.assertEqual(layer["schema"], "muenchner-theater-expert-layer/3")
+            self.assertEqual(layer["works"][key("Aïda")][0]["creator"], "Giuseppe Verdi")
+            self.assertEqual({item["category"] for item in layer["works"][key("Faust")]}, {"Oper", "Schauspiel"})
+            self.assertEqual(layer["nonWorkMetadataPatterns"], ["vorstellung im jahres abonnement"])
+            self.assertEqual(layer["supplementalAuthorities"]["Aïda"]["creator"], "Giuseppe Verdi")
+
 
 if __name__ == "__main__": unittest.main()

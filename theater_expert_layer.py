@@ -64,6 +64,7 @@ def compile_layer(
     work_authority: Path,
     early_registers: list[Path],
     display_authority: Path | None = None,
+    supplemental_authority: Path | None = None,
 ) -> dict:
     title_data = json.loads(title_authority.read_text(encoding="utf-8"))
     aliases: dict[str, str] = {}
@@ -86,6 +87,29 @@ def compile_layer(
                 variant_key = key(variant)
                 if variant_key and record not in works.setdefault(variant_key, []): works[variant_key].append(record)
 
+    supplemental_provenance = None
+    supplemental_data: dict[str, dict] = {}
+    if supplemental_authority:
+        supplemental_data = json.loads(supplemental_authority.read_text(encoding="utf-8"))
+        for authority_key, item in sorted(supplemental_data.items(), key=lambda pair: key(pair[0])):
+            category_prefix, separator, title = authority_key.partition("|")
+            if not separator:
+                title = authority_key
+            supplemental_category = category(item.get("category") or (category_prefix if separator else None))
+            record = {
+                "canonical": aliases.get(key(title), title),
+                "category": supplemental_category,
+                "creator": item.get("creator") or None,
+                "source": supplemental_authority.name,
+            }
+            bucket = works.setdefault(key(title), [])
+            existing = next((candidate for candidate in bucket if candidate.get("canonical") == record["canonical"] and candidate.get("category") == record["category"]), None)
+            if existing:
+                if not existing.get("creator") and record.get("creator"): existing["creator"] = record["creator"]
+            else:
+                bucket.append(record)
+        supplemental_provenance = {"file": supplemental_authority.name, "sha256": sha256(supplemental_authority)}
+
     date_works: dict[str, list[dict]] = {}
     for path in early_registers:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -106,7 +130,9 @@ def compile_layer(
             if rows: date_works[date] = rows
 
     contextual_aliases: dict[str, dict] = {}
+    dated_contextual_aliases: dict[str, list[dict]] = {}
     dated_overrides: dict[str, list[dict]] = {}
+    nonwork_metadata_patterns: list[str] = []
     display_provenance = None
     if display_authority:
         display_data = json.loads(display_authority.read_text(encoding="utf-8"))
@@ -117,9 +143,16 @@ def compile_layer(
                 "creator": mapping.get("creator"),
                 "source": display_authority.name,
             }
+            if mapping.get("notBefore"): record["notBefore"] = mapping["notBefore"]
+            if mapping.get("notAfter"): record["notAfter"] = mapping["notAfter"]
             for variant in sorted({mapping["modern"], *mapping.get("variants", [])}, key=key):
-                contextual_aliases[f'{mapping["category"]}|{key(variant)}'] = record
+                alias_key = f'{mapping["category"]}|{key(variant)}'
+                if mapping.get("notBefore") or mapping.get("notAfter"):
+                    dated_contextual_aliases.setdefault(alias_key, []).append(record)
+                else:
+                    contextual_aliases[alias_key] = record
         dated_overrides = display_data.get("datedWorkOverrides", {})
+        nonwork_metadata_patterns = display_data.get("nonWorkMetadataPatterns", [])
         display_provenance = {"file": display_authority.name, "sha256": sha256(display_authority)}
 
     provenance = {
@@ -128,15 +161,19 @@ def compile_layer(
         "earlyRegisters": [{"file": p.name, "sha256": sha256(p)} for p in early_registers],
     }
     if display_provenance: provenance["frontDisplayAuthority"] = display_provenance
+    if supplemental_provenance: provenance["supplementalWorkAuthority"] = supplemental_provenance
 
     return {
-        "schema": "muenchner-theater-expert-layer/2",
+        "schema": "muenchner-theater-expert-layer/3",
         "policy": "Original-language canonical opera title in front; historical Munich title below; exact printed surface backstage; unresolved OCR fragments withheld.",
         "modernAliases": aliases,
         "contextualAliases": contextual_aliases,
+        "datedContextualAliases": dated_contextual_aliases,
         "works": works,
         "dateWorks": date_works,
         "datedWorkOverrides": dated_overrides,
+        "nonWorkMetadataPatterns": nonwork_metadata_patterns,
+        "supplementalAuthorities": supplemental_data,
         "provenance": provenance,
     }
 
@@ -146,10 +183,11 @@ def main() -> None:
     parser.add_argument("--title-authority", required=True, type=Path)
     parser.add_argument("--work-authority", required=True, type=Path)
     parser.add_argument("--display-authority", type=Path)
+    parser.add_argument("--supplemental-authority", type=Path)
     parser.add_argument("--early-register", action="append", default=[], type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
-    layer = compile_layer(args.title_authority, args.work_authority, args.early_register, args.display_authority)
+    layer = compile_layer(args.title_authority, args.work_authority, args.early_register, args.display_authority, args.supplemental_authority)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(layer, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"aliases": len(layer["modernAliases"]), "contextualAliases": len(layer["contextualAliases"]), "workVariants": len(layer["works"]), "datedEvents": len(layer["dateWorks"]), "datedOverrides": len(layer["datedWorkOverrides"])}, ensure_ascii=False))

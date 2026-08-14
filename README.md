@@ -48,6 +48,11 @@ Figaro` und `I Capuleti e i Montecchi` / `Die Montechi und die Capuleti`, ohne
 das Schauspiel `Romeo und Julia` umzubenennen. Datumsgebundene Bildkorrekturen
 bleiben als solche ausgewiesen. Der Compiler sortiert alle Variantenschlüssel
 deterministisch; zwei identische Läufe müssen denselben SHA-256 erzeugen.
+Die kuratierte `resources/supplemental_work_authority.json` ist derselben
+Expertenschicht einverleibt und genügt als positiver Fronttitelbeleg, wenn
+Gattung und Urheber gemeinsam gebunden sind. Stabile Druckformeln ohne
+Werkcharakter, derzeit insbesondere „Vorstellung im Jahres-Abonnement“, werden
+als versionierte Nichtwerk-Regeln kompiliert und nicht als Titel publiziert.
 
 Für ergänzende Archivbestände mit Datumspräfixen steht außerdem
 `source_filename_dates.py` bereit. Das Hilfswerkzeug trennt exakte Tage,
