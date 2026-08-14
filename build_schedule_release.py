@@ -212,6 +212,29 @@ def main() -> None:
     editions.sort(key=lambda row: row["scan_index"])
     superseded.sort(key=lambda row: row["scan_index"])
     national = final_editions
+
+    # Preserve every explicit cancellation/closure notice as its own source-
+    # bound record.  Some notices occur in a previous day's footer and thus
+    # have no bill edition on the closed date itself.
+    cancellation_notices = []
+    for date_iso, cancellation in sorted(cancellations.items()):
+        notice_page = page_by_scan[cancellation["notice_scan_index"]]
+        cancellation_notices.append({
+            "schema": "theaterzettel-cancellation-or-closure-notice/1",
+            "calendar_year": args.year,
+            "date": date_iso,
+            **cancellation,
+            "notice_printed_label": notice_page["printed_label"],
+            "notice_image_id": notice_page["image_id"],
+            "notice_canvas_id": notice_page["canvas_id"],
+            "notice_ocr_url": notice_page["ocr_url"],
+            "notice_hocr_sha256": notice_page["hocr_sha256"],
+            "nationaltheater_bill_existed_for_date": any(
+                row["venue"] == "NATIONALTHEATER" and row["date"] == date_iso
+                for row in editions
+            ),
+            "schedule_entry_excluded": True,
+        })
     schedule = []
     occurrences = []
     for event_index, row in enumerate(national, start=1):
@@ -255,6 +278,7 @@ def main() -> None:
     write_jsonl(args.output_dir / "RESIDENZTHEATER_BILL_EDITIONS_PRESERVED.jsonl", residenz_preserved)
     write_jsonl(args.output_dir / "SUPERSEDED_BILL_EDITIONS.jsonl", superseded)
     write_jsonl(args.output_dir / "CANCELLED_BILL_EDITIONS.jsonl", cancelled_editions)
+    write_jsonl(args.output_dir / "KNOWN_CANCELLATION_OR_CLOSURE_NOTICES.jsonl", cancellation_notices)
     write_jsonl(args.output_dir / f"NATIONALTHEATER_{args.year}_SCHEDULE_ENTRIES.jsonl", schedule)
     write_jsonl(args.output_dir / f"NATIONALTHEATER_{args.year}_TITLE_OCCURRENCES.jsonl", occurrences)
     write_jsonl(args.output_dir / f"NATIONALTHEATER_{args.year}_DAY_LEDGER.jsonl", ledger)
@@ -281,7 +305,11 @@ def main() -> None:
             row["scan_index"] == max(item["scan_index"] for item in grouped[(row["venue"], row["date"])])
             for row in final_editions
         ),
-        "cancelled_dates_absent_from_schedule": all(row["date"] not in by_date for row in cancelled_editions),
+        "cancelled_dates_absent_from_schedule": all(date_iso not in by_date for date_iso in cancellations),
+        "all_cancellation_notices_source_bound": all(
+            row["notice_image_id"] and row["notice_ocr_url"] and row["notice_hocr_sha256"]
+            for row in cancellation_notices
+        ),
         "performed_confirmation_gate_required": False,
         "orchestra_service_inferred": False,
     }
@@ -299,6 +327,7 @@ def main() -> None:
         "superseded_bill_editions": len(superseded),
         "superseded_with_programme_change": sum(row["programme_changed"] for row in superseded),
         "cancelled_bill_editions": len(cancelled_editions),
+        "known_cancellation_or_closure_dates": len(cancellation_notices),
         "date_resolutions": len(date_overrides),
         "title_alias_applications": len(alias_applications),
         "ignored_nonwork_title_components": len(ignored_components),
@@ -323,7 +352,8 @@ def main() -> None:
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     required_true = [qa["all_candidates_have_titles"], qa["unique_final_national_dates"],
                      qa["complete_day_ledger"], qa["latest_scan_selected_per_nationaltheater_date"],
-                     qa["cancelled_dates_absent_from_schedule"]]
+                     qa["cancelled_dates_absent_from_schedule"],
+                     qa["all_cancellation_notices_source_bound"]]
     if weekday_errors or not all(required_true):
         raise SystemExit(1)
 

@@ -1,6 +1,6 @@
 # Münchner Theaterzettel-Parser
 
-Deterministisches Referenzwerkzeug für gebundene Jahrgänge der Münchner Theaterzettel. Entwickelt und an den vollständigen BSB-Jahrgängen 1877–1879 validiert.
+Deterministisches Referenzwerkzeug für gebundene Jahrgänge der Münchner Theaterzettel. Entwickelt und an den vollständigen BSB-Jahrgängen 1877–1880 validiert.
 
 ## Wissenschaftlicher Vertrag
 
@@ -36,5 +36,11 @@ Die Scanbindung verhindert die Verwechslung gedruckter Seitenzahlen mit IIIF-Sca
 | 1877 | `bsb11349688` | 772 | 31.224 | 369 | 0 |
 | 1878 | `bsb11362379` | 714 | 36.092 | 361 | 0 |
 | 1879 | `bsb11380789` | 780 | 39.869 | 383 | 0 |
+| 1880 | `bsb11455085` | 746 | 31.851 | 365 | 0 |
 
 Die Kurationsentscheidungen bleiben Forschungsdaten des jeweiligen Jahrgangs. Der allgemeine Release-Bauer liest sie nur ein, bindet seltene manuelle Ergänzungen, komplexe Titelgruppen und ausdrückliche Absagen an konkrete Quellenseiten und erzeugt daraus Spielplan, Tagesledger, Titelhäufigkeiten, frühere und abgesagte Zettelfassungen sowie Provenienz deterministisch. Automatische Ausgangsgruppen bleiben bei einer Korrektur vollständig erhalten.
+
+Ausdrückliche Absagen und Schließungen werden zusätzlich in
+`KNOWN_CANCELLATION_OR_CLOSURE_NOTICES.jsonl` quellengebunden erhalten. Das gilt
+auch für Hinweise im Fuß eines Vortagszettels, bei denen am geschlossenen Tag
+selbst kein eigener Zettel existiert.
