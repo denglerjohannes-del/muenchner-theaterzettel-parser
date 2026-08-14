@@ -308,5 +308,260 @@
     "creator": "Daniel-François-Esprit Auber",
     "role": "Komposition",
     "category": "Oper"
+  },
+  "Das goldene Kreuz": {
+    "creator": "Ignaz Brüll",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Minna von Barnhelm": {
+    "creator": "Gotthold Ephraim Lessing",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Ambrosius": {
+    "creator": "Christian Knud Frederik Molbech",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Ball-Fest zum Besten der Armen": {
+    "creator": null,
+    "role": null,
+    "category": "Ball/Redoute"
+  },
+  "Bürgerlich und romantisch": {
+    "creator": "Eduard von Bauernfeld",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Christoph Marlow": {
+    "creator": "Ernst von Wildenbruch",
+    "role": "Autor",
+    "category": "Trauerspiel"
+  },
+  "Cyprienne (Divorçons!)": {
+    "creator": "Victorien Sardou",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Das Seefräulein": {
+    "creator": "Ludwig Steub",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Das Stiftungsfest": {
+    "creator": "Gustav von Moser",
+    "role": "Autor",
+    "category": "Schwank"
+  },
+  "Der Menonit": {
+    "creator": "Ernst von Wildenbruch",
+    "role": "Autor",
+    "category": "Trauerspiel"
+  },
+  "Der Richter von Zalamea": {
+    "creator": "Pedro Calderón de la Barca",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Der Vampir": {
+    "creator": "Heinrich Marschner",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Die Ruinen von Athen": {
+    "creator": "Ludwig van Beethoven / Otto Devrient",
+    "role": "Musik / Textbearbeitung",
+    "category": "Fest-/Sonderveranstaltung"
+  },
+  "Die Zarin": {
+    "creator": "Karl von Heigel",
+    "role": "Autor",
+    "category": "Drama"
+  },
+  "Doktor Wespe": {
+    "creator": "Roderich Benedix",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Don Carlos": {
+    "creator": "Friedrich Schiller",
+    "role": "Autor",
+    "category": "Trauerspiel"
+  },
+  "Dora": {
+    "creator": "Victorien Sardou",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Durchs Ohr": {
+    "creator": "Wilhelm Jordan",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Ekkehard": {
+    "creator": "Johann Joseph Abert",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Georg Forster": {
+    "creator": "Alfred Jachmann",
+    "role": "Autor",
+    "category": "Trauerspiel"
+  },
+  "Krieg im Frieden": {
+    "creator": "Gustav von Moser / Franz von Schönthan",
+    "role": "Autoren",
+    "category": "Lustspiel"
+  },
+  "Krisen": {
+    "creator": "Eduard von Bauernfeld",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Königin Mariette": {
+    "creator": "Ignaz Brüll",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Orpheus und Eurydike": {
+    "creator": "Christoph Willibald Gluck",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Perikles, Fürst von Tyrus": {
+    "creator": "William Shakespeare",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "So machen's Alle (Cosi fan tutte)": {
+    "creator": "Wolfgang Amadeus Mozart",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Timandra": {
+    "creator": "Adolf Friedrich von Schack",
+    "role": "Autor",
+    "category": "Trauerspiel"
+  },
+  "Unehrlich Volk": {
+    "creator": "Richard Voß",
+    "role": "Autor",
+    "category": "Trauerspiel"
+  },
+  "Waldeinsamkeit": {
+    "creator": "W. Reisinger / W. C. Mühldorfer",
+    "role": "Choreografie / Komposition",
+    "category": "Ballett/Tanz"
+  },
+  "Armida": {
+    "creator": "Christoph Willibald Gluck",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Brunhild": {
+    "creator": "Emanuel Geibel",
+    "role": "Autor",
+    "category": "Tragödie"
+  },
+  "Coriolanus": {
+    "creator": "William Shakespeare",
+    "role": "Autor",
+    "category": "Tragödie"
+  },
+  "Das Gefängniß": {
+    "creator": "Roderich Benedix",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Der Vetter": {
+    "creator": "Roderich Benedix",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Der Rekrut": {
+    "creator": "Golinelli / Neswadba",
+    "role": "Choreografie / Komposition",
+    "category": "Ballett/Tanz"
+  },
+  "Die Anna-Lise": {
+    "creator": "Hermann Hersch",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Die Erzählungen der Königin von Navarra": {
+    "creator": "Eugène Scribe / Ernest Legouvé",
+    "role": "Autoren",
+    "category": "Lustspiel"
+  },
+  "Die Erziehungsresultate": {
+    "creator": "Carl Blum",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Erziehungsresultate": {
+    "creator": "Carl Blum",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Die Journalisten": {
+    "creator": "Gustav Freytag",
+    "role": "Autor",
+    "category": "Lustspiel"
+  },
+  "Die Verschwörung des Fiesko zu Genua": {
+    "creator": "Friedrich Schiller",
+    "role": "Autor",
+    "category": "Trauerspiel"
+  },
+  "Der Widerspenstigen Zähmung": {
+    "creator": "William Shakespeare",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Dorf und Stadt": {
+    "creator": "Charlotte Birch-Pfeiffer",
+    "role": "Autorin",
+    "category": "Schauspiel"
+  },
+  "Donna Diana": {
+    "creator": "Agustín Moreto / Joseph Schreyvogel",
+    "role": "Autor / Bearbeitung",
+    "category": "Lustspiel"
+  },
+  "Emilia Galotti": {
+    "creator": "Gotthold Ephraim Lessing",
+    "role": "Autor",
+    "category": "Trauerspiel"
+  },
+  "Gisella": {
+    "creator": "Adolphe Adam / Jean Coralli",
+    "role": "Komposition / Choreografie",
+    "category": "Ballett/Tanz"
+  },
+  "Graf Essex": {
+    "creator": "Heinrich Laube",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Il barbiere di Siviglia": {
+    "creator": "Gioachino Rossini",
+    "role": "Komposition",
+    "category": "Oper"
+  },
+  "Nathan der Weise": {
+    "creator": "Gotthold Ephraim Lessing",
+    "role": "Autor",
+    "category": "Schauspiel"
+  },
+  "Uriel Acosta": {
+    "creator": "Karl Gutzkow",
+    "role": "Autor",
+    "category": "Trauerspiel"
+  },
+  "Zopf und Schwert": {
+    "creator": "Karl Gutzkow",
+    "role": "Autor",
+    "category": "Lustspiel"
   }
 }

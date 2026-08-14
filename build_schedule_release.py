@@ -69,6 +69,12 @@ def validate_year_contract(candidates: list[dict], pages: list[dict], resolution
         raise SystemExit(f"curated resolution years {sorted(resolution_years)} do not equal --year {year}")
 
 
+def filter_excluded_candidates(candidates: list[dict], excluded_scans: dict[str, str]) -> list[dict]:
+    """Remove explicitly excluded source pages before edition resolution."""
+    excluded = {int(scan) for scan in excluded_scans}
+    return [row for row in candidates if row["scan_index"] not in excluded]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("candidates", type=pathlib.Path)
@@ -89,6 +95,7 @@ def main() -> None:
     title_group_overrides = curation.get("title_group_overrides", {})
     cancellations = curation.get("cancelled_dates", {})
     candidates = [json.loads(line) for line in args.candidates.read_text(encoding="utf-8").splitlines()]
+    candidates = filter_excluded_candidates(candidates, curation.get("excluded_scans", {}))
     pages = [json.loads(line) for line in args.page_index.read_text(encoding="utf-8").splitlines()]
     validate_year_contract(candidates, pages, date_overrides, args.year)
     page_by_scan = {row["scan_index"]: row for row in pages}

@@ -27,6 +27,8 @@
         "So machen's Alle",
         "So machen’s Alle",
         "So machens Alle",
+        "So machen's Alle (Cosi fan tutte)",
+        "So machen's Alle (Così fan tutte)",
         "Weibertreue",
         "Weibertreue (Così fan tutte)",
         "Weibertreue - cosi fan tutte",
@@ -66,6 +68,48 @@
       "creator": "Daniel-François-Esprit Auber",
       "variants": [
         "Der Maskenball"
+      ]
+    },
+    {
+      "category": "Schauspiel",
+      "modern": "Minna von Barnhelm",
+      "creator": "Gotthold Ephraim Lessing",
+      "variants": [
+        "Minna von Barnhelm",
+        "Minna von Barnhelm, oder das Soldatenglück",
+        "Minna von Parnhelm"
+      ]
+    },
+    {
+      "category": "Lustspiel",
+      "modern": "Die Anna-Lise",
+      "historicalPreferred": "Die Anna-Lise",
+      "creator": "Hermann Hersch",
+      "variants": [
+        "Die Anna-Lise",
+        "Die Anna-Life",
+        "Die Anna - Life"
+      ]
+    },
+    {
+      "category": "Schauspiel",
+      "modern": "Die Anna-Lise",
+      "historicalPreferred": "Die Anna-Lise",
+      "creator": "Hermann Hersch",
+      "variants": [
+        "Die Anna-Lise",
+        "Die Anna-Life",
+        "Die Anna - Life"
+      ]
+    },
+    {
+      "category": "Ballett/Tanz",
+      "modern": "Giselle",
+      "historicalPreferred": "Gisella",
+      "creator": "Adolphe Adam / Jean Coralli",
+      "variants": [
+        "Gisella",
+        "Giselle"
       ]
     }
   ],
@@ -139,6 +183,61 @@
         "sourceSurface": "Großes Tanz-Divertissement aus dem fünften Aufzuge der Oper: Der Maskenball",
         "category": "Ballett/Tanz"
       }
+    ],
+    "1884-01-01": [
+      {"modern": "Guillaume Tell", "historical": "Tell", "sourceSurface": "Tell", "category": "Oper", "creator": "Gioachino Rossini", "creatorRole": "Komposition"}
+    ],
+    "1884-01-07": [
+      {"modern": "Florian Geyer", "historical": "Florian Geyer", "sourceSurface": "Florian Geyer", "category": "Trauerspiel", "creator": "Friedrich Karl Schubert", "creatorRole": "Autor"}
+    ],
+    "1884-01-11": [
+      {"modern": "Alceste", "historical": "Alceste", "sourceSurface": "Alceste", "category": "Oper", "creator": "Christoph Willibald Gluck", "creatorRole": "Komposition"}
+    ],
+    "1884-01-15": [
+      {"modern": "Alceste", "historical": "Alceste", "sourceSurface": "Alceste", "category": "Oper", "creator": "Christoph Willibald Gluck", "creatorRole": "Komposition"}
+    ],
+    "1884-01-20": [
+      {"modern": "Faust", "historical": "Faust", "sourceSurface": "Faust", "category": "Oper", "creator": "Charles Gounod", "creatorRole": "Komposition"}
+    ],
+    "1884-01-25": [
+      {"modern": "Iphigenie auf Tauris", "historical": "Iphigenia auf Tauris", "sourceSurface": "Iphigenia auf Tauris", "category": "Schauspiel", "creator": "Johann Wolfgang von Goethe", "creatorRole": "Autor"}
+    ],
+    "1884-02-01": [
+      {"modern": "Florian Geyer", "historical": "Florian Geyer", "sourceSurface": "Florian Geyer", "category": "Trauerspiel", "creator": "Friedrich Karl Schubert", "creatorRole": "Autor"}
+    ],
+    "1884-02-27": [
+      {"modern": "Alceste", "historical": "Alceste", "sourceSurface": "Alceste", "category": "Oper", "creator": "Christoph Willibald Gluck", "creatorRole": "Komposition"}
+    ],
+    "1884-03-07": [
+      {"modern": "Alceste", "historical": "Alceste", "sourceSurface": "Alceste", "category": "Oper", "creator": "Christoph Willibald Gluck", "creatorRole": "Komposition"}
+    ],
+    "1884-05-17": [
+      {"modern": "Wilhelm Tell", "historical": "Wilhelm Tell", "sourceSurface": "Wilhelm Tell", "category": "Schauspiel", "creator": "Friedrich Schiller", "creatorRole": "Autor"}
+    ],
+    "1884-05-28": [
+      {"modern": "Wilhelm Tell", "historical": "Wilhelm Tell", "sourceSurface": "Wilhelm Tell", "category": "Schauspiel", "creator": "Friedrich Schiller", "creatorRole": "Autor"}
+    ],
+    "1884-08-25": [
+      {"modern": "Iphigenie auf Tauris", "historical": "Iphigenia auf Tauris", "sourceSurface": "Iphigenia auf Tauris", "category": "Schauspiel", "creator": "Johann Wolfgang von Goethe", "creatorRole": "Autor"}
+    ],
+    "1884-09-08": [
+      {"modern": "Guillaume Tell", "historical": "Tell", "sourceSurface": "Tell", "category": "Oper", "creator": "Gioachino Rossini", "creatorRole": "Komposition"}
+    ],
+    "1884-10-10": [
+      {"modern": "Guillaume Tell", "historical": "Tell", "sourceSurface": "Tell", "category": "Oper", "creator": "Gioachino Rossini", "creatorRole": "Komposition"}
+    ],
+    "1884-11-25": [
+      {"modern": "Alceste", "historical": "Alceste", "sourceSurface": "Alceste", "category": "Oper", "creator": "Christoph Willibald Gluck", "creatorRole": "Komposition"}
+    ],
+    "1884-12-07": [
+      {"modern": "Faust", "historical": "Faust", "sourceSurface": "Faust", "category": "Oper", "creator": "Charles Gounod", "creatorRole": "Komposition"}
+    ],
+    "1884-12-05": [
+      {"modern": "König Renés Tochter", "historical": "König Renés Tochter", "sourceSurface": "König Renés Tochter", "category": "Schauspiel", "creator": "Henrik Hertz", "creatorRole": "Autor"},
+      {"modern": "Coppélia", "historical": "Coppélia", "sourceSurface": "Coppélia", "category": "Ballett/Tanz", "creator": "Léo Delibes", "creatorRole": "Komposition"}
+    ],
+    "1884-12-21": [
+      {"modern": "Guillaume Tell", "historical": "Tell", "sourceSurface": "Cell", "category": "Oper", "creator": "Gioachino Rossini", "creatorRole": "Komposition"}
     ]
   }
 }

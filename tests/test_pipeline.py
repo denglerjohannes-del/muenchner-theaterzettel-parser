@@ -211,6 +211,14 @@ class PipelineTests(unittest.TestCase):
             {"1": {"resolved_date": "1878-01-01"}}, 1878
         )
 
+    def test_explicitly_excluded_page_never_becomes_bill_edition(self):
+        candidates = [
+            {"scan_index": 685, "title_groups": [{"title_surface_candidate": "Vorankündigung"}]},
+            {"scan_index": 687, "title_groups": [{"title_surface_candidate": "Maria Stuart"}]},
+        ]
+        kept = RELEASE.filter_excluded_candidates(candidates, {"685": "FORWARD_PROGRAMME_NOTICE"})
+        self.assertEqual([row["scan_index"] for row in kept], [687])
+
     def test_footer_preview_is_outside_title_band(self):
         title = {"surface": "Euryanthe.", "bbox": [800, 1100, 1800, 1450], "height": 350}
         footer = {"surface": "Aus dem Repertoir-Entwurf", "bbox": [200, 3300, 2200, 3350], "height": 50}

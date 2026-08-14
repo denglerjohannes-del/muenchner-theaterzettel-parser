@@ -110,6 +110,18 @@
       "creator": "Wolfgang Amadeus Mozart",
       "source": "front_display_authority.json"
     },
+    "Oper|so machen s alle cos fan tutte": {
+      "modern": "Così fan tutte",
+      "historicalPreferred": "Weibertreue",
+      "creator": "Wolfgang Amadeus Mozart",
+      "source": "front_display_authority.json"
+    },
+    "Oper|so machen s alle cosi fan tutte": {
+      "modern": "Così fan tutte",
+      "historicalPreferred": "Weibertreue",
+      "creator": "Wolfgang Amadeus Mozart",
+      "source": "front_display_authority.json"
+    },
     "Oper|so machens alle": {
       "modern": "Così fan tutte",
       "historicalPreferred": "Weibertreue",
@@ -222,6 +234,60 @@
       "modern": "Gustave III, ou Le Bal masqué",
       "historicalPreferred": null,
       "creator": "Daniel-François-Esprit Auber",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|minna von barnhelm": {
+      "modern": "Minna von Barnhelm",
+      "historicalPreferred": null,
+      "creator": "Gotthold Ephraim Lessing",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|minna von barnhelm oder das soldatenglück": {
+      "modern": "Minna von Barnhelm",
+      "historicalPreferred": null,
+      "creator": "Gotthold Ephraim Lessing",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|minna von parnhelm": {
+      "modern": "Minna von Barnhelm",
+      "historicalPreferred": null,
+      "creator": "Gotthold Ephraim Lessing",
+      "source": "front_display_authority.json"
+    },
+    "Lustspiel|die anna life": {
+      "modern": "Die Anna-Lise",
+      "historicalPreferred": "Die Anna-Lise",
+      "creator": "Hermann Hersch",
+      "source": "front_display_authority.json"
+    },
+    "Lustspiel|die anna lise": {
+      "modern": "Die Anna-Lise",
+      "historicalPreferred": "Die Anna-Lise",
+      "creator": "Hermann Hersch",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|die anna life": {
+      "modern": "Die Anna-Lise",
+      "historicalPreferred": "Die Anna-Lise",
+      "creator": "Hermann Hersch",
+      "source": "front_display_authority.json"
+    },
+    "Schauspiel|die anna lise": {
+      "modern": "Die Anna-Lise",
+      "historicalPreferred": "Die Anna-Lise",
+      "creator": "Hermann Hersch",
+      "source": "front_display_authority.json"
+    },
+    "Ballett/Tanz|gisella": {
+      "modern": "Giselle",
+      "historicalPreferred": "Gisella",
+      "creator": "Adolphe Adam / Jean Coralli",
+      "source": "front_display_authority.json"
+    },
+    "Ballett/Tanz|giselle": {
+      "modern": "Giselle",
+      "historicalPreferred": "Gisella",
+      "creator": "Adolphe Adam / Jean Coralli",
       "source": "front_display_authority.json"
     }
   },
@@ -1764,6 +1830,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Das Gefängniß",
+        "category": "Lustspiel",
+        "creator": "Roderich Benedix",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "das gefängnisz": [
@@ -2926,7 +2998,7 @@
       {
         "canonical": "Nathan der Weise",
         "category": "Schauspiel",
-        "creator": null,
+        "creator": "Gotthold Ephraim Lessing",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -2934,7 +3006,7 @@
       {
         "canonical": "Nathan der Weise",
         "category": "Schauspiel",
-        "creator": null,
+        "creator": "Gotthold Ephraim Lessing",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -3326,7 +3398,7 @@
       {
         "canonical": "Dorf und Stadt",
         "category": "Schauspiel",
-        "creator": null,
+        "creator": "Charlotte Birch-Pfeiffer",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -3334,7 +3406,7 @@
       {
         "canonical": "Dorf und Stadt",
         "category": "Schauspiel",
-        "creator": null,
+        "creator": "Charlotte Birch-Pfeiffer",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -3342,7 +3414,7 @@
       {
         "canonical": "Dorf und Stadt",
         "category": "Schauspiel",
-        "creator": null,
+        "creator": "Charlotte Birch-Pfeiffer",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -3576,6 +3648,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Uriel Acosta",
+        "category": "Trauerspiel",
+        "creator": "Karl Gutzkow",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "mathilde": [
@@ -3608,6 +3686,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Die Journalisten",
+        "category": "Lustspiel",
+        "creator": "Gustav Freytag",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "journalisten": [
@@ -4032,6 +4116,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Zopf und Schwert",
+        "category": "Lustspiel",
+        "creator": "Karl Gutzkow",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "maskierte akademie im odeon": [
@@ -4104,6 +4194,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Die Anna-Lise",
+        "category": "Lustspiel",
+        "creator": "Hermann Hersch",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "lalla nookh": [
@@ -4400,6 +4496,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Donna Diana",
+        "category": "Lustspiel",
+        "creator": "Agustín Moreto / Joseph Schreyvogel",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "nach mitternacht": [
@@ -4440,6 +4542,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Emilia Galotti",
+        "category": "Trauerspiel",
+        "creator": "Gotthold Ephraim Lessing",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "emilia galotti emilia galotti odoardo claudia": [
@@ -4520,6 +4628,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Coriolanus",
+        "category": "Tragödie",
+        "creator": "William Shakespeare",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "der todte gast": [
@@ -4568,6 +4682,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Der Vetter",
+        "category": "Lustspiel",
+        "creator": "Roderich Benedix",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "der vetter a": [
@@ -4792,6 +4912,12 @@
         "category": "Schauspiel",
         "creator": "G. E. Lessing",
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Minna von Barnhelm",
+        "category": "Schauspiel",
+        "creator": "Gotthold Ephraim Lessing",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "minna von barnhelm ober das soldatenglück": [
@@ -5054,6 +5180,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Der Widerspenstigen Zähmung",
+        "category": "Schauspiel",
+        "creator": "William Shakespeare",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "der widerspänstigen zähmung": [
@@ -5158,6 +5290,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Brunhild",
+        "category": "Tragödie",
+        "creator": "Emanuel Geibel",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "der diamantdesgeisterkönigs": [
@@ -6278,6 +6416,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Die Verschwörung des Fiesko zu Genua",
+        "category": "Trauerspiel",
+        "creator": "Friedrich Schiller",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "erziehungs resultate": [
@@ -6294,6 +6438,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Erziehungsresultate",
+        "category": "Lustspiel",
+        "creator": "Carl Blum",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "der pariser caugenichts": [
@@ -6452,7 +6602,7 @@
       {
         "canonical": "Armida",
         "category": "Oper",
-        "creator": null,
+        "creator": "Christoph Willibald Gluck",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -7068,7 +7218,7 @@
       {
         "canonical": "Graf Essex",
         "category": "Schauspiel",
-        "creator": null,
+        "creator": "Heinrich Laube",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -7196,7 +7346,7 @@
       {
         "canonical": "Gisella",
         "category": "Ballett/Tanz",
-        "creator": null,
+        "creator": "Adolphe Adam / Jean Coralli",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -7660,6 +7810,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Die Erzählungen der Königin von Navarra",
+        "category": "Lustspiel",
+        "creator": "Eugène Scribe / Ernest Legouvé",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "die erzählungen der königin von navarra oder revanche für pavia": [
@@ -11334,6 +11490,12 @@
         "category": "Schauspiel",
         "creator": null,
         "source": "werkautoritaet_final_1851_1869"
+      },
+      {
+        "canonical": "Das goldene Kreuz",
+        "category": "Oper",
+        "creator": "Ignaz Brüll",
+        "source": "supplemental_work_authority.json"
       }
     ],
     "der aktien kramer": [
@@ -12036,7 +12198,7 @@
       {
         "canonical": "Der Rekrut",
         "category": "Ballett/Tanz",
-        "creator": null,
+        "creator": "Golinelli / Neswadba",
         "source": "werkautoritaet_final_1851_1869"
       }
     ],
@@ -13512,11 +13674,43 @@
         "source": "supplemental_work_authority.json"
       }
     ],
+    "ambrosius": [
+      {
+        "canonical": "Ambrosius",
+        "category": "Schauspiel",
+        "creator": "Christian Knud Frederik Molbech",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "ball fest zum besten der armen": [
+      {
+        "canonical": "Ball-Fest zum Besten der Armen",
+        "category": "Ball/Redoute",
+        "creator": null,
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "bürgerlich und romantisch": [
+      {
+        "canonical": "Bürgerlich und romantisch",
+        "category": "Lustspiel",
+        "creator": "Eduard von Bauernfeld",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
     "carmen": [
       {
         "canonical": "Carmen",
         "category": "Oper",
         "creator": "Georges Bizet",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "christoph marlow": [
+      {
+        "canonical": "Christoph Marlow",
+        "category": "Trauerspiel",
+        "creator": "Ernst von Wildenbruch",
         "source": "supplemental_work_authority.json"
       }
     ],
@@ -13528,11 +13722,35 @@
         "source": "supplemental_work_authority.json"
       }
     ],
+    "cyprienne divor ons": [
+      {
+        "canonical": "Cyprienne (Divorçons!)",
+        "category": "Lustspiel",
+        "creator": "Victorien Sardou",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
     "das rheingold": [
       {
         "canonical": "Das Rheingold",
         "category": "Oper",
         "creator": "Richard Wagner",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "das seefräulein": [
+      {
+        "canonical": "Das Seefräulein",
+        "category": "Lustspiel",
+        "creator": "Ludwig Steub",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "das stiftungsfest": [
+      {
+        "canonical": "Das Stiftungsfest",
+        "category": "Schwank",
+        "creator": "Gustav von Moser",
         "source": "supplemental_work_authority.json"
       }
     ],
@@ -13544,11 +13762,51 @@
         "source": "supplemental_work_authority.json"
       }
     ],
+    "der menonit": [
+      {
+        "canonical": "Der Menonit",
+        "category": "Trauerspiel",
+        "creator": "Ernst von Wildenbruch",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "der richter von zalamea": [
+      {
+        "canonical": "Der Richter von Zalamea",
+        "category": "Schauspiel",
+        "creator": "Pedro Calderón de la Barca",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "der vampir": [
+      {
+        "canonical": "Der Vampir",
+        "category": "Oper",
+        "creator": "Heinrich Marschner",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
     "die beiden schützen": [
       {
         "canonical": "Die beiden Schützen",
         "category": "Oper",
         "creator": "Albert Lortzing",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "die erziehungsresultate": [
+      {
+        "canonical": "Die Erziehungsresultate",
+        "category": "Lustspiel",
+        "creator": "Carl Blum",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "die ruinen von athen": [
+      {
+        "canonical": "Die Ruinen von Athen",
+        "category": "Fest-/Sonderveranstaltung",
+        "creator": "Ludwig van Beethoven / Otto Devrient",
         "source": "supplemental_work_authority.json"
       }
     ],
@@ -13560,11 +13818,59 @@
         "source": "supplemental_work_authority.json"
       }
     ],
+    "die zarin": [
+      {
+        "canonical": "Die Zarin",
+        "category": "Drama",
+        "creator": "Karl von Heigel",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "doktor wespe": [
+      {
+        "canonical": "Doktor Wespe",
+        "category": "Lustspiel",
+        "creator": "Roderich Benedix",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "don carlos": [
+      {
+        "canonical": "Don Carlos",
+        "category": "Trauerspiel",
+        "creator": "Friedrich Schiller",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "dora": [
+      {
+        "canonical": "Dora",
+        "category": "Schauspiel",
+        "creator": "Victorien Sardou",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "durchs ohr": [
+      {
+        "canonical": "Durchs Ohr",
+        "category": "Lustspiel",
+        "creator": "Wilhelm Jordan",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
     "ein toller tag oder figaros hochzeit": [
       {
         "canonical": "Ein toller Tag, oder Figaros Hochzeit",
         "category": "Oper",
         "creator": "Wolfgang Amadeus Mozart",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "ekkehard": [
+      {
+        "canonical": "Ekkehard",
+        "category": "Oper",
+        "creator": "Johann Joseph Abert",
         "source": "supplemental_work_authority.json"
       }
     ],
@@ -13576,11 +13882,43 @@
         "source": "supplemental_work_authority.json"
       }
     ],
+    "georg forster": [
+      {
+        "canonical": "Georg Forster",
+        "category": "Trauerspiel",
+        "creator": "Alfred Jachmann",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
     "götterdämmerung": [
       {
         "canonical": "Götterdämmerung",
         "category": "Oper",
         "creator": "Richard Wagner",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "il barbiere di siviglia": [
+      {
+        "canonical": "Il barbiere di Siviglia",
+        "category": "Oper",
+        "creator": "Gioachino Rossini",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "krieg im frieden": [
+      {
+        "canonical": "Krieg im Frieden",
+        "category": "Lustspiel",
+        "creator": "Gustav von Moser / Franz von Schönthan",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "krisen": [
+      {
+        "canonical": "Krisen",
+        "category": "Lustspiel",
+        "creator": "Eduard von Bauernfeld",
         "source": "supplemental_work_authority.json"
       }
     ],
@@ -13600,6 +13938,14 @@
         "source": "supplemental_work_authority.json"
       }
     ],
+    "königin mariette": [
+      {
+        "canonical": "Königin Mariette",
+        "category": "Oper",
+        "creator": "Ignaz Brüll",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
     "la traviata": [
       {
         "canonical": "La traviata",
@@ -13613,6 +13959,22 @@
         "canonical": "Mignon",
         "category": "Oper",
         "creator": "Ambroise Thomas",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "orpheus und eurydike": [
+      {
+        "canonical": "Orpheus und Eurydike",
+        "category": "Oper",
+        "creator": "Christoph Willibald Gluck",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "perikles fürst von tyrus": [
+      {
+        "canonical": "Perikles, Fürst von Tyrus",
+        "category": "Schauspiel",
+        "creator": "William Shakespeare",
         "source": "supplemental_work_authority.json"
       }
     ],
@@ -13637,6 +13999,38 @@
         "canonical": "So machen's Alle",
         "category": "Oper",
         "creator": "Wolfgang Amadeus Mozart",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "so machen s alle cosi fan tutte": [
+      {
+        "canonical": "So machen's Alle (Cosi fan tutte)",
+        "category": "Oper",
+        "creator": "Wolfgang Amadeus Mozart",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "timandra": [
+      {
+        "canonical": "Timandra",
+        "category": "Trauerspiel",
+        "creator": "Adolf Friedrich von Schack",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "unehrlich volk": [
+      {
+        "canonical": "Unehrlich Volk",
+        "category": "Trauerspiel",
+        "creator": "Richard Voß",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "waldeinsamkeit": [
+      {
+        "canonical": "Waldeinsamkeit",
+        "category": "Ballett/Tanz",
+        "creator": "W. Reisinger / W. C. Mühldorfer",
         "source": "supplemental_work_authority.json"
       }
     ]
@@ -33084,6 +33478,194 @@
         "sourceSurface": "Großes Tanz-Divertissement aus dem fünften Aufzuge der Oper: Der Maskenball",
         "category": "Ballett/Tanz"
       }
+    ],
+    "1884-01-01": [
+      {
+        "modern": "Guillaume Tell",
+        "historical": "Tell",
+        "sourceSurface": "Tell",
+        "category": "Oper",
+        "creator": "Gioachino Rossini",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-01-07": [
+      {
+        "modern": "Florian Geyer",
+        "historical": "Florian Geyer",
+        "sourceSurface": "Florian Geyer",
+        "category": "Trauerspiel",
+        "creator": "Friedrich Karl Schubert",
+        "creatorRole": "Autor"
+      }
+    ],
+    "1884-01-11": [
+      {
+        "modern": "Alceste",
+        "historical": "Alceste",
+        "sourceSurface": "Alceste",
+        "category": "Oper",
+        "creator": "Christoph Willibald Gluck",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-01-15": [
+      {
+        "modern": "Alceste",
+        "historical": "Alceste",
+        "sourceSurface": "Alceste",
+        "category": "Oper",
+        "creator": "Christoph Willibald Gluck",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-01-20": [
+      {
+        "modern": "Faust",
+        "historical": "Faust",
+        "sourceSurface": "Faust",
+        "category": "Oper",
+        "creator": "Charles Gounod",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-01-25": [
+      {
+        "modern": "Iphigenie auf Tauris",
+        "historical": "Iphigenia auf Tauris",
+        "sourceSurface": "Iphigenia auf Tauris",
+        "category": "Schauspiel",
+        "creator": "Johann Wolfgang von Goethe",
+        "creatorRole": "Autor"
+      }
+    ],
+    "1884-02-01": [
+      {
+        "modern": "Florian Geyer",
+        "historical": "Florian Geyer",
+        "sourceSurface": "Florian Geyer",
+        "category": "Trauerspiel",
+        "creator": "Friedrich Karl Schubert",
+        "creatorRole": "Autor"
+      }
+    ],
+    "1884-02-27": [
+      {
+        "modern": "Alceste",
+        "historical": "Alceste",
+        "sourceSurface": "Alceste",
+        "category": "Oper",
+        "creator": "Christoph Willibald Gluck",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-03-07": [
+      {
+        "modern": "Alceste",
+        "historical": "Alceste",
+        "sourceSurface": "Alceste",
+        "category": "Oper",
+        "creator": "Christoph Willibald Gluck",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-05-17": [
+      {
+        "modern": "Wilhelm Tell",
+        "historical": "Wilhelm Tell",
+        "sourceSurface": "Wilhelm Tell",
+        "category": "Schauspiel",
+        "creator": "Friedrich Schiller",
+        "creatorRole": "Autor"
+      }
+    ],
+    "1884-05-28": [
+      {
+        "modern": "Wilhelm Tell",
+        "historical": "Wilhelm Tell",
+        "sourceSurface": "Wilhelm Tell",
+        "category": "Schauspiel",
+        "creator": "Friedrich Schiller",
+        "creatorRole": "Autor"
+      }
+    ],
+    "1884-08-25": [
+      {
+        "modern": "Iphigenie auf Tauris",
+        "historical": "Iphigenia auf Tauris",
+        "sourceSurface": "Iphigenia auf Tauris",
+        "category": "Schauspiel",
+        "creator": "Johann Wolfgang von Goethe",
+        "creatorRole": "Autor"
+      }
+    ],
+    "1884-09-08": [
+      {
+        "modern": "Guillaume Tell",
+        "historical": "Tell",
+        "sourceSurface": "Tell",
+        "category": "Oper",
+        "creator": "Gioachino Rossini",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-10-10": [
+      {
+        "modern": "Guillaume Tell",
+        "historical": "Tell",
+        "sourceSurface": "Tell",
+        "category": "Oper",
+        "creator": "Gioachino Rossini",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-11-25": [
+      {
+        "modern": "Alceste",
+        "historical": "Alceste",
+        "sourceSurface": "Alceste",
+        "category": "Oper",
+        "creator": "Christoph Willibald Gluck",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-12-07": [
+      {
+        "modern": "Faust",
+        "historical": "Faust",
+        "sourceSurface": "Faust",
+        "category": "Oper",
+        "creator": "Charles Gounod",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-12-05": [
+      {
+        "modern": "König Renés Tochter",
+        "historical": "König Renés Tochter",
+        "sourceSurface": "König Renés Tochter",
+        "category": "Schauspiel",
+        "creator": "Henrik Hertz",
+        "creatorRole": "Autor"
+      },
+      {
+        "modern": "Coppélia",
+        "historical": "Coppélia",
+        "sourceSurface": "Coppélia",
+        "category": "Ballett/Tanz",
+        "creator": "Léo Delibes",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1884-12-21": [
+      {
+        "modern": "Guillaume Tell",
+        "historical": "Tell",
+        "sourceSurface": "Cell",
+        "category": "Oper",
+        "creator": "Gioachino Rossini",
+        "creatorRole": "Komposition"
+      }
     ]
   },
   "nonWorkMetadataPatterns": [
@@ -33399,6 +33981,261 @@
       "creator": "Daniel-François-Esprit Auber",
       "role": "Komposition",
       "category": "Oper"
+    },
+    "Das goldene Kreuz": {
+      "creator": "Ignaz Brüll",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Minna von Barnhelm": {
+      "creator": "Gotthold Ephraim Lessing",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Ambrosius": {
+      "creator": "Christian Knud Frederik Molbech",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Ball-Fest zum Besten der Armen": {
+      "creator": null,
+      "role": null,
+      "category": "Ball/Redoute"
+    },
+    "Bürgerlich und romantisch": {
+      "creator": "Eduard von Bauernfeld",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Christoph Marlow": {
+      "creator": "Ernst von Wildenbruch",
+      "role": "Autor",
+      "category": "Trauerspiel"
+    },
+    "Cyprienne (Divorçons!)": {
+      "creator": "Victorien Sardou",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Das Seefräulein": {
+      "creator": "Ludwig Steub",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Das Stiftungsfest": {
+      "creator": "Gustav von Moser",
+      "role": "Autor",
+      "category": "Schwank"
+    },
+    "Der Menonit": {
+      "creator": "Ernst von Wildenbruch",
+      "role": "Autor",
+      "category": "Trauerspiel"
+    },
+    "Der Richter von Zalamea": {
+      "creator": "Pedro Calderón de la Barca",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Der Vampir": {
+      "creator": "Heinrich Marschner",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Die Ruinen von Athen": {
+      "creator": "Ludwig van Beethoven / Otto Devrient",
+      "role": "Musik / Textbearbeitung",
+      "category": "Fest-/Sonderveranstaltung"
+    },
+    "Die Zarin": {
+      "creator": "Karl von Heigel",
+      "role": "Autor",
+      "category": "Drama"
+    },
+    "Doktor Wespe": {
+      "creator": "Roderich Benedix",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Don Carlos": {
+      "creator": "Friedrich Schiller",
+      "role": "Autor",
+      "category": "Trauerspiel"
+    },
+    "Dora": {
+      "creator": "Victorien Sardou",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Durchs Ohr": {
+      "creator": "Wilhelm Jordan",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Ekkehard": {
+      "creator": "Johann Joseph Abert",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Georg Forster": {
+      "creator": "Alfred Jachmann",
+      "role": "Autor",
+      "category": "Trauerspiel"
+    },
+    "Krieg im Frieden": {
+      "creator": "Gustav von Moser / Franz von Schönthan",
+      "role": "Autoren",
+      "category": "Lustspiel"
+    },
+    "Krisen": {
+      "creator": "Eduard von Bauernfeld",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Königin Mariette": {
+      "creator": "Ignaz Brüll",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Orpheus und Eurydike": {
+      "creator": "Christoph Willibald Gluck",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Perikles, Fürst von Tyrus": {
+      "creator": "William Shakespeare",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "So machen's Alle (Cosi fan tutte)": {
+      "creator": "Wolfgang Amadeus Mozart",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Timandra": {
+      "creator": "Adolf Friedrich von Schack",
+      "role": "Autor",
+      "category": "Trauerspiel"
+    },
+    "Unehrlich Volk": {
+      "creator": "Richard Voß",
+      "role": "Autor",
+      "category": "Trauerspiel"
+    },
+    "Waldeinsamkeit": {
+      "creator": "W. Reisinger / W. C. Mühldorfer",
+      "role": "Choreografie / Komposition",
+      "category": "Ballett/Tanz"
+    },
+    "Armida": {
+      "creator": "Christoph Willibald Gluck",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Brunhild": {
+      "creator": "Emanuel Geibel",
+      "role": "Autor",
+      "category": "Tragödie"
+    },
+    "Coriolanus": {
+      "creator": "William Shakespeare",
+      "role": "Autor",
+      "category": "Tragödie"
+    },
+    "Das Gefängniß": {
+      "creator": "Roderich Benedix",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Der Vetter": {
+      "creator": "Roderich Benedix",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Der Rekrut": {
+      "creator": "Golinelli / Neswadba",
+      "role": "Choreografie / Komposition",
+      "category": "Ballett/Tanz"
+    },
+    "Die Anna-Lise": {
+      "creator": "Hermann Hersch",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Die Erzählungen der Königin von Navarra": {
+      "creator": "Eugène Scribe / Ernest Legouvé",
+      "role": "Autoren",
+      "category": "Lustspiel"
+    },
+    "Die Erziehungsresultate": {
+      "creator": "Carl Blum",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Erziehungsresultate": {
+      "creator": "Carl Blum",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Die Journalisten": {
+      "creator": "Gustav Freytag",
+      "role": "Autor",
+      "category": "Lustspiel"
+    },
+    "Die Verschwörung des Fiesko zu Genua": {
+      "creator": "Friedrich Schiller",
+      "role": "Autor",
+      "category": "Trauerspiel"
+    },
+    "Der Widerspenstigen Zähmung": {
+      "creator": "William Shakespeare",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Dorf und Stadt": {
+      "creator": "Charlotte Birch-Pfeiffer",
+      "role": "Autorin",
+      "category": "Schauspiel"
+    },
+    "Donna Diana": {
+      "creator": "Agustín Moreto / Joseph Schreyvogel",
+      "role": "Autor / Bearbeitung",
+      "category": "Lustspiel"
+    },
+    "Emilia Galotti": {
+      "creator": "Gotthold Ephraim Lessing",
+      "role": "Autor",
+      "category": "Trauerspiel"
+    },
+    "Gisella": {
+      "creator": "Adolphe Adam / Jean Coralli",
+      "role": "Komposition / Choreografie",
+      "category": "Ballett/Tanz"
+    },
+    "Graf Essex": {
+      "creator": "Heinrich Laube",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Il barbiere di Siviglia": {
+      "creator": "Gioachino Rossini",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Nathan der Weise": {
+      "creator": "Gotthold Ephraim Lessing",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
+    "Uriel Acosta": {
+      "creator": "Karl Gutzkow",
+      "role": "Autor",
+      "category": "Trauerspiel"
+    },
+    "Zopf und Schwert": {
+      "creator": "Karl Gutzkow",
+      "role": "Autor",
+      "category": "Lustspiel"
     }
   },
   "provenance": {
@@ -33462,11 +34299,11 @@
     ],
     "frontDisplayAuthority": {
       "file": "front_display_authority.json",
-      "sha256": "0d586c386d7e4d8d9097843241b7184999a15ee7012f252bb59b0fc10d82bf24"
+      "sha256": "3d366121a6cb8ee1af0c61a1cca8e7c66d8c424d84c0fca93b2ab232c30570df"
     },
     "supplementalWorkAuthority": {
       "file": "supplemental_work_authority.json",
-      "sha256": "0b052bb43e1fce57eaa9ac19ff26c43d671beeca4082e7db4ce8cdebbf16ac3c"
+      "sha256": "009d98b9ee6860f18d72cfac1ae4057df3abf3e2b5359ba833e76c714baf196f"
     }
   }
 }
