@@ -46,6 +46,12 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(FETCH.rate_limit_reset_seconds("1000120"), 120.0)
         self.assertIsNone(FETCH.rate_limit_reset_seconds("unknown"))
 
+    def test_request_pacer_shares_daily_quota_deferral(self):
+        pacer = FETCH.RequestPacer(0.0)
+        self.assertEqual(pacer.deferred_seconds(), 0.0)
+        pacer.defer_for(30.0)
+        self.assertGreater(pacer.deferred_seconds(), 29.0)
+
     def test_manifest_binding_keeps_printed_label_and_scan_id_separate(self):
         payload = {"sequences": [{"canvases": [{
             "label": "17 (0023)",

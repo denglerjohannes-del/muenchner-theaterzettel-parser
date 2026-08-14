@@ -32,6 +32,7 @@ class RequestPacer:
         self.spacing = max(0.0, spacing)
         self.lock = threading.Lock()
         self.next_request = 0.0
+        self.deferred_until = 0.0
 
     def wait(self) -> None:
         with self.lock:
@@ -40,6 +41,14 @@ class RequestPacer:
             if delay:
                 time.sleep(delay)
             self.next_request = time.monotonic() + self.spacing
+
+    def defer_for(self, seconds: float) -> None:
+        with self.lock:
+            self.deferred_until = max(self.deferred_until, time.monotonic() + seconds)
+
+    def deferred_seconds(self) -> float:
+        with self.lock:
+            return max(0.0, self.deferred_until - time.monotonic())
 
 
 def retry_after_seconds(value: str | None) -> float | None:
@@ -94,6 +103,17 @@ def fetch_one(
         data = target.read_bytes()
         return {**item, "bytes": len(data), "sha256": sha256(data), "status": "REUSED"}
 
+    deferred = pacer.deferred_seconds()
+    if deferred:
+        return {
+            **item,
+            "bytes": 0,
+            "sha256": None,
+            "status": "DEFERRED_RATE_LIMIT",
+            "error": "shared daily source quota exhausted",
+            "rate_limit_reset_seconds": deferred,
+        }
+
     last_error = None
     for attempt in range(1, retries + 1):
         try:
@@ -112,6 +132,7 @@ def fetch_one(
                 and reset is not None
                 and reset > max_backoff
             ):
+                pacer.defer_for(reset)
                 return {
                     **item,
                     "bytes": 0,
