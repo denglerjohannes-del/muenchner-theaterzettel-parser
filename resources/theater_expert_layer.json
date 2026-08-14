@@ -14136,11 +14136,27 @@
         "source": "supplemental_work_authority.json"
       }
     ],
+    "octavian in sicilien": [
+      {
+        "canonical": "Octavian in Sicilien",
+        "category": "Oper",
+        "creator": "Johann Nepomuk von Poißl",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
     "orpheus und eurydike": [
       {
         "canonical": "Orpheus und Eurydike",
         "category": "Oper",
         "creator": "Christoph Willibald Gluck",
+        "source": "supplemental_work_authority.json"
+      }
+    ],
+    "parteiwut": [
+      {
+        "canonical": "Parteiwut",
+        "category": "Schauspiel",
+        "creator": "Friedrich Wilhelm Ziegler",
         "source": "supplemental_work_authority.json"
       }
     ],
@@ -33896,6 +33912,16 @@
       "role": "Komposition",
       "category": "Oper"
     },
+    "Octavian in Sicilien": {
+      "creator": "Johann Nepomuk von Poißl",
+      "role": "Komposition",
+      "category": "Oper"
+    },
+    "Parteiwut": {
+      "creator": "Friedrich Wilhelm Ziegler",
+      "role": "Autor",
+      "category": "Schauspiel"
+    },
     "Tannhäuser": {
       "creator": "Richard Wagner",
       "role": "Komposition",
@@ -34502,7 +34528,7 @@
     },
     "supplementalWorkAuthority": {
       "file": "supplemental_work_authority.json",
-      "sha256": "009d98b9ee6860f18d72cfac1ae4057df3abf3e2b5359ba833e76c714baf196f"
+      "sha256": "3541bbc8a4d0bc375f20ec1469f33379a9194f641725a7523e44b3fd59ea2420"
     }
   }
 }
