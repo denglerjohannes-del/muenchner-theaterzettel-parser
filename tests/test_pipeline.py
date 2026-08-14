@@ -3,6 +3,7 @@ import json
 import pathlib
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -20,6 +21,7 @@ EXTRACT = load("extract_programme_candidates")
 BIND = load("bind_scan_labels")
 RELEASE = load("build_schedule_release")
 REVIEW = load("generate_review_queue")
+FETCH = load("fetch_hocr")
 
 
 def hocr(lines):
@@ -30,6 +32,14 @@ def hocr(lines):
 
 
 class PipelineTests(unittest.TestCase):
+    def test_retry_after_numeric_and_exponential_backoff(self):
+        self.assertEqual(FETCH.retry_after_seconds("12"), 12.0)
+        self.assertIsNone(FETCH.retry_after_seconds("not-a-date"))
+        with mock.patch.object(FETCH.random, "uniform", return_value=0.0):
+            self.assertEqual(FETCH.retry_delay(3, None, 2.0, 60.0), 8.0)
+            self.assertEqual(FETCH.retry_delay(2, "20", 2.0, 60.0), 20.0)
+            self.assertEqual(FETCH.retry_delay(9, None, 2.0, 60.0), 60.0)
+
     def test_manifest_binding_keeps_printed_label_and_scan_id_separate(self):
         payload = {"sequences": [{"canvases": [{
             "label": "17 (0023)",

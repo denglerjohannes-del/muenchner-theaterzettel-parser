@@ -1,6 +1,6 @@
 # Münchner Theaterzettel-Parser
 
-Deterministisches Referenzwerkzeug für gebundene Jahrgänge der Münchner Theaterzettel. An den vollständigen BSB-Jahrgängen 1877–1881 validiert und am vollständigen 1882er Band strukturell geprüft.
+Deterministisches Referenzwerkzeug für gebundene Jahrgänge der Münchner Theaterzettel. An den vollständigen BSB-Jahrgängen 1877–1883 validiert.
 
 ## Wissenschaftlicher Vertrag
 
@@ -28,6 +28,12 @@ python3 build_schedule_release.py candidates/PROGRAMME_CANDIDATES.jsonl CURATION
 python3 -m unittest discover -v
 ```
 
+Bei gedrosselten Quellservern respektiert der Downloader `Retry-After`, nutzt
+exponentielle Pausen mit Jitter und taktet alle Worker gemeinsam. Für einen
+schonenden Langlauf kann die Rate weiter abgesenkt werden, etwa mit
+`--workers 2 --request-spacing 1.5 --retries 8`; bereits vorhandene Dateien
+werden dabei geprüft und wiederverwendet.
+
 Die Scanbindung verhindert die Verwechslung gedruckter Seitenzahlen mit IIIF-Scan-IDs. Der Downloader ist resumierbar und quittiert jede Datei per SHA-256. Kleine OCR-Antworten leerer Rückseiten bleiben erhalten. Der Indexer verlangt das Kalenderjahr ausdrücklich über `--year`; damit kann ein Jahrgang nicht versehentlich mit dem Datumsvertrag eines anderen verarbeitet werden. `index_hocr.py` klassifiziert National- und Residenztheater getrennt; Konzert, Gärtnerplatz und interne Wochenpläne bleiben Review-Fälle.
 
 `generate_review_queue.py` bündelt Struktur-Holds, Mehrkomponentenprogramme,
@@ -46,6 +52,7 @@ löscht nichts; die Auflösung bleibt explizite, reversible Kuration.
 | 1880 | `bsb11455085` | 746 | 31.851 | 365 | 0 |
 | 1881 | `bsb11455086` | 746 | 33.001 | 364 | 0 |
 | 1882 | `bsb11455087` | 762 | 32.661 | 372 | 0 |
+| 1883 | `bsb11455088` | 902 | 37.023 | 433 | 0 |
 
 Die Kurationsentscheidungen bleiben Forschungsdaten des jeweiligen Jahrgangs. Der allgemeine Release-Bauer liest sie nur ein, bindet seltene manuelle Ergänzungen, komplexe Titelgruppen und ausdrückliche Absagen an konkrete Quellenseiten und erzeugt daraus Spielplan, Tagesledger, Titelhäufigkeiten, frühere und abgesagte Zettelfassungen sowie Provenienz deterministisch. Automatische Ausgangsgruppen bleiben bei einer Korrektur vollständig erhalten.
 
