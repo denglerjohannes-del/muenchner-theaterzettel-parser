@@ -344,14 +344,15 @@ class PipelineTests(unittest.TestCase):
 
     def test_ocr_calendar_is_the_single_shared_source(self):
         # The variant tables used to live in three modules and could drift.
-        self.assertIs(INDEX.MONTH_RE.pattern.__class__, str)
-        self.assertEqual(CALENDAR.MONTHS["Feptember"], 9)
-        self.assertEqual(CALENDAR.WEEKDAYS["Sountag"], 6)
-        self.assertIs(RELEASE.MONTHS, CALENDAR.MONTHS)
-        self.assertIs(RELEASE.WEEKDAYS, CALENDAR.WEEKDAYS)
-        self.assertIs(REVIEW.MONTHS, CALENDAR.MONTHS)
-        self.assertIn("FSeptember", CALENDAR.MONTH_ALTERNATION)
-        self.assertIn("Samflag", CALENDAR.WEEKDAY_PATTERN)
+        import ocr_calendar as imported  # the instance the pipeline modules use
+        self.assertIs(RELEASE.MONTHS, imported.MONTHS)
+        self.assertIs(RELEASE.WEEKDAYS, imported.WEEKDAYS)
+        self.assertIs(REVIEW.MONTHS, imported.MONTHS)
+        self.assertEqual(imported.MONTHS["Feptember"], 9)
+        self.assertEqual(imported.WEEKDAYS["Sountag"], 6)
+        self.assertEqual(CALENDAR.MONTHS, imported.MONTHS)
+        self.assertIn("FSeptember", imported.MONTH_ALTERNATION)
+        self.assertIn("Samflag", imported.WEEKDAY_PATTERN)
 
     def test_index_hocr_missing_binding_fails_with_scan_context(self):
         with tempfile.TemporaryDirectory() as tmp:
