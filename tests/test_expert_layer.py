@@ -13,6 +13,9 @@ class ExpertLayerTest(unittest.TestCase):
 
     def test_historical_glossary_categories(self):
         self.assertEqual(category("curiosity"), "Kuriositätenschau")
+        self.assertEqual(category("physics_show"), "Physikvorführung")
+        self.assertEqual(category("strength_show"), "Kraftschau")
+        self.assertEqual(category("instrument_demonstration"), "Instrumentenvorführung")
         self.assertEqual(category("zauberposse"), "Zauberposse")
         self.assertIsNone(category("Noch nicht bestimmt"))
 

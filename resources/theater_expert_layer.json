@@ -33599,6 +33599,133 @@
     ]
   },
   "datedWorkOverrides": {
+    "1820-01-03": [
+      {
+        "modern": "Großes Vokal- und Instrumentalkonzert",
+        "historical": "Großes Vokal- und Instrumental-Konzert",
+        "sourceSurface": "Großes Vokal- und Instrumental-Konzert des Hrn. Wilhelm Braun und des Hrn. Pietro Vimercati",
+        "category": "Konzert",
+        "performanceNote": "Mit Wilhelm Braun (Oboe) und Pietro Vimercati (englische Mandola)."
+      }
+    ],
+    "1820-01-30": [
+      {
+        "modern": "Maskenball im Nationaltheater",
+        "historical": "Maskenball in dem neuen K. Hoftheater",
+        "sourceSurface": "Maskenball in dem neuen K. Hoftheater, mit der Quadrille: Die Sternedeuter",
+        "category": "Ball/Redoute",
+        "performanceNote": "Mit der Quadrille „Die Sternedeuter“; angekündigt von 19 bis 1 Uhr."
+      }
+    ],
+    "1820-01-31": [
+      {
+        "modern": "Großes Vokal- und Instrumentalkonzert",
+        "historical": "Großes Vokal- und Instrumental-Konzert",
+        "sourceSurface": "Großes Vokal- und Instrumental-Kon zert des Hrn. Vſmarcati",
+        "category": "Konzert",
+        "performanceNote": "Konzert des bereits am 3. Januar angekündigten Mandolaspielers Pietro Vimercati."
+      }
+    ],
+    "1820-02-06": [
+      {
+        "modern": "Maskenball im Nationaltheater",
+        "historical": "Masken-Ball",
+        "sourceSurface": "Masken-Ball mit einer neuen Quadrille: Die alte und neue Zeit",
+        "category": "Ball/Redoute",
+        "performanceNote": "Mit der neuen Quadrille „Die alte und neue Zeit“."
+      }
+    ],
+    "1820-02-13": [
+      {
+        "modern": "Maskierte Akademie",
+        "historical": "Maskirte Akademie",
+        "sourceSurface": "Mae kirte Akademie",
+        "category": "Fest-/Sonderveranstaltung"
+      },
+      {
+        "modern": "Der Vulkan",
+        "historical": "Der Vulkan",
+        "sourceSurface": "pantomimische Vorstellung, der Vulkan",
+        "category": "Pantomime",
+        "performanceNote": "Pantomimische Vorstellung in zwei Akten."
+      },
+      {
+        "modern": "Annette und Lubino",
+        "historical": "Annette und Lubino",
+        "sourceSurface": "Annette und Lubino, Divertissement",
+        "category": "Divertissement"
+      }
+    ],
+    "1820-02-14": [
+      {
+        "modern": "Maskenball im Nationaltheater",
+        "historical": "Maskenball",
+        "sourceSurface": "Maskenball, mit einer Quadrille: Die Schweizerhochzeit",
+        "category": "Ball/Redoute",
+        "performanceNote": "Mit der Quadrille „Die Schweizerhochzeit“; angekündigt von 19 bis 1 Uhr."
+      }
+    ],
+    "1820-02-23": [
+      {
+        "modern": "Großes Vokal- und Instrumentalkonzert",
+        "historical": "Großes Vokal- und Instrumental-Konzert",
+        "sourceSurface": "Großes Vokal- und Instrumental-Konzert des Hrn. Ignaz Maſcheles",
+        "category": "Konzert",
+        "performanceNote": "Konzert von Ignaz Moscheles."
+      }
+    ],
+    "1820-03-08": [
+      {
+        "modern": "Großes Vokal- und Instrumentalkonzert",
+        "historical": "Großes Vokal- und Instrumental-Konzert",
+        "sourceSurface": "Großes Vokal- und Instrumental-Konzert des Hrn. J. C. Reich",
+        "category": "Konzert",
+        "performanceNote": "Konzert von J. C. Reich."
+      },
+      {
+        "modern": "Vorführung des Aeolodikons",
+        "historical": "Vorstellung des neuen Instruments Aeolodikon",
+        "sourceSurface": "Vorstellung des neuen Instruments Aeolodikon",
+        "category": "Instrumentenvorführung",
+        "performanceNote": "Ausdrücklich als Vorstellung eines neuen Instruments angekündigt."
+      }
+    ],
+    "1820-04-19": [
+      {
+        "modern": "Großes Vokal- und Instrumentalkonzert",
+        "historical": "Großes Vokal- und Instrumental-Konzert",
+        "sourceSurface": "Großes Vokal- und Instrumental-Konzert des Hrn. W. J. Maar",
+        "category": "Konzert",
+        "performanceNote": "Konzert von W. J. Maar, großherzoglich-badischem Hofmusiker aus Mannheim."
+      }
+    ],
+    "1820-05-31": [
+      {
+        "modern": "Zweites Vokal- und Instrumentalkonzert",
+        "historical": "Zweites Vokal- und Instrumental-Konzert",
+        "sourceSurface": "Zweites Vokal- und Instrumental-Konzert der Madame Bender und der Herren Gebrüder Bender",
+        "category": "Konzert",
+        "performanceNote": "Mit Madame Bender und den Gebrüdern Bender."
+      }
+    ],
+    "1820-06-07": [
+      {
+        "modern": "Großes Vokal- und Instrumentalkonzert",
+        "historical": "Großes Vokal- und Instrumental-Konzert",
+        "sourceSurface": "Großes Vokal- und Instrumental-Konzert des Hof-Kapellmeisters Hummel",
+        "category": "Konzert",
+        "performanceNote": "Konzert des Weimarer Hofkapellmeisters Johann Nepomuk Hummel."
+      }
+    ],
+    "1820-12-13": [
+      {
+        "modern": "Großes Vokal- und Instrumentalkonzert",
+        "historical": "Großes Vokal- und Instrumental Konzert",
+        "sourceSurface": "Großes Vokal- und Instrumental Konzert des Hrn. Alex. Bouchet",
+        "category": "Konzert",
+        "performanceNote": "Mit Alexander Bouchet (Violine) und Madame Bouchet (Harfe)."
+      }
+    ],
     "1825-06-23": [
       {
         "modern": "Der Wirrwarr",
@@ -33623,6 +33750,24 @@
         "sourceSurface": "Variationen auf dem Waldhorn",
         "category": "Konzert",
         "performanceNote": "Ausführung: die Gebrüder Lewy (zwischen dem 3. und 4. Akt)."
+      }
+    ],
+    "1826-10-18": [
+      {
+        "modern": "Vokal- und Instrumentalkonzert zum Besten der Griechen",
+        "historical": "Zum Besten der Griechen: ein großes Vokal- und Instrumental-Konzert",
+        "sourceSurface": "Zum Besten der Griechen; KampfundSieg",
+        "category": "Konzert",
+        "performanceNote": "Erste Abteilung: Werke von Spontini, Pacini, Dotzauer und Lafont sowie ein Flöten-Concertino."
+      },
+      {
+        "modern": "Kampf und Sieg",
+        "historical": "Kampf und Sieg",
+        "sourceSurface": "KampfundSieg",
+        "category": "Kantate",
+        "creator": "Carl Maria von Weber",
+        "creatorRole": "Komposition",
+        "programmeNote": "Kantate; Text von Johann Friedrich Wilhelm Wohlbrück. Zum ersten Mal aufgeführt."
       }
     ],
     "1853-02-04": [
@@ -34550,7 +34695,7 @@
     ],
     "frontDisplayAuthority": {
       "file": "front_display_authority.json",
-      "sha256": "c87048c04b609459d0057116d934879968ce85d94abce2c9013c82c44b718cd6"
+      "sha256": "50f7cc5d232309ee24a0c0bac244d6bdefb526b619c84279d602bc9b8ecd1ace"
     },
     "supplementalWorkAuthority": {
       "file": "supplemental_work_authority.json",
