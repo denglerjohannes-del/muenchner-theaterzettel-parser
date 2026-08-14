@@ -28,6 +28,12 @@ python3 build_schedule_release.py candidates/PROGRAMME_CANDIDATES.jsonl CURATION
 python3 -m unittest discover -v
 ```
 
+Für ergänzende Archivbestände mit Datumspräfixen steht außerdem
+`source_filename_dates.py` bereit. Das Hilfswerkzeug trennt exakte Tage,
+Monats-/Jahresangaben, Spielzeiten und Bereiche. Insbesondere wird ein Name wie
+`1837.01.12.:29_1.jpg` nicht zum vermeintlichen Einzeltag 12. Januar verkürzt.
+Dateinamen bleiben Findmittel und sind kein Aufführungs- oder Dienstbeweis.
+
 Bei gedrosselten Quellservern respektiert der Downloader `Retry-After`, nutzt
 exponentielle Pausen mit Jitter und taktet alle Worker gemeinsam. Für einen
 schonenden Langlauf kann die Rate weiter abgesenkt werden, etwa mit

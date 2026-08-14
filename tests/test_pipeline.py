@@ -22,6 +22,7 @@ BIND = load("bind_scan_labels")
 RELEASE = load("build_schedule_release")
 REVIEW = load("generate_review_queue")
 FETCH = load("fetch_hocr")
+SOURCE_DATES = load("source_filename_dates")
 
 
 def hocr(lines):
@@ -32,6 +33,22 @@ def hocr(lines):
 
 
 class PipelineTests(unittest.TestCase):
+    def test_source_filename_date_range_is_not_exact_day(self):
+        row = SOURCE_DATES.parse_temporal_prefix("1837.01.12.:29_1.jpg")
+        self.assertIsNone(row["date"])
+        self.assertEqual(row["date_start"], "1837-01-12")
+        self.assertEqual(row["date_end"], "1837-01-29")
+        self.assertEqual(row["temporal_precision"], "DATE_RANGE_OR_SERIES")
+
+    def test_source_filename_exact_day_and_partial_month(self):
+        exact = SOURCE_DATES.parse_temporal_prefix("1875.08.24.jpg")
+        partial = SOURCE_DATES.parse_temporal_prefix("1856.03.00.jpg")
+        self.assertEqual(exact["date"], "1875-08-24")
+        self.assertEqual(exact["temporal_precision"], "DAY")
+        self.assertIsNone(partial["date"])
+        self.assertEqual(partial["month"], 3)
+        self.assertEqual(partial["temporal_precision"], "MONTH")
+
     def test_retry_after_numeric_and_exponential_backoff(self):
         self.assertEqual(FETCH.retry_after_seconds("12"), 12.0)
         self.assertIsNone(FETCH.retry_after_seconds("not-a-date"))
