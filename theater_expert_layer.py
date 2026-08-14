@@ -59,7 +59,12 @@ def semantic_category(event: dict, work: dict, fallback: str | None) -> str | No
     return fallback
 
 
-def compile_layer(title_authority: Path, work_authority: Path, early_registers: list[Path]) -> dict:
+def compile_layer(
+    title_authority: Path,
+    work_authority: Path,
+    early_registers: list[Path],
+    display_authority: Path | None = None,
+) -> dict:
     title_data = json.loads(title_authority.read_text(encoding="utf-8"))
     aliases: dict[str, str] = {}
     for mapping in title_data.get("bestaetigteMappings", []):
@@ -77,7 +82,7 @@ def compile_layer(title_authority: Path, work_authority: Path, early_registers: 
                 "creator": item.get("komponist_autor") or None,
                 "source": "werkautoritaet_final_1851_1869",
             }
-            for variant in {item.get("titel", ""), *item.get("varianten", [])}:
+            for variant in sorted({item.get("titel", ""), *item.get("varianten", [])}, key=key):
                 variant_key = key(variant)
                 if variant_key and record not in works.setdefault(variant_key, []): works[variant_key].append(record)
 
@@ -100,17 +105,39 @@ def compile_layer(title_authority: Path, work_authority: Path, early_registers: 
                 })
             if rows: date_works[date] = rows
 
+    contextual_aliases: dict[str, dict] = {}
+    dated_overrides: dict[str, list[dict]] = {}
+    display_provenance = None
+    if display_authority:
+        display_data = json.loads(display_authority.read_text(encoding="utf-8"))
+        for mapping in display_data.get("contextualTitleMappings", []):
+            record = {
+                "modern": mapping["modern"],
+                "historicalPreferred": mapping.get("historicalPreferred"),
+                "creator": mapping.get("creator"),
+                "source": display_authority.name,
+            }
+            for variant in sorted({mapping["modern"], *mapping.get("variants", [])}, key=key):
+                contextual_aliases[f'{mapping["category"]}|{key(variant)}'] = record
+        dated_overrides = display_data.get("datedWorkOverrides", {})
+        display_provenance = {"file": display_authority.name, "sha256": sha256(display_authority)}
+
+    provenance = {
+        "titleAuthority": {"file": title_authority.name, "sha256": sha256(title_authority)},
+        "workAuthority": {"file": work_authority.name, "sha256": sha256(work_authority)},
+        "earlyRegisters": [{"file": p.name, "sha256": sha256(p)} for p in early_registers],
+    }
+    if display_provenance: provenance["frontDisplayAuthority"] = display_provenance
+
     return {
-        "schema": "muenchner-theater-expert-layer/1",
-        "policy": "Modern canonical title in front; historical title preserved as subtitle and source surface.",
+        "schema": "muenchner-theater-expert-layer/2",
+        "policy": "Original-language canonical opera title in front; historical Munich title below; exact printed surface backstage; unresolved OCR fragments withheld.",
         "modernAliases": aliases,
+        "contextualAliases": contextual_aliases,
         "works": works,
         "dateWorks": date_works,
-        "provenance": {
-            "titleAuthority": {"file": title_authority.name, "sha256": sha256(title_authority)},
-            "workAuthority": {"file": work_authority.name, "sha256": sha256(work_authority)},
-            "earlyRegisters": [{"file": p.name, "sha256": sha256(p)} for p in early_registers],
-        },
+        "datedWorkOverrides": dated_overrides,
+        "provenance": provenance,
     }
 
 
@@ -118,13 +145,14 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--title-authority", required=True, type=Path)
     parser.add_argument("--work-authority", required=True, type=Path)
+    parser.add_argument("--display-authority", type=Path)
     parser.add_argument("--early-register", action="append", default=[], type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
-    layer = compile_layer(args.title_authority, args.work_authority, args.early_register)
+    layer = compile_layer(args.title_authority, args.work_authority, args.early_register, args.display_authority)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(layer, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"aliases": len(layer["modernAliases"]), "workVariants": len(layer["works"]), "datedEvents": len(layer["dateWorks"])}, ensure_ascii=False))
+    print(json.dumps({"aliases": len(layer["modernAliases"]), "contextualAliases": len(layer["contextualAliases"]), "workVariants": len(layer["works"]), "datedEvents": len(layer["dateWorks"]), "datedOverrides": len(layer["datedWorkOverrides"])}, ensure_ascii=False))
 
 
 if __name__ == "__main__": main()

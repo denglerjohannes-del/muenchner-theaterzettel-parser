@@ -41,6 +41,14 @@ haben Vorrang vor bloßer Titelähnlichkeit. Nicht auflösbare Kandidaten bleibe
 im internen Prüfbestand und gelangen nicht als erfundene Kategorie oder
 Urheberangabe in den Kalender.
 
+Die versionierte `resources/front_display_authority.json` ergänzt
+gattungsgebundene, kollisionssichere Werkidentitäten. So erscheinen
+`Così fan tutte` / `Weibertreue`, `Le nozze di Figaro` / `Die Hochzeit des
+Figaro` und `I Capuleti e i Montecchi` / `Die Montechi und die Capuleti`, ohne
+das Schauspiel `Romeo und Julia` umzubenennen. Datumsgebundene Bildkorrekturen
+bleiben als solche ausgewiesen. Der Compiler sortiert alle Variantenschlüssel
+deterministisch; zwei identische Läufe müssen denselben SHA-256 erzeugen.
+
 Für ergänzende Archivbestände mit Datumspräfixen steht außerdem
 `source_filename_dates.py` bereit. Das Hilfswerkzeug trennt exakte Tage,
 Monats-/Jahresangaben, Spielzeiten und Bereiche. Insbesondere wird ein Name wie

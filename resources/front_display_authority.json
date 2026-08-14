@@ -1,0 +1,130 @@
+{
+  "schema": "muenchner-theater-front-display-authority/1",
+  "policy": "Originalsprachiger kanonischer Operntitel vorn; historische Münchner Titelform darunter; exakte Druckform separat backstage. Mehrdeutige Titel werden nur mit Gattungs- oder Datumsbezug aufgelöst.",
+  "contextualTitleMappings": [
+    {
+      "category": "Oper",
+      "modern": "Così fan tutte",
+      "historicalPreferred": "Weibertreue",
+      "creator": "Wolfgang Amadeus Mozart",
+      "variants": [
+        "Così fan tutte",
+        "Cosi fan tutte",
+        "So machen's Alle",
+        "So machen’s Alle",
+        "So machens Alle",
+        "Weibertreue",
+        "Weibertreue (Così fan tutte)",
+        "Weibertreue - cosi fan tutte",
+        "Weibertreue - cosi fan tutte - St"
+      ]
+    },
+    {
+      "category": "Oper",
+      "modern": "Le nozze di Figaro",
+      "creator": "Wolfgang Amadeus Mozart",
+      "variants": [
+        "Le nozze di Figaro",
+        "Die Hochzeit des Figaro",
+        "Die Hochzeit des Figaro Graf Almaviva",
+        "Figaros Hochzeit",
+        "Figaro's Hochzeit",
+        "Ein toller Tag, oder Figaros Hochzeit"
+      ]
+    },
+    {
+      "category": "Oper",
+      "modern": "I Capuleti e i Montecchi",
+      "historicalPreferred": "Die Montechi und die Capuleti",
+      "creator": "Vincenzo Bellini",
+      "variants": [
+        "I Capuleti e i Montecchi",
+        "Die Montechi und die Capuleti",
+        "Die Montechiund die Capuleti",
+        "Die Montecchi und die Capuleti",
+        "Die Capulets und Montagues",
+        "Die Capulets und Montagueé"
+      ]
+    },
+    {
+      "category": "Oper",
+      "modern": "Gustave III, ou Le Bal masqué",
+      "creator": "Daniel-François-Esprit Auber",
+      "variants": [
+        "Der Maskenball"
+      ]
+    }
+  ],
+  "datedWorkOverrides": {
+    "1853-02-04": [
+      {
+        "modern": "Englisch",
+        "historical": "Englisch",
+        "sourceSurface": "Englisch",
+        "category": "Posse",
+        "creator": "C. G. W. Müller",
+        "creatorRole": "Autor"
+      },
+      {
+        "modern": "Die Porträts",
+        "historical": "Die Porträts",
+        "sourceSurface": "Die Porträts",
+        "category": "Ballett/Tanz"
+      }
+    ],
+    "1853-02-06": [
+      {
+        "modern": "Gustave III, ou Le Bal masqué",
+        "historical": "Der Maskenball",
+        "sourceSurface": "Der Maskenball",
+        "category": "Oper",
+        "creator": "Daniel-François-Esprit Auber",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1853-02-08": [
+      {
+        "modern": "Die Schwestern von Prag",
+        "historical": "Die Schwestern von Prag",
+        "sourceSurface": "Die Schwestern von Prag",
+        "category": "Oper",
+        "creator": "Wenzel Müller",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1853-02-13": [
+      {
+        "modern": "Die Zauberflöte",
+        "historical": "Die Zauberflöte",
+        "sourceSurface": "Die Zauberflöte",
+        "category": "Oper",
+        "creator": "Wolfgang Amadeus Mozart",
+        "creatorRole": "Komposition"
+      }
+    ],
+    "1853-02-20": [
+      {
+        "modern": "Der Alpenkönig und der Menschenfeind",
+        "historical": "Der Alpenkönig und der Menschenfeind",
+        "sourceSurface": "Der Alpenkönig und der Menschenfeind",
+        "category": "Schauspiel",
+        "creator": "Ferdinand Raimund",
+        "creatorRole": "Autor"
+      }
+    ],
+    "1853-02-27": [
+      {
+        "modern": "Gute Nacht, Herr Pantalon!",
+        "historical": "Gute Nacht, Herr Pantalon!",
+        "sourceSurface": "Gute Nacht Herr Pantalon!",
+        "category": "Oper"
+      },
+      {
+        "modern": "Großes Tanz-Divertissement aus Der Maskenball",
+        "historical": "Großes Tanz-Divertissement aus dem fünften Aufzuge der Oper: Der Maskenball",
+        "sourceSurface": "Großes Tanz-Divertissement aus dem fünften Aufzuge der Oper: Der Maskenball",
+        "category": "Ballett/Tanz"
+      }
+    ]
+  }
+}
