@@ -26,7 +26,7 @@ WEEKDAY_ONLY_RE = re.compile(rf"^\s*(?:{WEEKDAY_PATTERN})\s*$", re.I)
 def compile_date_re(year: int) -> re.Pattern:
     """Build the bill-header date pattern for one explicitly selected year."""
     return re.compile(
-        r"^\s*(?:M[üu][nu]chen[,.]?\s+)?[|—–-]*\s*"
+        r"^\s*(?:(?:M[üu][nu]chen|Mündjen)[,.]?\s+)?[|—–-]*\s*"
         rf"\b({WEEKDAY_PATTERN})\b"
         r".*?\b(?:den\s+)?(\d{1,2})\.{0,2}\s+"
         r"(Januar|Februar|Jebruar|März|Maerz|April|Mai|Juni|Juli|August|Auguft|Jugust|Inni|September|FSeptember|Oktober|November|Dezember)"

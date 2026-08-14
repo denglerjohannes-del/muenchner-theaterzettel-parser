@@ -112,6 +112,7 @@ class PipelineTests(unittest.TestCase):
         self.assertIsNotNone(pattern.search("Famstag den 27. Dezember 1878."))
         self.assertIsNotNone(pattern.search("Mittwoch den 20.. Oktober 1878."))
         self.assertIsNotNone(pattern.search("München, Freitag den 1. November 1878."))
+        self.assertIsNotNone(pattern.search("Mündjen, Sonntag den 19. Februar 1878."))
         self.assertIsNotNone(pattern.search("Müuchen, Dienstag den 1. März 1878."))
         self.assertIsNotNone(pattern.search("München, Mittwoch den 1. Inni 1878."))
         self.assertIsNotNone(pattern.search("München, Fonutag den 28. August 1878."))
