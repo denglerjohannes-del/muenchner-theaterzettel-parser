@@ -98,3 +98,39 @@ Ausdrückliche Absagen und Schließungen werden zusätzlich in
 `KNOWN_CANCELLATION_OR_CLOSURE_NOTICES.jsonl` quellengebunden erhalten. Das gilt
 auch für Hinweise im Fuß eines Vortagszettels, bei denen am geschlossenen Tag
 selbst kein eigener Zettel existiert.
+
+## Besetzung und gedruckte Urheberzeile
+
+`extract_cast.py` liest aus denselben hOCR-Seiten die `Personen:`-Rubrik und die
+gedruckte Gattungs- und Urheberzeile.
+
+```bash
+python3 extract_cast.py 1870 bsb10623143 hocr candidates/PROGRAMME_CANDIDATES.jsonl BESETZUNG_1870.jsonl
+```
+
+Rolle und Darsteller stehen auf dem Zettel in zwei Spalten, im OCR-Fliesstext aber
+alternierend und mal in der einen, mal in der anderen Reihenfolge. Die Paarung laeuft
+deshalb ueber die Zeilenhoehe, nicht ueber die XML-Reihenfolge. Die Namensspalte wird
+an der gedruckten Anrede erkannt (`Herr`, `Frau`, `Fraeulein`, samt der haeufigen
+Frakturverlesungen `Fran`, `Frrr`, `Fraenlein`), nicht an einer festen x-Schwelle,
+weil der Satzspiegel je Jahrgang wandert. Der Block endet an der Preistabelle, der
+Anfangszeit oder der Fussvorschau; die Abbruchmarken sind umlautunabhaengig gefasst,
+weil Fraktur-OCR gerade dort unzuverlaessig ist. Punktfuehrungen werden verworfen.
+
+Referenzbefund 1869-1872 (Baende bsb10317349, bsb10623143, bsb10935158, bsb10935159):
+
+| | |
+|---|---:|
+| ausgewertete Zettel | 1.303 |
+| davon mit Besetzung | 1.275 (98 %) |
+| Besetzungsrelationen | 19.314 |
+| davon mit Rollenangabe | 17.904 |
+| Zettel mit gedruckter Urheberzeile | 1.193 (92 %) |
+| verschiedene Darsteller-Oberflaechen | 594 |
+
+Neunzig Prozent der Relationen entfallen auf 96 Namensoberflaechen — die
+Identitaetsarbeit ist damit begrenzt und planbar.
+
+Die Ausgabe ist ausdruecklich Kandidatenmaterial: Anrede, Namensoberflaeche und
+Rollenoberflaeche bleiben getrennt und an Scan, bbox und hOCR-SHA-256 gebunden.
+Es werden keine Personenidentitaeten gebildet.
